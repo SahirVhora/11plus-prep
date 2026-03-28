@@ -114,10 +114,10 @@ export function About() {
       <AccordionItem title="📄 Free external resources">
         <ul className="space-y-2">
           {[
-            { name: 'GL Assessment — Free Familiarisation Papers', href: 'https://www.gl-assessment.co.uk/support/familiarisation-materials/' },
-            { name: 'Bond 11+ — Free Sample Papers', href: 'https://www.bond11plus.co.uk/free-papers' },
+            { name: 'GL Assessment — Free Familiarisation Papers', href: 'https://11plus.gl-assessment.co.uk/pages/free-materials' },
+            { name: 'Bond 11+ — Free Sample Papers', href: 'https://www.bond11plus.co.uk/free-resources-sample' },
             { name: 'SATs Papers (Maths & English)', href: 'https://www.satspapers.co.uk' },
-            { name: 'BBC Bitesize KS2', href: 'https://www.bbc.co.uk/bitesize/levels/zbr9wmk' },
+            { name: 'BBC Bitesize KS2', href: 'https://www.bbc.co.uk/bitesize/primary' },
           ].map(({ name, href }) => (
             <li key={name}>
               <a
