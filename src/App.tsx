@@ -10,7 +10,7 @@ import { About } from './pages/About';
 export default function App() {
   return (
     <AppProvider>
-      <BrowserRouter>
+      <BrowserRouter basename="/11plus-prep">
         <div className="min-h-screen flex flex-col bg-bg dark:bg-slate-900">
           <Header />
           <SettingsModal />
