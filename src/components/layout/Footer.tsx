@@ -15,10 +15,10 @@ export function Footer() {
           <div>
             <h3 className="font-bold text-base mb-3">Subjects</h3>
             <ul className="space-y-1 text-blue-200 text-sm">
-              <li><Link to="/quiz" className="hover:text-white transition-colors">🔢 Maths</Link></li>
-              <li><Link to="/quiz" className="hover:text-white transition-colors">📖 English</Link></li>
-              <li><Link to="/quiz" className="hover:text-white transition-colors">🔤 Verbal Reasoning</Link></li>
-              <li><Link to="/quiz" className="hover:text-white transition-colors">🔷 Non-Verbal Reasoning</Link></li>
+              <li><Link to="/quiz?subject=maths" className="hover:text-white transition-colors">🔢 Maths</Link></li>
+              <li><Link to="/quiz?subject=english" className="hover:text-white transition-colors">📖 English</Link></li>
+              <li><Link to="/quiz?subject=verbal" className="hover:text-white transition-colors">🔤 Verbal Reasoning</Link></li>
+              <li><Link to="/quiz?subject=nonverbal" className="hover:text-white transition-colors">🔷 Non-Verbal Reasoning</Link></li>
             </ul>
           </div>
           <div>
