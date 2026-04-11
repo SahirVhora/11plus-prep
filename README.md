@@ -1,73 +1,60 @@
-# React + TypeScript + Vite
+# 🎓 11+ Prep - Interactive Learning Platform
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A comprehensive, region-specific exam preparation platform designed to help students master the 11+ entrance exams. This application provides a structured, interactive environment for practicing core subjects and region-specific patterns.
 
-Currently, two official plugins are available:
+## 🌟 Key Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+### 🗺️ Region-Specific Preparation
+The platform recognizes that 11+ exams vary significantly by region. It includes dedicated question banks and validation for:
+- **Regional Boards:** Birmingham, Buckinghamshire, Essex, Hertfordshire, Kent, Lancashire, Lincolnshire, Manchester, Warwickshire, and Yorkshire.
+- **Core Subjects:** English, Maths, Verbal Reasoning, and Non-Verbal Reasoning.
+- **Regional Intelligence:** Integrated region info panels and validators to ensure students are studying the correct material for their area.
 
-## React Compiler
+### ✍️ Interactive Quiz Engine
+- **Smart Sampling:** Dynamic question sampling to provide a fresh experience in every session.
+- **Performance Tracking:** Real-time progress monitoring with a custom quiz timer.
+- **Weak Area Analysis:** Built-in logic to analyze scores and identify specific areas where the student needs more focus.
+- **Adaptive Difficulty:** Visual badges to categorize question difficulty levels.
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+### 📄 Study Tooling
+- **PDF Generation:** Ability to generate printable versions of questions and results using `jspdf` and `html2canvas`.
+- **AI-Powered Content:** Integrated with the Anthropic SDK for generating high-quality practice questions.
 
-## Expanding the ESLint configuration
+## 🛠️ Technical Stack
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+- **Frontend:** React 19, TypeScript, Vite
+- **Styling:** Tailwind CSS
+- **State Management:** React Context API
+- **Key Libraries:**
+  - `react-router-dom` for seamless page navigation.
+  - `jspdf` & `html2canvas` for document generation.
+  - `@anthropic-ai/sdk` for AI-driven content generation.
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+## 🚀 Getting Started
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
-
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+### Installation
+```bash
+npm install
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
-
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+### Development
+```bash
+npm run dev
 ```
+
+### Build for Production
+```bash
+npm run build
+```
+
+### Utility Commands
+To validate the regional data integrity:
+```bash
+npm run validate-regions
+```
+
+## 📂 Project Structure
+- `src/data/questions`: JSON-based question banks partitioned by region and subject.
+- `src/hooks`: Custom hooks for timer management, quiz logic, and score analysis.
+- `src/utils`: Core logic for PDF generation and regional validation.
+- `src/components`: Modular UI components split by functionality (Quiz, Home, Region, Shared).
