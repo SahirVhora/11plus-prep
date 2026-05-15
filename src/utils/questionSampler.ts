@@ -57,6 +57,42 @@ export function sampleMixedPaper(
   return shuffle(result);
 }
 
+/**
+ * Samples questions biased toward the supplied weak topics.
+ * ~70 % of questions come from those topics; remainder fills from the broader pool.
+ */
+export function sampleWeakAreaBiased(
+  allQuestions: Question[],
+  weakTopics: string[],
+  count: number,
+  subject?: Subject | 'mixed',
+  difficulty?: Difficulty | 'mixed',
+): Question[] {
+  let pool = [...allQuestions];
+
+  if (subject && subject !== 'mixed') {
+    pool = pool.filter((q) => q.subject === subject);
+  }
+  if (difficulty && difficulty !== 'mixed') {
+    const filtered = pool.filter((q) => q.difficulty === difficulty);
+    // fall back to full subject pool if difficulty filter leaves too few
+    pool = filtered.length >= Math.ceil(count * 0.4) ? filtered : pool;
+  }
+
+  const weakPool  = shuffle(pool.filter((q) =>  weakTopics.includes(q.topic)));
+  const otherPool = shuffle(pool.filter((q) => !weakTopics.includes(q.topic)));
+
+  const desiredWeak  = Math.ceil(count * 0.7);
+  const actualWeak   = Math.min(desiredWeak, weakPool.length);
+  const actualOther  = Math.min(count - actualWeak, otherPool.length);
+  const finalWeak    = Math.min(actualWeak, count - actualOther);
+
+  return shuffle([
+    ...weakPool.slice(0, finalWeak),
+    ...otherPool.slice(0, count - finalWeak),
+  ]);
+}
+
 function shuffle<T>(arr: T[]): T[] {
   const a = [...arr];
   for (let i = a.length - 1; i > 0; i--) {

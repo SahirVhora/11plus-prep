@@ -7,6 +7,7 @@ import { ModeToggle } from '../layout/ModeToggle';
 import { RegionSelector } from '../region/RegionSelector';
 import { RegionInfoPanel } from '../region/RegionInfoPanel';
 import type { QuizConfig, TimerMode } from '../../hooks/useQuiz';
+import { useWeakAreas } from '../../hooks/useWeakAreas';
 
 interface Props {
   onStart: (config: QuizConfig) => void;
@@ -49,6 +50,8 @@ export function QuizSetup({ onStart }: Props) {
   const [useCustom, setUseCustom] = useState(false);
   const [timerType, setTimerType] = useState<'off' | 'per-question' | 'full-paper'>('off');
   const [generatePdf, setGeneratePdf] = useState(false);
+  const { getWeakTopics } = useWeakAreas();
+  const weakTopics = getWeakTopics();
 
   const finalCount = useCustom ? customCount : count;
 
@@ -248,6 +251,51 @@ export function QuizSetup({ onStart }: Props) {
           </label>
         </div>
 
+        {/* Weak Areas quick-start */}
+        {weakTopics.length > 0 && (
+          <div className="card border-2 border-amber-300 dark:border-amber-600">
+            <h2 className="font-bold text-amber-700 dark:text-amber-300 mb-3">⚠️ Weak Areas Detected</h2>
+            <p className="text-xs text-gray-500 dark:text-slate-400 mb-3">
+              These topics have accuracy below 60% after 3+ attempts. Practice them now to improve.
+            </p>
+            <div className="space-y-2 mb-4">
+              {weakTopics.slice(0, 5).map((entry) => (
+                <div
+                  key={`${entry.subject}__${entry.topic}`}
+                  className="flex items-center justify-between gap-3 px-3 py-2 bg-amber-50 dark:bg-amber-900/20 rounded-lg"
+                >
+                  <span className="text-sm font-medium capitalize text-gray-700 dark:text-slate-200">
+                    {entry.topic.replace(/-/g, ' ')}
+                    <span className="ml-2 text-xs text-gray-400">{entry.subject}</span>
+                  </span>
+                  <span className="text-xs font-bold text-red-500">
+                    {Math.round((entry.correct / entry.attempts) * 100)}%
+                  </span>
+                </div>
+              ))}
+              {weakTopics.length > 5 && (
+                <p className="text-xs text-gray-400 text-center">+{weakTopics.length - 5} more weak topics</p>
+              )}
+            </div>
+            <button
+              onClick={() =>
+                onStart({
+                  mode: state.mode,
+                  subject: 'mixed',
+                  difficulty: 'mixed',
+                  questionCount: finalCount,
+                  timerMode: { type: 'off' },
+                  generatePdf: false,
+                  regionId: region.id,
+                  focusWeakTopics: weakTopics.map((e) => e.topic),
+                })
+              }
+              className="w-full btn-secondary text-sm py-2.5"
+            >
+              🎯 Practice My Weak Areas ({weakTopics.length} topic{weakTopics.length > 1 ? 's' : ''})
+            </button>
+          </div>
+        )}
         {/* AI mode warning */}
         {state.mode === 'ai' && !state.apiKey && (
           <div className="bg-amber-50 dark:bg-amber-900/20 border border-amber-200 dark:border-amber-700 rounded-xl p-4 text-sm text-amber-700 dark:text-amber-300">

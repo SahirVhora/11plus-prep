@@ -11,7 +11,7 @@ import { QuizTimer } from '../components/quiz/QuizTimer';
 import { QuizResults } from '../components/quiz/QuizResults';
 import { LoadingSpinner } from '../components/shared/LoadingSpinner';
 import { ErrorBanner } from '../components/shared/ErrorBanner';
-import { sampleQuestions, sampleMixedPaper } from '../utils/questionSampler';
+import { sampleQuestions, sampleMixedPaper, sampleWeakAreaBiased } from '../utils/questionSampler';
 import { generateQuestionsFromAI } from '../api/generateQuestions';
 import { generatePaper } from '../utils/pdfGenerator';
 import type { QuizConfig } from '../hooks/useQuiz';
@@ -90,7 +90,16 @@ export function Quiz() {
       } else {
         const allQuestions = await loadRegionQuestions(config.regionId ?? 'london');
         const topicParam = searchParams.get('topic') || '';
-        if (config.subject === 'mixed') {
+        // ── Weak-area focused mode ──────────────────────────────────
+        if (config.focusWeakTopics && config.focusWeakTopics.length > 0) {
+          questions = sampleWeakAreaBiased(
+            allQuestions,
+            config.focusWeakTopics,
+            config.questionCount,
+            config.subject !== 'mixed' ? (config.subject as 'maths' | 'english' | 'verbal' | 'nonverbal') : undefined,
+            config.difficulty !== 'mixed' ? config.difficulty : undefined,
+          );
+        } else if (config.subject === 'mixed') {
           questions = sampleMixedPaper(allQuestions, config.questionCount,
             config.difficulty !== 'mixed' ? config.difficulty : undefined);
         } else {

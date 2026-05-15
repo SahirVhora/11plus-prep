@@ -17,6 +17,7 @@ export interface QuizConfig {
   timerMode: TimerMode;
   generatePdf: boolean;
   regionId?: string;
+  focusWeakTopics?: string[];
 }
 
 export interface QuizResult {
