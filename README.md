@@ -58,3 +58,7 @@ npm run validate-regions
 - `src/hooks`: Custom hooks for timer management, quiz logic, and score analysis.
 - `src/utils`: Core logic for PDF generation and regional validation.
 - `src/components`: Modular UI components split by functionality (Quiz, Home, Region, Shared).
+
+## Staged Learning Plan
+
+See [docs/staged-learning-plan.md](docs/staged-learning-plan.md) for a parent-friendly progression from diagnostic baseline through regional alignment and timed exam conditioning. This gives the existing quiz engine a clearer learning path without changing core behaviour.
