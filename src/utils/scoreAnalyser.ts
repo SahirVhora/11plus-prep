@@ -8,9 +8,9 @@ export function analyseScore(percentage: number): {
   if (percentage >= 80) {
     return { label: "Excellent! Grammar school ready", color: 'text-emerald-600', emoji: '🎉' };
   } else if (percentage >= 60) {
-    return { label: "Good progress — keep practising!", color: 'text-amber-600', emoji: '👍' };
+    return { label: "Good progress - keep practising!", color: 'text-amber-600', emoji: '👍' };
   } else {
-    return { label: "More practice needed — you've got this!", color: 'text-rose-600', emoji: '💪' };
+    return { label: "More practice needed - you've got this!", color: 'text-rose-600', emoji: '💪' };
   }
 }
 

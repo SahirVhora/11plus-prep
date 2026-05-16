@@ -356,7 +356,7 @@
     "question": "Find the hidden five-letter word: 'The champion arrived late on purpose.'",
     "options": ["A) POSE", "B) ARSON", "C) RIVER", "D) UPON"],
     "answer": "A",
-    "explanation": "The word POSE is hidden inside 'purPOSEe' — specifically inside 'purpose': pur-P-O-S-E. The letters P, O, S, E appear consecutively in 'purPOSE'.",
+    "explanation": "The word POSE is hidden inside 'purPOSEe' - specifically inside 'purpose': pur-P-O-S-E. The letters P, O, S, E appear consecutively in 'purPOSE'.",
     "tags": ["hidden-words", "spelling", "level-3"]
   },
   {

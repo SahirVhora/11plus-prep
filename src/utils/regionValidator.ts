@@ -126,7 +126,7 @@ function validateQuestionBank(filePath: string): ValidationResult {
       errors.push({ file: filename, questionId: qid, field: 'question', message: 'Missing or empty question text' });
     }
 
-    // options — required for mcq
+    // options - required for mcq
     if (q.type === 'mcq') {
       if (!Array.isArray(q.options) || q.options.length < 3) {
         errors.push({ file: filename, questionId: qid, field: 'options', message: 'MCQ must have at least 3 options' });
@@ -151,7 +151,7 @@ function validateQuestionBank(filePath: string): ValidationResult {
       errors.push({ file: filename, questionId: qid, field: 'explanation', message: 'Missing or empty explanation' });
     }
 
-    // examBoard — optional but if present must be valid
+    // examBoard - optional but if present must be valid
     if (q.examBoard !== undefined && !VALID_EXAM_BOARDS.includes(q.examBoard as typeof VALID_EXAM_BOARDS[number])) {
       warnings.push(`Q ${qid}: examBoard "${q.examBoard}" is not a recognised value`);
     }
@@ -164,13 +164,13 @@ function validateQuestionBank(filePath: string): ValidationResult {
 
   // Warn if fewer than 20 questions
   if (questions.length < 20) {
-    warnings.push(`Only ${questions.length} questions — consider adding more for variety`);
+    warnings.push(`Only ${questions.length} questions - consider adding more for variety`);
   }
 
   // Warn if all same difficulty
   const nonZeroDiffs = Object.values(difficultyBreakdown).filter((v) => v > 0);
   if (nonZeroDiffs.length === 1) {
-    warnings.push('All questions are the same difficulty — add mixed difficulty levels');
+    warnings.push('All questions are the same difficulty - add mixed difficulty levels');
   }
 
   return {
@@ -201,7 +201,7 @@ function main() {
     totalWarnings += warnCount;
 
     const status = errorCount === 0 ? '✅' : '❌';
-    console.log(`\n${status} ${result.file} — ${result.questionCount} questions`);
+    console.log(`\n${status} ${result.file} - ${result.questionCount} questions`);
     console.log(`   Subjects: ${JSON.stringify(result.subjectBreakdown)}`);
     console.log(`   Difficulty: ${JSON.stringify(result.difficultyBreakdown)}`);
 

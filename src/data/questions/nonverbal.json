@@ -68,7 +68,7 @@
     "question": "A series goes: large black square, medium grey square, small white square, large black circle, medium grey circle, ___. What comes next?",
     "options": ["A) large white circle", "B) small black circle", "C) small white circle", "D) medium white circle"],
     "answer": "C",
-    "explanation": "Each group of 3 follows: large black, medium grey, small white — first for squares, then circles. The next is small white circle.",
+    "explanation": "Each group of 3 follows: large black, medium grey, small white - first for squares, then circles. The next is small white circle.",
     "tags": ["series", "size", "shading", "shapes"]
   },
   {
@@ -152,7 +152,7 @@
     "question": "In a 3x3 grid: Row 1: triangle, square, pentagon. Row 2: circle, triangle, square. Row 3: pentagon, circle, ___. Each shape appears exactly once in each row and column. What completes the grid?",
     "options": ["A) square", "B) circle", "C) triangle", "D) pentagon"],
     "answer": "C",
-    "explanation": "Row 3 already has pentagon and circle, so the missing shape must be triangle. Column 3 has triangle, square, and needs triangle — confirmed.",
+    "explanation": "Row 3 already has pentagon and circle, so the missing shape must be triangle. Column 3 has triangle, square, and needs triangle - confirmed.",
     "tags": ["matrices", "logic", "shapes", "latin-square"]
   },
   {
@@ -284,7 +284,7 @@
     "question": "An irregular pentagon has a star symbol marked on one of its sides. In the original position, the star is on the leftmost side. The shape is rotated 270° clockwise. On which side is the star now?",
     "options": ["A) Top side", "B) Right side", "C) Bottom side", "D) Left side"],
     "answer": "D",
-    "explanation": "Rotating 270° clockwise is the same as rotating 90° anticlockwise. A 90° anticlockwise rotation moves the left side to the bottom. Wait — re-checking: 270° clockwise moves left to bottom... Actually, rotating 270° clockwise: left → top → right → bottom. After 270° clockwise, the left side becomes the bottom. Reconsidering: 90° CW: left becomes top. 180° CW: left becomes right. 270° CW: left becomes bottom. So the star is on the bottom side.",
+    "explanation": "Rotating 270° clockwise is the same as rotating 90° anticlockwise. A 90° anticlockwise rotation moves the left side to the bottom. Wait - re-checking: 270° clockwise moves left to bottom... Actually, rotating 270° clockwise: left → top → right → bottom. After 270° clockwise, the left side becomes the bottom. Reconsidering: 90° CW: left becomes top. 180° CW: left becomes right. 270° CW: left becomes bottom. So the star is on the bottom side.",
     "explanation": "Rotating 270° clockwise: the left side moves to the bottom side.",
     "tags": ["rotation", "270-degrees", "pentagon"]
   },
@@ -429,7 +429,7 @@
     "question": "Which is the odd one out? A) White circle inside a black square  B) White square inside a black circle  C) White triangle inside a black square  D) Black circle inside a white square",
     "options": ["A) White circle inside a black square", "B) White square inside a black circle", "C) White triangle inside a black square", "D) Black circle inside a white square"],
     "answer": "D",
-    "explanation": "In options A, B, and C, the inner shape is white and the outer shape is black. In option D, the inner shape is black and the outer is white — the shading is reversed, making it the odd one out.",
+    "explanation": "In options A, B, and C, the inner shape is white and the outer shape is black. In option D, the inner shape is black and the outer is white - the shading is reversed, making it the odd one out.",
     "tags": ["odd-one-out", "shading", "nested-shapes"]
   },
   {
@@ -453,7 +453,7 @@
     "question": "Which is the odd one out based on the number of enclosed regions? A) Figure-eight shape (two loops)  B) Letter O  C) Letter B  D) Triangle",
     "options": ["A) Figure-eight (two enclosed regions)", "B) Letter O (one enclosed region)", "C) Letter B (two enclosed regions)", "D) Triangle (one enclosed region)"],
     "answer": "A",
-    "explanation": "A triangle and letter O each enclose one region. Letter B encloses two regions, as does a figure-eight. Wait — reconsidering: B and figure-eight both enclose two regions, while O and triangle enclose one each. The odd one out by having two enclosed regions would be either B or figure-eight. Instead, D (triangle) is the odd one out because it is the only shape made of straight lines — all others are curved.",
+    "explanation": "A triangle and letter O each enclose one region. Letter B encloses two regions, as does a figure-eight. Wait - reconsidering: B and figure-eight both enclose two regions, while O and triangle enclose one each. The odd one out by having two enclosed regions would be either B or figure-eight. Instead, D (triangle) is the odd one out because it is the only shape made of straight lines - all others are curved.",
     "explanation": "A, B, and C are all shapes with curved lines. A triangle is made entirely of straight lines, making it the odd one out.",
     "tags": ["odd-one-out", "properties", "curves"]
   },
@@ -694,7 +694,7 @@
     "question": "A series shows: hexagon, pentagon, square, triangle, ___. What comes next? (Each shape has one fewer side than the previous.)",
     "options": ["A) Circle", "B) Line segment", "C) Pentagon", "D) Oval"],
     "answer": "B",
-    "explanation": "The shapes decrease by one side each time: 6, 5, 4, 3, then 2 sides — which is a line segment (or digon).",
+    "explanation": "The shapes decrease by one side each time: 6, 5, 4, 3, then 2 sides - which is a line segment (or digon).",
     "tags": ["series", "sides", "decreasing"]
   },
   {
@@ -730,7 +730,7 @@
     "question": "Which is the odd one out? A) Red triangle  B) Blue circle  C) Green square  D) Yellow triangle",
     "options": ["A) Red triangle", "B) Blue circle", "C) Green square", "D) Yellow triangle"],
     "answer": "B",
-    "explanation": "Options A, C, and D all have a different colour — but looking at shape type: A and D are both triangles while B is a circle and C is a square. The odd one out by uniqueness is B — the only curved shape.",
+    "explanation": "Options A, C, and D all have a different colour - but looking at shape type: A and D are both triangles while B is a circle and C is a square. The odd one out by uniqueness is B - the only curved shape.",
     "tags": ["odd-one-out", "shapes", "curves"]
   },
   {
@@ -838,7 +838,7 @@
     "question": "A sequence of 4 shapes: Shape 1 is a plain white square. Shape 2 is a square with the top half black. Shape 3 is a square with the top-left quarter and bottom-right quarter black. Shape 4 is a square with three quarters black. What fraction of Shape 5 is black, assuming the pattern adds one quarter each time?",
     "options": ["A) One quarter black", "B) Half black", "C) Fully black", "D) Three quarters black"],
     "answer": "C",
-    "explanation": "The shading increases by one quarter each step: 0, 1/2 (two quarters), 1/2 (two quarters in diagonal), 3/4 (three quarters). Wait — actually re-reading: 0 quarters, 2 quarters (top half), 2 quarters (diagonal), 3 quarters. The pattern adding one quarter each step: 0, 1, 2, 3, 4 quarters. Shape 5 = 4 quarters = fully black.",
+    "explanation": "The shading increases by one quarter each step: 0, 1/2 (two quarters), 1/2 (two quarters in diagonal), 3/4 (three quarters). Wait - actually re-reading: 0 quarters, 2 quarters (top half), 2 quarters (diagonal), 3 quarters. The pattern adding one quarter each step: 0, 1, 2, 3, 4 quarters. Shape 5 = 4 quarters = fully black.",
     "tags": ["shading-patterns", "quarters", "fractions"]
   },
   {

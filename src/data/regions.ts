@@ -53,7 +53,7 @@ export const REGIONS: RegionConfig[] = [
     ],
     questionBankFile: 'london',
     tips: [
-      'Practice all four subjects equally — papers are mixed.',
+      'Practice all four subjects equally - papers are mixed.',
       'GL uses A–E multiple-choice format; no partial marks.',
       'Aim to complete each paper in 45–50 minutes.',
     ],
@@ -82,7 +82,7 @@ export const REGIONS: RegionConfig[] = [
     ],
     questionBankFile: 'kent',
     tips: [
-      'No English comprehension paper — focus on maths and reasoning.',
+      'No English comprehension paper - focus on maths and reasoning.',
       'The Kent Test is sat in primary school, not at the secondary school.',
       'Children are ranked and borderline cases reviewed by headteacher panels.',
     ],
@@ -100,7 +100,7 @@ export const REGIONS: RegionConfig[] = [
     papers: ['SET Paper 1', 'SET Paper 2'],
     registrationPeriod: 'April – May',
     testPeriod: 'September',
-    testFormat: 'Two selective eligibility tests (SET) — a GL Verbal Reasoning paper and a combined Maths/Non-Verbal Reasoning paper. Sat at primary school.',
+    testFormat: 'Two selective eligibility tests (SET) - a GL Verbal Reasoning paper and a combined Maths/Non-Verbal Reasoning paper. Sat at primary school.',
     notableSchools: [
       { name: "Royal Grammar School, High Wycombe", area: 'High Wycombe' },
       { name: 'Wycombe High School', area: 'High Wycombe' },
@@ -111,7 +111,7 @@ export const REGIONS: RegionConfig[] = [
     ],
     questionBankFile: 'buckinghamshire',
     tips: [
-      'English comprehension is NOT tested in Bucks — focus on verbal reasoning and maths.',
+      'English comprehension is NOT tested in Bucks - focus on verbal reasoning and maths.',
       'The test is sat in Year 5 (one year earlier than most regions).',
       'GL-style multiple choice; practice speed as time is tight.',
     ],
@@ -140,8 +140,8 @@ export const REGIONS: RegionConfig[] = [
     ],
     questionBankFile: 'essex',
     tips: [
-      'Creative writing is 30% of the English mark — practise writing stories and descriptions.',
-      'No verbal or non-verbal reasoning — focus purely on English and Maths.',
+      'Creative writing is 30% of the English mark - practise writing stories and descriptions.',
+      'No verbal or non-verbal reasoning - focus purely on English and Maths.',
       'Show all working in the Maths paper; method marks are awarded.',
     ],
     colour: 'bg-amber-600',
@@ -167,7 +167,7 @@ export const REGIONS: RegionConfig[] = [
     ],
     questionBankFile: 'birmingham',
     tips: [
-      'All four GL subject areas are tested — prepare comprehensively.',
+      'All four GL subject areas are tested - prepare comprehensively.',
       "King Edward's is highly selective; aim for 90%+ accuracy in practice.",
       'Papers are marked by GL; results typically released in November.',
     ],
@@ -196,7 +196,7 @@ export const REGIONS: RegionConfig[] = [
     ],
     questionBankFile: 'manchester',
     tips: [
-      'No English comprehension paper in most GM schools — focus on reasoning and maths.',
+      'No English comprehension paper in most GM schools - focus on reasoning and maths.',
       'Each borough (Trafford, Bury, Wigan) has slightly different registration timelines.',
       'Trafford grammar schools are among the most competitive in the North West.',
     ],
@@ -223,7 +223,7 @@ export const REGIONS: RegionConfig[] = [
     ],
     questionBankFile: 'warwickshire',
     tips: [
-      'English comprehension is tested — read widely and practise inference questions.',
+      'English comprehension is tested - read widely and practise inference questions.',
       'Verbal reasoning questions in Warwickshire tend to be time-pressured.',
       'Non-verbal reasoning is not part of the test; redirect that practice time to English.',
     ],
@@ -250,7 +250,7 @@ export const REGIONS: RegionConfig[] = [
     ],
     questionBankFile: 'lincolnshire',
     tips: [
-      'No English paper — focus on reasoning skills and mental maths.',
+      'No English paper - focus on reasoning skills and mental maths.',
       'Lincolnshire grammar schools are less oversubscribed than London or Kent equivalents.',
       'The test is sat at the secondary school, not the primary school.',
     ],
@@ -277,7 +277,7 @@ export const REGIONS: RegionConfig[] = [
     ],
     questionBankFile: 'lancashire',
     tips: [
-      'Only verbal reasoning and maths are tested — no NVR or English comprehension.',
+      'Only verbal reasoning and maths are tested - no NVR or English comprehension.',
       'Verbal reasoning questions are core; practise all 21 GL VR question types.',
       'Some Lancashire schools set their own supplementary tests for borderline candidates.',
     ],
@@ -305,7 +305,7 @@ export const REGIONS: RegionConfig[] = [
     ],
     questionBankFile: 'yorkshire',
     tips: [
-      'Check each school\'s specific entry requirements — some are partially selective.',
+      'Check each school\'s specific entry requirements - some are partially selective.',
       'Verbal and non-verbal reasoning are emphasised; maths questions mirror KS2 SATs.',
       'Some Bradford schools use the test to allocate a proportion of places only.',
     ],
@@ -333,9 +333,9 @@ export const REGIONS: RegionConfig[] = [
     ],
     questionBankFile: 'hertfordshire',
     tips: [
-      'Hertfordshire uses GL Assessment standard — very similar to the London papers.',
+      'Hertfordshire uses GL Assessment standard - very similar to the London papers.',
       'Watford grammar schools are selective for a small number of places; competition is high.',
-      'No English comprehension — focus on verbal/NVR speed and accuracy.',
+      'No English comprehension - focus on verbal/NVR speed and accuracy.',
     ],
     colour: 'bg-teal-600',
   },
@@ -363,9 +363,9 @@ export const REGIONS: RegionConfig[] = [
     questionBankFile: 'northern-ireland',
     tips: [
       'AQE tests are sat in three sittings in November, December, and January.',
-      'No verbal or non-verbal reasoning — focus entirely on English and Maths.',
+      'No verbal or non-verbal reasoning - focus entirely on English and Maths.',
       'AQE English tests reading comprehension and vocabulary; no creative writing.',
-      'The NI transfer test is taken a year later than in England — at end of Year 7 (age 11–12).',
+      'The NI transfer test is taken a year later than in England - at end of Year 7 (age 11–12).',
     ],
     colour: 'bg-green-800',
   },

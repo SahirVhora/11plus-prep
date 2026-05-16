@@ -14,7 +14,7 @@ export function Header() {
         <Link
           to="/"
           className="flex items-center gap-2 font-extrabold text-xl text-primary dark:text-blue-300 hover:opacity-80 transition-opacity focus:outline-none focus:ring-2 focus:ring-amber-400 rounded"
-          aria-label="11Plus Prep — Home"
+          aria-label="11Plus Prep - Home"
         >
           <span className="text-2xl" aria-hidden="true">🎓</span>
           <span>11Plus<span className="text-secondary">Prep</span></span>

@@ -105,7 +105,7 @@ export function QuizSetup({ onStart }: Props) {
           )}
           {region.hasCreativeWriting && (
             <p className="mt-3 text-xs text-amber-600 dark:text-amber-400 bg-amber-50 dark:bg-amber-900/20 rounded-lg p-2">
-              ✍️ This region includes creative writing — practice timed essays and stories too.
+              ✍️ This region includes creative writing - practice timed essays and stories too.
             </p>
           )}
         </div>
@@ -308,7 +308,7 @@ export function QuizSetup({ onStart }: Props) {
           disabled={state.mode === 'ai' && !state.apiKey}
           className="w-full btn-primary text-lg py-4 shadow-lg"
         >
-          🚀 Start Quiz — {finalCount} Questions
+          🚀 Start Quiz - {finalCount} Questions
         </button>
       </div>
     </div>

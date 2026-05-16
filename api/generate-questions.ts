@@ -24,7 +24,7 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
     const systemPrompt = `You are an expert 11+ exam question writer for UK grammar school entry.
 You write questions aligned with the GL Assessment format used by London grammar schools
 (Barnet, Bexley, Bromley, Redbridge, Kingston/Tiffin-style).
-Always return ONLY valid JSON — no markdown, no preamble, no trailing text.`;
+Always return ONLY valid JSON - no markdown, no preamble, no trailing text.`;
 
     const userPrompt = `Generate exactly ${count} ${subject} questions at difficulty level ${difficulty}/3
 (1=Year4-5 baseline, 2=Year6 standard, 3=Year6 stretch/hard).

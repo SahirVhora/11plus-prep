@@ -63,7 +63,7 @@ export async function generatePaper({ questions, quizConfig, includeAnswers = fa
   doc.text('11+ Practice Paper', margin, 15);
   doc.setFontSize(12);
   doc.setFont('helvetica', 'normal');
-  doc.text(`11PlusPrep.co.uk — ${regionLabel} 11+ Practice — ${examBoardLabel}`, margin, 25);
+  doc.text(`11PlusPrep.co.uk - ${regionLabel} 11+ Practice - ${examBoardLabel}`, margin, 25);
 
   y = 45;
   doc.setTextColor(0, 0, 0);
@@ -101,7 +101,7 @@ export async function generatePaper({ questions, quizConfig, includeAnswers = fa
   doc.setFont('helvetica', 'normal');
   const instructions = [
     '• Circle or underline your chosen answer for each question.',
-    '• Work through the paper quickly — do not spend too long on one question.',
+    '• Work through the paper quickly - do not spend too long on one question.',
     '• If unsure, make your best guess and move on.',
     '• Check your work carefully if you finish early.',
   ];
@@ -157,7 +157,7 @@ export async function generatePaper({ questions, quizConfig, includeAnswers = fa
     }
     y += 2;
 
-    // Options — 2-per-row layout
+    // Options - 2-per-row layout
     if (q.options && q.options.length > 0) {
       const colW = contentW / 2;
       for (let oi = 0; oi < q.options.length; oi++) {

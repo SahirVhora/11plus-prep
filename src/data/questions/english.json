@@ -6,7 +6,7 @@
     "difficulty": 1,
     "type": "mcq",
     "question": "According to the passage, where do Arctic terns spend the summer?",
-    "context": "Every year, the Arctic tern makes one of the most extraordinary journeys in the animal kingdom. These small seabirds breed in the Arctic during the summer months, nesting on rocky shores and tundra. When autumn arrives, they set off on a remarkable migration to the Antarctic — the opposite end of the Earth — where they enjoy a second summer. The round trip covers an astonishing 70,000 kilometres or more. Scientists who tracked the birds using tiny data loggers discovered they do not fly in a straight line but follow the wind patterns across the Atlantic Ocean. During their lifetime of around 30 years, an Arctic tern may travel the equivalent of three trips to the moon and back. Their incredible stamina and navigational skill make them one of nature's most impressive travellers.",
+    "context": "Every year, the Arctic tern makes one of the most extraordinary journeys in the animal kingdom. These small seabirds breed in the Arctic during the summer months, nesting on rocky shores and tundra. When autumn arrives, they set off on a remarkable migration to the Antarctic - the opposite end of the Earth - where they enjoy a second summer. The round trip covers an astonishing 70,000 kilometres or more. Scientists who tracked the birds using tiny data loggers discovered they do not fly in a straight line but follow the wind patterns across the Atlantic Ocean. During their lifetime of around 30 years, an Arctic tern may travel the equivalent of three trips to the moon and back. Their incredible stamina and navigational skill make them one of nature's most impressive travellers.",
     "options": ["A) The Antarctic", "B) The Pacific Ocean", "C) The Arctic", "D) The Atlantic Ocean"],
     "answer": "C",
     "explanation": "The passage states that Arctic terns breed in the Arctic during the summer months.",
@@ -19,7 +19,7 @@
     "difficulty": 1,
     "type": "mcq",
     "question": "How far does the Arctic tern travel on a single round trip?",
-    "context": "Every year, the Arctic tern makes one of the most extraordinary journeys in the animal kingdom. These small seabirds breed in the Arctic during the summer months, nesting on rocky shores and tundra. When autumn arrives, they set off on a remarkable migration to the Antarctic — the opposite end of the Earth — where they enjoy a second summer. The round trip covers an astonishing 70,000 kilometres or more. Scientists who tracked the birds using tiny data loggers discovered they do not fly in a straight line but follow the wind patterns across the Atlantic Ocean. During their lifetime of around 30 years, an Arctic tern may travel the equivalent of three trips to the moon and back. Their incredible stamina and navigational skill make them one of nature's most impressive travellers.",
+    "context": "Every year, the Arctic tern makes one of the most extraordinary journeys in the animal kingdom. These small seabirds breed in the Arctic during the summer months, nesting on rocky shores and tundra. When autumn arrives, they set off on a remarkable migration to the Antarctic - the opposite end of the Earth - where they enjoy a second summer. The round trip covers an astonishing 70,000 kilometres or more. Scientists who tracked the birds using tiny data loggers discovered they do not fly in a straight line but follow the wind patterns across the Atlantic Ocean. During their lifetime of around 30 years, an Arctic tern may travel the equivalent of three trips to the moon and back. Their incredible stamina and navigational skill make them one of nature's most impressive travellers.",
     "options": ["A) 7,000 kilometres", "B) 70,000 kilometres or more", "C) 700,000 kilometres", "D) 7,000,000 kilometres"],
     "answer": "B",
     "explanation": "The passage clearly states the round trip covers an astonishing 70,000 kilometres or more.",
@@ -32,10 +32,10 @@
     "difficulty": 2,
     "type": "mcq",
     "question": "What does the phrase 'extraordinary journeys' suggest about the Arctic tern's migration?",
-    "context": "Every year, the Arctic tern makes one of the most extraordinary journeys in the animal kingdom. These small seabirds breed in the Arctic during the summer months, nesting on rocky shores and tundra. When autumn arrives, they set off on a remarkable migration to the Antarctic — the opposite end of the Earth — where they enjoy a second summer. The round trip covers an astonishing 70,000 kilometres or more. Scientists who tracked the birds using tiny data loggers discovered they do not fly in a straight line but follow the wind patterns across the Atlantic Ocean. During their lifetime of around 30 years, an Arctic tern may travel the equivalent of three trips to the moon and back. Their incredible stamina and navigational skill make them one of nature's most impressive travellers.",
+    "context": "Every year, the Arctic tern makes one of the most extraordinary journeys in the animal kingdom. These small seabirds breed in the Arctic during the summer months, nesting on rocky shores and tundra. When autumn arrives, they set off on a remarkable migration to the Antarctic - the opposite end of the Earth - where they enjoy a second summer. The round trip covers an astonishing 70,000 kilometres or more. Scientists who tracked the birds using tiny data loggers discovered they do not fly in a straight line but follow the wind patterns across the Atlantic Ocean. During their lifetime of around 30 years, an Arctic tern may travel the equivalent of three trips to the moon and back. Their incredible stamina and navigational skill make them one of nature's most impressive travellers.",
     "options": ["A) The journey is very dangerous", "B) The journey is exceptionally impressive and unusual", "C) The journey is very short", "D) The journey is well-known by everyone"],
     "answer": "B",
-    "explanation": "'Extraordinary' means exceptional or remarkable — beyond the ordinary. This tells us the journey is impressively unusual.",
+    "explanation": "'Extraordinary' means exceptional or remarkable - beyond the ordinary. This tells us the journey is impressively unusual.",
     "tags": ["comprehension", "vocabulary-in-context", "GL-style", "nature"]
   },
   {
@@ -45,7 +45,7 @@
     "difficulty": 2,
     "type": "mcq",
     "question": "How did scientists learn about the route the Arctic terns take?",
-    "context": "Every year, the Arctic tern makes one of the most extraordinary journeys in the animal kingdom. These small seabirds breed in the Arctic during the summer months, nesting on rocky shores and tundra. When autumn arrives, they set off on a remarkable migration to the Antarctic — the opposite end of the Earth — where they enjoy a second summer. The round trip covers an astonishing 70,000 kilometres or more. Scientists who tracked the birds using tiny data loggers discovered they do not fly in a straight line but follow the wind patterns across the Atlantic Ocean. During their lifetime of around 30 years, an Arctic tern may travel the equivalent of three trips to the moon and back. Their incredible stamina and navigational skill make them one of nature's most impressive travellers.",
+    "context": "Every year, the Arctic tern makes one of the most extraordinary journeys in the animal kingdom. These small seabirds breed in the Arctic during the summer months, nesting on rocky shores and tundra. When autumn arrives, they set off on a remarkable migration to the Antarctic - the opposite end of the Earth - where they enjoy a second summer. The round trip covers an astonishing 70,000 kilometres or more. Scientists who tracked the birds using tiny data loggers discovered they do not fly in a straight line but follow the wind patterns across the Atlantic Ocean. During their lifetime of around 30 years, an Arctic tern may travel the equivalent of three trips to the moon and back. Their incredible stamina and navigational skill make them one of nature's most impressive travellers.",
     "options": ["A) They followed the birds by aeroplane", "B) They used tiny data loggers attached to the birds", "C) They observed the birds from ships", "D) They used radar to track the birds"],
     "answer": "B",
     "explanation": "The passage says scientists 'tracked the birds using tiny data loggers' to discover the route they take.",
@@ -58,7 +58,7 @@
     "difficulty": 2,
     "type": "mcq",
     "question": "Why does the passage say Arctic terns 'enjoy a second summer' in the Antarctic?",
-    "context": "Every year, the Arctic tern makes one of the most extraordinary journeys in the animal kingdom. These small seabirds breed in the Arctic during the summer months, nesting on rocky shores and tundra. When autumn arrives, they set off on a remarkable migration to the Antarctic — the opposite end of the Earth — where they enjoy a second summer. The round trip covers an astonishing 70,000 kilometres or more. Scientists who tracked the birds using tiny data loggers discovered they do not fly in a straight line but follow the wind patterns across the Atlantic Ocean. During their lifetime of around 30 years, an Arctic tern may travel the equivalent of three trips to the moon and back. Their incredible stamina and navigational skill make them one of nature's most impressive travellers.",
+    "context": "Every year, the Arctic tern makes one of the most extraordinary journeys in the animal kingdom. These small seabirds breed in the Arctic during the summer months, nesting on rocky shores and tundra. When autumn arrives, they set off on a remarkable migration to the Antarctic - the opposite end of the Earth - where they enjoy a second summer. The round trip covers an astonishing 70,000 kilometres or more. Scientists who tracked the birds using tiny data loggers discovered they do not fly in a straight line but follow the wind patterns across the Atlantic Ocean. During their lifetime of around 30 years, an Arctic tern may travel the equivalent of three trips to the moon and back. Their incredible stamina and navigational skill make them one of nature's most impressive travellers.",
     "options": ["A) The Antarctic is always warm", "B) When it is autumn in the Arctic, it is summer in the Antarctic", "C) The birds make the Antarctic warmer with their body heat", "D) Scientists heat the Antarctic specially for the birds"],
     "answer": "B",
     "explanation": "The Arctic and Antarctic have opposite seasons. When autumn arrives in the Arctic, it is becoming summer in the Antarctic, so the terns travel to experience summer again.",
@@ -71,7 +71,7 @@
     "difficulty": 3,
     "type": "mcq",
     "question": "What is the writer's main purpose in this passage?",
-    "context": "Every year, the Arctic tern makes one of the most extraordinary journeys in the animal kingdom. These small seabirds breed in the Arctic during the summer months, nesting on rocky shores and tundra. When autumn arrives, they set off on a remarkable migration to the Antarctic — the opposite end of the Earth — where they enjoy a second summer. The round trip covers an astonishing 70,000 kilometres or more. Scientists who tracked the birds using tiny data loggers discovered they do not fly in a straight line but follow the wind patterns across the Atlantic Ocean. During their lifetime of around 30 years, an Arctic tern may travel the equivalent of three trips to the moon and back. Their incredible stamina and navigational skill make them one of nature's most impressive travellers.",
+    "context": "Every year, the Arctic tern makes one of the most extraordinary journeys in the animal kingdom. These small seabirds breed in the Arctic during the summer months, nesting on rocky shores and tundra. When autumn arrives, they set off on a remarkable migration to the Antarctic - the opposite end of the Earth - where they enjoy a second summer. The round trip covers an astonishing 70,000 kilometres or more. Scientists who tracked the birds using tiny data loggers discovered they do not fly in a straight line but follow the wind patterns across the Atlantic Ocean. During their lifetime of around 30 years, an Arctic tern may travel the equivalent of three trips to the moon and back. Their incredible stamina and navigational skill make them one of nature's most impressive travellers.",
     "options": ["A) To warn readers about the dangers facing Arctic terns", "B) To explain how scientists use technology", "C) To inform and impress the reader with facts about the Arctic tern's migration", "D) To persuade readers to help protect Arctic terns"],
     "answer": "C",
     "explanation": "The passage is informative, presenting impressive facts about the Arctic tern's migration to engage and impress the reader. There is no argument or persuasion, just information presented enthusiastically.",
@@ -84,7 +84,7 @@
     "difficulty": 3,
     "type": "mcq",
     "question": "What does the comparison to 'three trips to the moon and back' help the reader understand?",
-    "context": "Every year, the Arctic tern makes one of the most extraordinary journeys in the animal kingdom. These small seabirds breed in the Arctic during the summer months, nesting on rocky shores and tundra. When autumn arrives, they set off on a remarkable migration to the Antarctic — the opposite end of the Earth — where they enjoy a second summer. The round trip covers an astonishing 70,000 kilometres or more. Scientists who tracked the birds using tiny data loggers discovered they do not fly in a straight line but follow the wind patterns across the Atlantic Ocean. During their lifetime of around 30 years, an Arctic tern may travel the equivalent of three trips to the moon and back. Their incredible stamina and navigational skill make them one of nature's most impressive travellers.",
+    "context": "Every year, the Arctic tern makes one of the most extraordinary journeys in the animal kingdom. These small seabirds breed in the Arctic during the summer months, nesting on rocky shores and tundra. When autumn arrives, they set off on a remarkable migration to the Antarctic - the opposite end of the Earth - where they enjoy a second summer. The round trip covers an astonishing 70,000 kilometres or more. Scientists who tracked the birds using tiny data loggers discovered they do not fly in a straight line but follow the wind patterns across the Atlantic Ocean. During their lifetime of around 30 years, an Arctic tern may travel the equivalent of three trips to the moon and back. Their incredible stamina and navigational skill make them one of nature's most impressive travellers.",
     "options": ["A) That Arctic terns can fly as fast as rockets", "B) The enormous total distance an Arctic tern travels in its lifetime", "C) That scientists use moon landings to study birds", "D) That the birds fly very high in the sky"],
     "answer": "B",
     "explanation": "The comparison is used as a way of making the vast total lifetime distance more imaginable and dramatic, helping the reader grasp just how far an Arctic tern travels over 30 years.",
@@ -97,7 +97,7 @@
     "difficulty": 2,
     "type": "mcq",
     "question": "Which word in the passage is closest in meaning to 'incredible'?",
-    "context": "Every year, the Arctic tern makes one of the most extraordinary journeys in the animal kingdom. These small seabirds breed in the Arctic during the summer months, nesting on rocky shores and tundra. When autumn arrives, they set off on a remarkable migration to the Antarctic — the opposite end of the Earth — where they enjoy a second summer. The round trip covers an astonishing 70,000 kilometres or more. Scientists who tracked the birds using tiny data loggers discovered they do not fly in a straight line but follow the wind patterns across the Atlantic Ocean. During their lifetime of around 30 years, an Arctic tern may travel the equivalent of three trips to the moon and back. Their incredible stamina and navigational skill make them one of nature's most impressive travellers.",
+    "context": "Every year, the Arctic tern makes one of the most extraordinary journeys in the animal kingdom. These small seabirds breed in the Arctic during the summer months, nesting on rocky shores and tundra. When autumn arrives, they set off on a remarkable migration to the Antarctic - the opposite end of the Earth - where they enjoy a second summer. The round trip covers an astonishing 70,000 kilometres or more. Scientists who tracked the birds using tiny data loggers discovered they do not fly in a straight line but follow the wind patterns across the Atlantic Ocean. During their lifetime of around 30 years, an Arctic tern may travel the equivalent of three trips to the moon and back. Their incredible stamina and navigational skill make them one of nature's most impressive travellers.",
     "options": ["A) remarkable", "B) tiny", "C) straight", "D) equivalent"],
     "answer": "A",
     "explanation": "'Remarkable' and 'incredible' both mean extraordinarily impressive. 'Remarkable' is used in the passage to describe the migration.",
@@ -110,7 +110,7 @@
     "difficulty": 1,
     "type": "mcq",
     "question": "According to the passage, how long can an Arctic tern live?",
-    "context": "Every year, the Arctic tern makes one of the most extraordinary journeys in the animal kingdom. These small seabirds breed in the Arctic during the summer months, nesting on rocky shores and tundra. When autumn arrives, they set off on a remarkable migration to the Antarctic — the opposite end of the Earth — where they enjoy a second summer. The round trip covers an astonishing 70,000 kilometres or more. Scientists who tracked the birds using tiny data loggers discovered they do not fly in a straight line but follow the wind patterns across the Atlantic Ocean. During their lifetime of around 30 years, an Arctic tern may travel the equivalent of three trips to the moon and back. Their incredible stamina and navigational skill make them one of nature's most impressive travellers.",
+    "context": "Every year, the Arctic tern makes one of the most extraordinary journeys in the animal kingdom. These small seabirds breed in the Arctic during the summer months, nesting on rocky shores and tundra. When autumn arrives, they set off on a remarkable migration to the Antarctic - the opposite end of the Earth - where they enjoy a second summer. The round trip covers an astonishing 70,000 kilometres or more. Scientists who tracked the birds using tiny data loggers discovered they do not fly in a straight line but follow the wind patterns across the Atlantic Ocean. During their lifetime of around 30 years, an Arctic tern may travel the equivalent of three trips to the moon and back. Their incredible stamina and navigational skill make them one of nature's most impressive travellers.",
     "options": ["A) Around 3 years", "B) Around 10 years", "C) Around 30 years", "D) Around 70 years"],
     "answer": "C",
     "explanation": "The passage states that Arctic terns have 'a lifetime of around 30 years'.",
@@ -123,7 +123,7 @@
     "difficulty": 3,
     "type": "mcq",
     "question": "Which word best describes the tone of the passage?",
-    "context": "Every year, the Arctic tern makes one of the most extraordinary journeys in the animal kingdom. These small seabirds breed in the Arctic during the summer months, nesting on rocky shores and tundra. When autumn arrives, they set off on a remarkable migration to the Antarctic — the opposite end of the Earth — where they enjoy a second summer. The round trip covers an astonishing 70,000 kilometres or more. Scientists who tracked the birds using tiny data loggers discovered they do not fly in a straight line but follow the wind patterns across the Atlantic Ocean. During their lifetime of around 30 years, an Arctic tern may travel the equivalent of three trips to the moon and back. Their incredible stamina and navigational skill make them one of nature's most impressive travellers.",
+    "context": "Every year, the Arctic tern makes one of the most extraordinary journeys in the animal kingdom. These small seabirds breed in the Arctic during the summer months, nesting on rocky shores and tundra. When autumn arrives, they set off on a remarkable migration to the Antarctic - the opposite end of the Earth - where they enjoy a second summer. The round trip covers an astonishing 70,000 kilometres or more. Scientists who tracked the birds using tiny data loggers discovered they do not fly in a straight line but follow the wind patterns across the Atlantic Ocean. During their lifetime of around 30 years, an Arctic tern may travel the equivalent of three trips to the moon and back. Their incredible stamina and navigational skill make them one of nature's most impressive travellers.",
     "options": ["A) Fearful", "B) Admiring", "C) Critical", "D) Neutral"],
     "answer": "B",
     "explanation": "The writer uses words like 'extraordinary', 'remarkable', 'astonishing', and 'incredible', which show admiration for the Arctic tern.",
@@ -136,7 +136,7 @@
     "difficulty": 1,
     "type": "mcq",
     "question": "According to the passage, how did the fire of London start?",
-    "context": "On 2nd September 1666, a devastating fire broke out in a bakery on Pudding Lane in the city of London. It began in the early hours of the morning, while most people were asleep. A strong wind quickly spread the flames from house to house. At that time, most buildings in London were made of wood and were built very close together, which meant the fire spread with terrifying speed. Within days, over 13,000 houses and 87 churches had been destroyed. Remarkably, very few people died — historians believe fewer than ten deaths can be directly linked to the fire. After the disaster, King Charles II ordered that London should be rebuilt using brick and stone rather than wood, transforming the city's skyline forever.",
+    "context": "On 2nd September 1666, a devastating fire broke out in a bakery on Pudding Lane in the city of London. It began in the early hours of the morning, while most people were asleep. A strong wind quickly spread the flames from house to house. At that time, most buildings in London were made of wood and were built very close together, which meant the fire spread with terrifying speed. Within days, over 13,000 houses and 87 churches had been destroyed. Remarkably, very few people died - historians believe fewer than ten deaths can be directly linked to the fire. After the disaster, King Charles II ordered that London should be rebuilt using brick and stone rather than wood, transforming the city's skyline forever.",
     "options": ["A) A candle fell over in a church", "B) A fire started in a bakery on Pudding Lane", "C) A fire started at London Bridge", "D) Lightning struck a wooden house"],
     "answer": "B",
     "explanation": "The passage clearly states the fire broke out in a bakery on Pudding Lane.",
@@ -149,7 +149,7 @@
     "difficulty": 1,
     "type": "mcq",
     "question": "Why did the fire spread so quickly through London?",
-    "context": "On 2nd September 1666, a devastating fire broke out in a bakery on Pudding Lane in the city of London. It began in the early hours of the morning, while most people were asleep. A strong wind quickly spread the flames from house to house. At that time, most buildings in London were made of wood and were built very close together, which meant the fire spread with terrifying speed. Within days, over 13,000 houses and 87 churches had been destroyed. Remarkably, very few people died — historians believe fewer than ten deaths can be directly linked to the fire. After the disaster, King Charles II ordered that London should be rebuilt using brick and stone rather than wood, transforming the city's skyline forever.",
+    "context": "On 2nd September 1666, a devastating fire broke out in a bakery on Pudding Lane in the city of London. It began in the early hours of the morning, while most people were asleep. A strong wind quickly spread the flames from house to house. At that time, most buildings in London were made of wood and were built very close together, which meant the fire spread with terrifying speed. Within days, over 13,000 houses and 87 churches had been destroyed. Remarkably, very few people died - historians believe fewer than ten deaths can be directly linked to the fire. After the disaster, King Charles II ordered that London should be rebuilt using brick and stone rather than wood, transforming the city's skyline forever.",
     "options": ["A) The fire engines were too slow to arrive", "B) Buildings were made of wood and built close together, and there was a strong wind", "C) The Thames was frozen so water could not be used", "D) People were asleep and did not notice it in time"],
     "answer": "B",
     "explanation": "The passage gives two main reasons: buildings were wooden and packed closely together, and a strong wind spread the flames rapidly.",
@@ -162,7 +162,7 @@
     "difficulty": 2,
     "type": "mcq",
     "question": "What does the word 'devastating' tell us about the fire?",
-    "context": "On 2nd September 1666, a devastating fire broke out in a bakery on Pudding Lane in the city of London. It began in the early hours of the morning, while most people were asleep. A strong wind quickly spread the flames from house to house. At that time, most buildings in London were made of wood and were built very close together, which meant the fire spread with terrifying speed. Within days, over 13,000 houses and 87 churches had been destroyed. Remarkably, very few people died — historians believe fewer than ten deaths can be directly linked to the fire. After the disaster, King Charles II ordered that London should be rebuilt using brick and stone rather than wood, transforming the city's skyline forever.",
+    "context": "On 2nd September 1666, a devastating fire broke out in a bakery on Pudding Lane in the city of London. It began in the early hours of the morning, while most people were asleep. A strong wind quickly spread the flames from house to house. At that time, most buildings in London were made of wood and were built very close together, which meant the fire spread with terrifying speed. Within days, over 13,000 houses and 87 churches had been destroyed. Remarkably, very few people died - historians believe fewer than ten deaths can be directly linked to the fire. After the disaster, King Charles II ordered that London should be rebuilt using brick and stone rather than wood, transforming the city's skyline forever.",
     "options": ["A) The fire was small but memorable", "B) The fire caused enormous damage and destruction", "C) The fire burned for a very long time", "D) The fire was difficult to control"],
     "answer": "B",
     "explanation": "'Devastating' means causing severe damage or destruction. The fire was devastating because it destroyed thousands of buildings.",
@@ -175,7 +175,7 @@
     "difficulty": 2,
     "type": "mcq",
     "question": "What is surprising about the number of deaths caused by the Great Fire?",
-    "context": "On 2nd September 1666, a devastating fire broke out in a bakery on Pudding Lane in the city of London. It began in the early hours of the morning, while most people were asleep. A strong wind quickly spread the flames from house to house. At that time, most buildings in London were made of wood and were built very close together, which meant the fire spread with terrifying speed. Within days, over 13,000 houses and 87 churches had been destroyed. Remarkably, very few people died — historians believe fewer than ten deaths can be directly linked to the fire. After the disaster, King Charles II ordered that London should be rebuilt using brick and stone rather than wood, transforming the city's skyline forever.",
+    "context": "On 2nd September 1666, a devastating fire broke out in a bakery on Pudding Lane in the city of London. It began in the early hours of the morning, while most people were asleep. A strong wind quickly spread the flames from house to house. At that time, most buildings in London were made of wood and were built very close together, which meant the fire spread with terrifying speed. Within days, over 13,000 houses and 87 churches had been destroyed. Remarkably, very few people died - historians believe fewer than ten deaths can be directly linked to the fire. After the disaster, King Charles II ordered that London should be rebuilt using brick and stone rather than wood, transforming the city's skyline forever.",
     "options": ["A) Thousands of people were killed", "B) Very few people died despite such widespread destruction", "C) No children were among the victims", "D) More people died of cold afterwards than in the fire"],
     "answer": "B",
     "explanation": "The writer uses the word 'Remarkably' before the fact that fewer than ten people died, showing how surprising it is given the enormous scale of the destruction.",
@@ -188,7 +188,7 @@
     "difficulty": 2,
     "type": "mcq",
     "question": "What did King Charles II order after the fire?",
-    "context": "On 2nd September 1666, a devastating fire broke out in a bakery on Pudding Lane in the city of London. It began in the early hours of the morning, while most people were asleep. A strong wind quickly spread the flames from house to house. At that time, most buildings in London were made of wood and were built very close together, which meant the fire spread with terrifying speed. Within days, over 13,000 houses and 87 churches had been destroyed. Remarkably, very few people died — historians believe fewer than ten deaths can be directly linked to the fire. After the disaster, King Charles II ordered that London should be rebuilt using brick and stone rather than wood, transforming the city's skyline forever.",
+    "context": "On 2nd September 1666, a devastating fire broke out in a bakery on Pudding Lane in the city of London. It began in the early hours of the morning, while most people were asleep. A strong wind quickly spread the flames from house to house. At that time, most buildings in London were made of wood and were built very close together, which meant the fire spread with terrifying speed. Within days, over 13,000 houses and 87 churches had been destroyed. Remarkably, very few people died - historians believe fewer than ten deaths can be directly linked to the fire. After the disaster, King Charles II ordered that London should be rebuilt using brick and stone rather than wood, transforming the city's skyline forever.",
     "options": ["A) That everyone should leave London permanently", "B) That a new palace should be built on Pudding Lane", "C) That London should be rebuilt using brick and stone", "D) That more fire engines should be purchased"],
     "answer": "C",
     "explanation": "The passage states that King Charles II ordered London to be rebuilt using brick and stone rather than wood.",
@@ -201,7 +201,7 @@
     "difficulty": 3,
     "type": "mcq",
     "question": "Why does the writer use the word 'transforming' in the final sentence?",
-    "context": "On 2nd September 1666, a devastating fire broke out in a bakery on Pudding Lane in the city of London. It began in the early hours of the morning, while most people were asleep. A strong wind quickly spread the flames from house to house. At that time, most buildings in London were made of wood and were built very close together, which meant the fire spread with terrifying speed. Within days, over 13,000 houses and 87 churches had been destroyed. Remarkably, very few people died — historians believe fewer than ten deaths can be directly linked to the fire. After the disaster, King Charles II ordered that London should be rebuilt using brick and stone rather than wood, transforming the city's skyline forever.",
+    "context": "On 2nd September 1666, a devastating fire broke out in a bakery on Pudding Lane in the city of London. It began in the early hours of the morning, while most people were asleep. A strong wind quickly spread the flames from house to house. At that time, most buildings in London were made of wood and were built very close together, which meant the fire spread with terrifying speed. Within days, over 13,000 houses and 87 churches had been destroyed. Remarkably, very few people died - historians believe fewer than ten deaths can be directly linked to the fire. After the disaster, King Charles II ordered that London should be rebuilt using brick and stone rather than wood, transforming the city's skyline forever.",
     "options": ["A) To suggest the change to the skyline was temporary", "B) To show the rebuilding completely and permanently changed the look of London", "C) To imply the king was unhappy with the old London", "D) To indicate the rebuilding work was very fast"],
     "answer": "B",
     "explanation": "'Transforming' suggests a complete, dramatic and permanent change. Combined with 'forever', it emphasises that the fire and subsequent rebuilding permanently altered London's appearance.",
@@ -214,10 +214,10 @@
     "difficulty": 3,
     "type": "mcq",
     "question": "Which statement best summarises the main idea of the passage?",
-    "context": "On 2nd September 1666, a devastating fire broke out in a bakery on Pudding Lane in the city of London. It began in the early hours of the morning, while most people were asleep. A strong wind quickly spread the flames from house to house. At that time, most buildings in London were made of wood and were built very close together, which meant the fire spread with terrifying speed. Within days, over 13,000 houses and 87 churches had been destroyed. Remarkably, very few people died — historians believe fewer than ten deaths can be directly linked to the fire. After the disaster, King Charles II ordered that London should be rebuilt using brick and stone rather than wood, transforming the city's skyline forever.",
+    "context": "On 2nd September 1666, a devastating fire broke out in a bakery on Pudding Lane in the city of London. It began in the early hours of the morning, while most people were asleep. A strong wind quickly spread the flames from house to house. At that time, most buildings in London were made of wood and were built very close together, which meant the fire spread with terrifying speed. Within days, over 13,000 houses and 87 churches had been destroyed. Remarkably, very few people died - historians believe fewer than ten deaths can be directly linked to the fire. After the disaster, King Charles II ordered that London should be rebuilt using brick and stone rather than wood, transforming the city's skyline forever.",
     "options": ["A) King Charles II was a very good king who saved London", "B) The Great Fire of London was a terrible disaster that ultimately changed the city for the better", "C) Wooden buildings should never be built in cities", "D) London in 1666 was a dangerous place to live"],
     "answer": "B",
-    "explanation": "The passage describes both the destruction caused by the fire and the positive lasting change it brought about — the rebuilding of London in brick and stone. The main idea covers both the disaster and the transformation.",
+    "explanation": "The passage describes both the destruction caused by the fire and the positive lasting change it brought about - the rebuilding of London in brick and stone. The main idea covers both the disaster and the transformation.",
     "tags": ["comprehension", "main-idea", "GL-style", "history"]
   },
   {
@@ -227,7 +227,7 @@
     "difficulty": 2,
     "type": "mcq",
     "question": "In what year did the Great Fire of London occur?",
-    "context": "On 2nd September 1666, a devastating fire broke out in a bakery on Pudding Lane in the city of London. It began in the early hours of the morning, while most people were asleep. A strong wind quickly spread the flames from house to house. At that time, most buildings in London were made of wood and were built very close together, which meant the fire spread with terrifying speed. Within days, over 13,000 houses and 87 churches had been destroyed. Remarkably, very few people died — historians believe fewer than ten deaths can be directly linked to the fire. After the disaster, King Charles II ordered that London should be rebuilt using brick and stone rather than wood, transforming the city's skyline forever.",
+    "context": "On 2nd September 1666, a devastating fire broke out in a bakery on Pudding Lane in the city of London. It began in the early hours of the morning, while most people were asleep. A strong wind quickly spread the flames from house to house. At that time, most buildings in London were made of wood and were built very close together, which meant the fire spread with terrifying speed. Within days, over 13,000 houses and 87 churches had been destroyed. Remarkably, very few people died - historians believe fewer than ten deaths can be directly linked to the fire. After the disaster, King Charles II ordered that London should be rebuilt using brick and stone rather than wood, transforming the city's skyline forever.",
     "options": ["A) 1566", "B) 1666", "C) 1766", "D) 1866"],
     "answer": "B",
     "explanation": "The passage states the fire broke out on 2nd September 1666.",
@@ -240,7 +240,7 @@
     "difficulty": 1,
     "type": "mcq",
     "question": "What did Ellie find half-buried under the old oak tree?",
-    "context": "Ellie had always loved the wild corner of her grandparents' garden, but she had never noticed the old oak tree leaning so far to the left. That afternoon, after a night of heavy rain, something glinted in the soft earth near its roots. She knelt down and brushed away the mud with her fingers. There, half-buried, was a small copper box, no bigger than her fist, with a pattern of tiny stars pressed into its lid. Her heart hammered as she eased it free of the soil. The lid was stiff, but with a firm twist it opened. Inside, resting on a square of faded red velvet, lay a glass marble that seemed to glow from within — a pale, shifting blue, like moonlight trapped inside a raindrop. Ellie stared. She had a feeling that things were about to change.",
+    "context": "Ellie had always loved the wild corner of her grandparents' garden, but she had never noticed the old oak tree leaning so far to the left. That afternoon, after a night of heavy rain, something glinted in the soft earth near its roots. She knelt down and brushed away the mud with her fingers. There, half-buried, was a small copper box, no bigger than her fist, with a pattern of tiny stars pressed into its lid. Her heart hammered as she eased it free of the soil. The lid was stiff, but with a firm twist it opened. Inside, resting on a square of faded red velvet, lay a glass marble that seemed to glow from within - a pale, shifting blue, like moonlight trapped inside a raindrop. Ellie stared. She had a feeling that things were about to change.",
     "options": ["A) A gold ring", "B) A copper box with a star pattern", "C) A glass bottle with a message inside", "D) An old iron key"],
     "answer": "B",
     "explanation": "The passage says Ellie found 'a small copper box, no bigger than her fist, with a pattern of tiny stars pressed into its lid.'",
@@ -253,7 +253,7 @@
     "difficulty": 1,
     "type": "mcq",
     "question": "What was inside the copper box?",
-    "context": "Ellie had always loved the wild corner of her grandparents' garden, but she had never noticed the old oak tree leaning so far to the left. That afternoon, after a night of heavy rain, something glinted in the soft earth near its roots. She knelt down and brushed away the mud with her fingers. There, half-buried, was a small copper box, no bigger than her fist, with a pattern of tiny stars pressed into its lid. Her heart hammered as she eased it free of the soil. The lid was stiff, but with a firm twist it opened. Inside, resting on a square of faded red velvet, lay a glass marble that seemed to glow from within — a pale, shifting blue, like moonlight trapped inside a raindrop. Ellie stared. She had a feeling that things were about to change.",
+    "context": "Ellie had always loved the wild corner of her grandparents' garden, but she had never noticed the old oak tree leaning so far to the left. That afternoon, after a night of heavy rain, something glinted in the soft earth near its roots. She knelt down and brushed away the mud with her fingers. There, half-buried, was a small copper box, no bigger than her fist, with a pattern of tiny stars pressed into its lid. Her heart hammered as she eased it free of the soil. The lid was stiff, but with a firm twist it opened. Inside, resting on a square of faded red velvet, lay a glass marble that seemed to glow from within - a pale, shifting blue, like moonlight trapped inside a raindrop. Ellie stared. She had a feeling that things were about to change.",
     "options": ["A) A letter from her grandfather", "B) A silver coin", "C) A glowing glass marble", "D) A tiny golden key"],
     "answer": "C",
     "explanation": "Inside the box, resting on red velvet, was a glass marble that seemed to glow from within with a pale blue light.",
@@ -266,7 +266,7 @@
     "difficulty": 2,
     "type": "mcq",
     "question": "What does the phrase 'her heart hammered' tell us about Ellie?",
-    "context": "Ellie had always loved the wild corner of her grandparents' garden, but she had never noticed the old oak tree leaning so far to the left. That afternoon, after a night of heavy rain, something glinted in the soft earth near its roots. She knelt down and brushed away the mud with her fingers. There, half-buried, was a small copper box, no bigger than her fist, with a pattern of tiny stars pressed into its lid. Her heart hammered as she eased it free of the soil. The lid was stiff, but with a firm twist it opened. Inside, resting on a square of faded red velvet, lay a glass marble that seemed to glow from within — a pale, shifting blue, like moonlight trapped inside a raindrop. Ellie stared. She had a feeling that things were about to change.",
+    "context": "Ellie had always loved the wild corner of her grandparents' garden, but she had never noticed the old oak tree leaning so far to the left. That afternoon, after a night of heavy rain, something glinted in the soft earth near its roots. She knelt down and brushed away the mud with her fingers. There, half-buried, was a small copper box, no bigger than her fist, with a pattern of tiny stars pressed into its lid. Her heart hammered as she eased it free of the soil. The lid was stiff, but with a firm twist it opened. Inside, resting on a square of faded red velvet, lay a glass marble that seemed to glow from within - a pale, shifting blue, like moonlight trapped inside a raindrop. Ellie stared. She had a feeling that things were about to change.",
     "options": ["A) She was feeling cold", "B) She was tired from digging", "C) She was excited and nervous", "D) She was frightened and ran away"],
     "answer": "C",
     "explanation": "A hammering heart is a physical sign of excitement and nervousness. Ellie's heart hammered as she pulled the box free, showing she was thrilled by the discovery.",
@@ -279,10 +279,10 @@
     "difficulty": 2,
     "type": "mcq",
     "question": "What does the simile 'like moonlight trapped inside a raindrop' suggest about the marble?",
-    "context": "Ellie had always loved the wild corner of her grandparents' garden, but she had never noticed the old oak tree leaning so far to the left. That afternoon, after a night of heavy rain, something glinted in the soft earth near its roots. She knelt down and brushed away the mud with her fingers. There, half-buried, was a small copper box, no bigger than her fist, with a pattern of tiny stars pressed into its lid. Her heart hammered as she eased it free of the soil. The lid was stiff, but with a firm twist it opened. Inside, resting on a square of faded red velvet, lay a glass marble that seemed to glow from within — a pale, shifting blue, like moonlight trapped inside a raindrop. Ellie stared. She had a feeling that things were about to change.",
+    "context": "Ellie had always loved the wild corner of her grandparents' garden, but she had never noticed the old oak tree leaning so far to the left. That afternoon, after a night of heavy rain, something glinted in the soft earth near its roots. She knelt down and brushed away the mud with her fingers. There, half-buried, was a small copper box, no bigger than her fist, with a pattern of tiny stars pressed into its lid. Her heart hammered as she eased it free of the soil. The lid was stiff, but with a firm twist it opened. Inside, resting on a square of faded red velvet, lay a glass marble that seemed to glow from within - a pale, shifting blue, like moonlight trapped inside a raindrop. Ellie stared. She had a feeling that things were about to change.",
     "options": ["A) The marble was broken and full of water", "B) The marble had a beautiful, ethereal, glowing quality", "C) The marble was made of ice", "D) The marble was very cold to touch"],
     "answer": "B",
-    "explanation": "The simile compares the marble's glow to moonlight captured in a drop of water — suggesting something beautiful, delicate, and magical in its appearance.",
+    "explanation": "The simile compares the marble's glow to moonlight captured in a drop of water - suggesting something beautiful, delicate, and magical in its appearance.",
     "tags": ["comprehension", "language-effect", "GL-style", "fiction"]
   },
   {
@@ -292,8 +292,8 @@
     "difficulty": 2,
     "type": "mcq",
     "question": "Why had Ellie never noticed the oak tree before?",
-    "context": "Ellie had always loved the wild corner of her grandparents' garden, but she had never noticed the old oak tree leaning so far to the left. That afternoon, after a night of heavy rain, something glinted in the soft earth near its roots. She knelt down and brushed away the mud with her fingers. There, half-buried, was a small copper box, no bigger than her fist, with a pattern of tiny stars pressed into its lid. Her heart hammered as she eased it free of the soil. The lid was stiff, but with a firm twist it opened. Inside, resting on a square of she faded red velvet, lay a glass marble that seemed to glow from within — a pale, shifting blue, like moonlight trapped inside a raindrop. Ellie stared. She had a feeling that things were about to change.",
-    "context": "Ellie had always loved the wild corner of her grandparents' garden, but she had never noticed the old oak tree leaning so far to the left. That afternoon, after a night of heavy rain, something glinted in the soft earth near its roots. She knelt down and brushed away the mud with her fingers. There, half-buried, was a small copper box, no bigger than her fist, with a pattern of tiny stars pressed into its lid. Her heart hammered as she eased it free of the soil. The lid was stiff, but with a firm twist it opened. Inside, resting on a square of faded red velvet, lay a glass marble that seemed to glow from within — a pale, shifting blue, like moonlight trapped inside a raindrop. Ellie stared. She had a feeling that things were about to change.",
+    "context": "Ellie had always loved the wild corner of her grandparents' garden, but she had never noticed the old oak tree leaning so far to the left. That afternoon, after a night of heavy rain, something glinted in the soft earth near its roots. She knelt down and brushed away the mud with her fingers. There, half-buried, was a small copper box, no bigger than her fist, with a pattern of tiny stars pressed into its lid. Her heart hammered as she eased it free of the soil. The lid was stiff, but with a firm twist it opened. Inside, resting on a square of she faded red velvet, lay a glass marble that seemed to glow from within - a pale, shifting blue, like moonlight trapped inside a raindrop. Ellie stared. She had a feeling that things were about to change.",
+    "context": "Ellie had always loved the wild corner of her grandparents' garden, but she had never noticed the old oak tree leaning so far to the left. That afternoon, after a night of heavy rain, something glinted in the soft earth near its roots. She knelt down and brushed away the mud with her fingers. There, half-buried, was a small copper box, no bigger than her fist, with a pattern of tiny stars pressed into its lid. Her heart hammered as she eased it free of the soil. The lid was stiff, but with a firm twist it opened. Inside, resting on a square of faded red velvet, lay a glass marble that seemed to glow from within - a pale, shifting blue, like moonlight trapped inside a raindrop. Ellie stared. She had a feeling that things were about to change.",
     "options": ["A) She had never visited her grandparents before", "B) The passage does not directly explain why", "C) The tree had only just grown", "D) The tree was hidden behind a wall"],
     "answer": "B",
     "explanation": "The passage says she had never noticed it leaning 'so far to the left', but does not explain why. We can infer she simply had not paid close attention before.",
@@ -306,10 +306,10 @@
     "difficulty": 3,
     "type": "mcq",
     "question": "What does the final sentence 'She had a feeling that things were about to change' suggest?",
-    "context": "Ellie had always loved the wild corner of her grandparents' garden, but she had never noticed the old oak tree leaning so far to the left. That afternoon, after a night of heavy rain, something glinted in the soft earth near its roots. She knelt down and brushed away the mud with her fingers. There, half-buried, was a small copper box, no bigger than her fist, with a pattern of tiny stars pressed into its lid. Her heart hammered as she eased it free of the soil. The lid was stiff, but with a firm twist it opened. Inside, resting on a square of faded red velvet, lay a glass marble that seemed to glow from within — a pale, shifting blue, like moonlight trapped inside a raindrop. Ellie stared. She had a feeling that things were about to change.",
-    "options": ["A) Ellie was worried the weather would change", "B) This is the start of an adventure — the marble will lead to something extraordinary", "C) Ellie decided she no longer liked the garden", "D) Ellie knew her grandparents were about to move house"],
+    "context": "Ellie had always loved the wild corner of her grandparents' garden, but she had never noticed the old oak tree leaning so far to the left. That afternoon, after a night of heavy rain, something glinted in the soft earth near its roots. She knelt down and brushed away the mud with her fingers. There, half-buried, was a small copper box, no bigger than her fist, with a pattern of tiny stars pressed into its lid. Her heart hammered as she eased it free of the soil. The lid was stiff, but with a firm twist it opened. Inside, resting on a square of faded red velvet, lay a glass marble that seemed to glow from within - a pale, shifting blue, like moonlight trapped inside a raindrop. Ellie stared. She had a feeling that things were about to change.",
+    "options": ["A) Ellie was worried the weather would change", "B) This is the start of an adventure - the marble will lead to something extraordinary", "C) Ellie decided she no longer liked the garden", "D) Ellie knew her grandparents were about to move house"],
     "answer": "B",
-    "explanation": "The final sentence creates suspense and acts as a hook, suggesting that the marble is magical and that the story is just beginning — Ellie senses that finding it will lead to something significant.",
+    "explanation": "The final sentence creates suspense and acts as a hook, suggesting that the marble is magical and that the story is just beginning - Ellie senses that finding it will lead to something significant.",
     "tags": ["comprehension", "author-purpose", "GL-style", "fiction"]
   },
   {
@@ -319,10 +319,10 @@
     "difficulty": 3,
     "type": "mcq",
     "question": "Which literary technique is used in the phrase 'something glinted in the soft earth'?",
-    "context": "Ellie had always loved the wild corner of her grandparents' garden, but she had never noticed the old oak tree leaning so far to the left. That afternoon, after a night of heavy rain, something glinted in the soft earth near its roots. She knelt down and brushed away the mud with her fingers. There, half-buried, was a small copper box, no bigger than her fist, with a pattern of tiny stars pressed into its lid. Her heart hammered as she eased it free of the soil. The lid was stiff, but with a firm twist it opened. Inside, resting on a square of faded red velvet, lay a glass marble that seemed to glow from within — a pale, shifting blue, like moonlight trapped inside a raindrop. Ellie stared. She had a feeling that things were about to change.",
+    "context": "Ellie had always loved the wild corner of her grandparents' garden, but she had never noticed the old oak tree leaning so far to the left. That afternoon, after a night of heavy rain, something glinted in the soft earth near its roots. She knelt down and brushed away the mud with her fingers. There, half-buried, was a small copper box, no bigger than her fist, with a pattern of tiny stars pressed into its lid. Her heart hammered as she eased it free of the soil. The lid was stiff, but with a firm twist it opened. Inside, resting on a square of faded red velvet, lay a glass marble that seemed to glow from within - a pale, shifting blue, like moonlight trapped inside a raindrop. Ellie stared. She had a feeling that things were about to change.",
     "options": ["A) A metaphor", "B) Onomatopoeia", "C) Alliteration", "D) Personification"],
     "answer": "B",
-    "explanation": "'Glinted' is an example of onomatopoeia — a word that sounds like the action it describes, suggesting a brief, sharp glimmer of light.",
+    "explanation": "'Glinted' is an example of onomatopoeia - a word that sounds like the action it describes, suggesting a brief, sharp glimmer of light.",
     "tags": ["comprehension", "language-technique", "GL-style", "fiction"]
   },
   {
@@ -332,7 +332,7 @@
     "difficulty": 2,
     "type": "mcq",
     "question": "Where was the copper box found?",
-    "context": "Ellie had always loved the wild corner of her grandparents' garden, but she had never noticed the old oak tree leaning so far to the left. That afternoon, after a night of heavy rain, something glinted in the soft earth near its roots. She knelt down and brushed away the mud with her fingers. There, half-buried, was a small copper box, no bigger than her fist, with a pattern of tiny stars pressed into its lid. Her heart hammered as she eased it free of the soil. The lid was stiff, but with a firm twist it opened. Inside, resting on a square of faded red velvet, lay a glass marble that seemed to glow from within — a pale, shifting blue, like moonlight trapped inside a raindrop. Ellie stared. She had a feeling that things were about to change.",
+    "context": "Ellie had always loved the wild corner of her grandparents' garden, but she had never noticed the old oak tree leaning so far to the left. That afternoon, after a night of heavy rain, something glinted in the soft earth near its roots. She knelt down and brushed away the mud with her fingers. There, half-buried, was a small copper box, no bigger than her fist, with a pattern of tiny stars pressed into its lid. Her heart hammered as she eased it free of the soil. The lid was stiff, but with a firm twist it opened. Inside, resting on a square of faded red velvet, lay a glass marble that seemed to glow from within - a pale, shifting blue, like moonlight trapped inside a raindrop. Ellie stared. She had a feeling that things were about to change.",
     "options": ["A) In the branches of the oak tree", "B) Near the roots of the oak tree, half-buried in the earth", "C) In the shed at the bottom of the garden", "D) Under a large stone near the garden wall"],
     "answer": "B",
     "explanation": "The passage says 'something glinted in the soft earth near its roots' and Ellie found the box 'half-buried' there.",
@@ -345,7 +345,7 @@
     "difficulty": 3,
     "type": "mcq",
     "question": "What is the overall mood of the passage about Ellie?",
-    "context": "Ellie had always loved the wild corner of her grandparents' garden, but she had never noticed the old oak tree leaning so far to the left. That afternoon, after a night of heavy rain, something glinted in the soft earth near its roots. She knelt down and brushed away the mud with her fingers. There, half-buried, was a small copper box, no bigger than her fist, with a pattern of tiny stars pressed into its lid. Her heart hammered as she eased it free of the soil. The lid was stiff, but with a firm twist it opened. Inside, resting on a square of faded red velvet, lay a glass marble that seemed to glow from within — a pale, shifting blue, like moonlight trapped inside a raindrop. Ellie stared. She had a feeling that things were about to change.",
+    "context": "Ellie had always loved the wild corner of her grandparents' garden, but she had never noticed the old oak tree leaning so far to the left. That afternoon, after a night of heavy rain, something glinted in the soft earth near its roots. She knelt down and brushed away the mud with her fingers. There, half-buried, was a small copper box, no bigger than her fist, with a pattern of tiny stars pressed into its lid. Her heart hammered as she eased it free of the soil. The lid was stiff, but with a firm twist it opened. Inside, resting on a square of faded red velvet, lay a glass marble that seemed to glow from within - a pale, shifting blue, like moonlight trapped inside a raindrop. Ellie stared. She had a feeling that things were about to change.",
     "options": ["A) Frightening and dark", "B) Magical and full of anticipation", "C) Sad and lonely", "D) Funny and light-hearted"],
     "answer": "B",
     "explanation": "The language throughout is wonder-filled and atmospheric: 'glinted', 'glow from within', 'moonlight trapped inside a raindrop', creating a mood of magic and excited anticipation.",
@@ -358,10 +358,10 @@
     "difficulty": 1,
     "type": "mcq",
     "question": "What event caused the box to become visible?",
-    "context": "Ellie had always loved the wild corner of her grandparents' garden, but she had never noticed the old oak tree leaning so far to the left. That afternoon, after a night of heavy rain, something glinted in the soft earth near its roots. She knelt down and brushed away the mud with her fingers. There, half-buried, was a small copper box, no bigger than her fist, with a pattern of tiny stars pressed into its lid. Her heart hammered as she eased it free of the soil. The lid was stiff, but with a firm twist it opened. Inside, resting on a square of faded red velvet, lay a glass marble that seemed to glow from within — a pale, shifting blue, like moonlight trapped inside a raindrop. Ellie stared. She had a feeling that things were about to change.",
+    "context": "Ellie had always loved the wild corner of her grandparents' garden, but she had never noticed the old oak tree leaning so far to the left. That afternoon, after a night of heavy rain, something glinted in the soft earth near its roots. She knelt down and brushed away the mud with her fingers. There, half-buried, was a small copper box, no bigger than her fist, with a pattern of tiny stars pressed into its lid. Her heart hammered as she eased it free of the soil. The lid was stiff, but with a firm twist it opened. Inside, resting on a square of faded red velvet, lay a glass marble that seemed to glow from within - a pale, shifting blue, like moonlight trapped inside a raindrop. Ellie stared. She had a feeling that things were about to change.",
     "options": ["A) A badger had dug up the earth", "B) A night of heavy rain had disturbed the earth", "C) Ellie had been digging with a spade", "D) A tree had fallen and disturbed the roots"],
     "answer": "B",
-    "explanation": "The passage mentions 'after a night of heavy rain, something glinted in the soft earth' — the rain had shifted the soil enough to expose the box.",
+    "explanation": "The passage mentions 'after a night of heavy rain, something glinted in the soft earth' - the rain had shifted the soil enough to expose the box.",
     "tags": ["comprehension", "inference", "GL-style", "fiction"]
   },
   {
@@ -371,7 +371,7 @@
     "difficulty": 2,
     "type": "mcq",
     "question": "What does 'faded red velvet' suggest about the copper box?",
-    "context": "Ellie had always loved the wild corner of her grandparents' garden, but she had never noticed the old oak tree leaning so far to the left. That afternoon, after a night of heavy rain, something glinted in the soft earth near its roots. She knelt down and brushed away the mud with her fingers. There, half-buried, was a small copper box, no bigger than her fist, with a pattern of tiny stars pressed into its lid. Her heart hammered as she eased it free of the soil. The lid was stiff, but with a firm twist it opened. Inside, resting on a square of faded red velvet, lay a glass marble that seemed to glow from within — a pale, shifting blue, like moonlight trapped inside a raindrop. Ellie stared. She had a feeling that things were about to change.",
+    "context": "Ellie had always loved the wild corner of her grandparents' garden, but she had never noticed the old oak tree leaning so far to the left. That afternoon, after a night of heavy rain, something glinted in the soft earth near its roots. She knelt down and brushed away the mud with her fingers. There, half-buried, was a small copper box, no bigger than her fist, with a pattern of tiny stars pressed into its lid. Her heart hammered as she eased it free of the soil. The lid was stiff, but with a firm twist it opened. Inside, resting on a square of faded red velvet, lay a glass marble that seemed to glow from within - a pale, shifting blue, like moonlight trapped inside a raindrop. Ellie stared. She had a feeling that things were about to change.",
     "options": ["A) It was a cheap, poorly made box", "B) The box was very new and had never been opened", "C) The box was old and had been buried for some time", "D) Someone had recently placed it there"],
     "answer": "C",
     "explanation": "Velvet that has 'faded' has lost its colour over time, suggesting the box is old and has been buried for a long period.",
@@ -384,7 +384,7 @@
     "difficulty": 2,
     "type": "mcq",
     "question": "How does Ellie open the copper box?",
-    "context": "Ellie had always loved the wild corner of her grandparents' garden, but she had never noticed the old oak tree leaning so far to the left. That afternoon, after a night of heavy rain, something glinted in the soft earth near its roots. She knelt down and brushed away the mud with her fingers. There, half-buried, was a small copper box, no bigger than her fist, with a pattern of tiny stars pressed into its lid. Her heart hammered as she eased it free of the soil. The lid was stiff, but with a firm twist it opened. Inside, resting on a square of faded red velvet, lay a glass marble that seemed to glow from within — a pale, shifting blue, like moonlight trapped inside a raindrop. Ellie stared. She had a feeling that things were about to change.",
+    "context": "Ellie had always loved the wild corner of her grandparents' garden, but she had never noticed the old oak tree leaning so far to the left. That afternoon, after a night of heavy rain, something glinted in the soft earth near its roots. She knelt down and brushed away the mud with her fingers. There, half-buried, was a small copper box, no bigger than her fist, with a pattern of tiny stars pressed into its lid. Her heart hammered as she eased it free of the soil. The lid was stiff, but with a firm twist it opened. Inside, resting on a square of faded red velvet, lay a glass marble that seemed to glow from within - a pale, shifting blue, like moonlight trapped inside a raindrop. Ellie stared. She had a feeling that things were about to change.",
     "options": ["A) She uses a key she finds in her pocket", "B) She smashes it against the tree", "C) She gives it a firm twist", "D) She asks her grandfather to open it"],
     "answer": "C",
     "explanation": "The passage states 'The lid was stiff, but with a firm twist it opened.'",
@@ -423,7 +423,7 @@
     "question": "Which word is a PRONOUN in this sentence: 'She gave him the book'?",
     "options": ["A) gave", "B) She", "C) book", "D) the"],
     "answer": "B",
-    "explanation": "'She' is a pronoun — it stands in place of a person's name. 'Him' is also a pronoun but it was not offered as an option. 'Gave' is a verb, 'book' is a noun, 'the' is an article.",
+    "explanation": "'She' is a pronoun - it stands in place of a person's name. 'Him' is also a pronoun but it was not offered as an option. 'Gave' is a verb, 'book' is a noun, 'the' is an article.",
     "tags": ["grammar", "parts-of-speech", "pronoun", "GL-style"]
   },
   {
@@ -435,7 +435,7 @@
     "question": "Which sentence uses an apostrophe for POSSESSION correctly?",
     "options": ["A) The dog's bone was buried in the garden.", "B) The dogs bone was buried in the garden.", "C) The dog's bone' was buried in the garden.", "D) The dogs' bone was buried in the garden (one dog)."],
     "answer": "A",
-    "explanation": "To show that one dog possesses the bone, we use 'dog's' — the apostrophe comes before the 's'. Option D would be correct only if there were multiple dogs.",
+    "explanation": "To show that one dog possesses the bone, we use 'dog's' - the apostrophe comes before the 's'. Option D would be correct only if there were multiple dogs.",
     "tags": ["grammar", "punctuation", "apostrophe", "possession", "GL-style"]
   },
   {
@@ -447,7 +447,7 @@
     "question": "Which sentence is in the PASSIVE voice?",
     "options": ["A) The chef cooked a delicious meal.", "B) A delicious meal was cooked by the chef.", "C) The chef is cooking a delicious meal.", "D) The chef had cooked a delicious meal."],
     "answer": "B",
-    "explanation": "In the passive voice, the subject receives the action rather than performing it. 'A delicious meal was cooked by the chef' — the meal (subject) had something done to it.",
+    "explanation": "In the passive voice, the subject receives the action rather than performing it. 'A delicious meal was cooked by the chef' - the meal (subject) had something done to it.",
     "tags": ["grammar", "active-passive", "GL-style"]
   },
   {
@@ -543,7 +543,7 @@
     "question": "Which word is an ADJECTIVE in this sentence: 'The fierce dragon guarded the ancient castle.'?",
     "options": ["A) guarded", "B) fierce", "C) dragon", "D) castle"],
     "answer": "B",
-    "explanation": "'Fierce' is an adjective — it describes the noun 'dragon'. 'Ancient' is also an adjective in this sentence but was not one of the options offered.",
+    "explanation": "'Fierce' is an adjective - it describes the noun 'dragon'. 'Ancient' is also an adjective in this sentence but was not one of the options offered.",
     "tags": ["grammar", "parts-of-speech", "adjective", "GL-style"]
   },
   {
@@ -555,7 +555,7 @@
     "question": "Which word is a VERB in this sentence: 'The children laughed at the funny clown.'?",
     "options": ["A) children", "B) funny", "C) laughed", "D) clown"],
     "answer": "C",
-    "explanation": "'Laughed' is the verb — it tells us what the children did (the action). 'Children' and 'clown' are nouns; 'funny' is an adjective.",
+    "explanation": "'Laughed' is the verb - it tells us what the children did (the action). 'Children' and 'clown' are nouns; 'funny' is an adjective.",
     "tags": ["grammar", "parts-of-speech", "verb", "GL-style"]
   },
   {
@@ -591,7 +591,7 @@
     "question": "Which sentence contains a subordinate clause?",
     "options": ["A) I was tired, so I went to bed early.", "B) She likes cats and dogs.", "C) The train was late; we missed the concert.", "D) When the bell rang, all the pupils lined up."],
     "answer": "D",
-    "explanation": "'When the bell rang' is a subordinate clause — it cannot stand alone as a sentence but gives additional information to the main clause 'all the pupils lined up'.",
+    "explanation": "'When the bell rang' is a subordinate clause - it cannot stand alone as a sentence but gives additional information to the main clause 'all the pupils lined up'.",
     "tags": ["grammar", "clauses", "subordinate", "GL-style"]
   },
   {
@@ -603,7 +603,7 @@
     "question": "Which option correctly identifies the noun in this sentence: 'The excited crowd cheered loudly for their team.'?",
     "options": ["A) excited", "B) cheered", "C) loudly", "D) crowd"],
     "answer": "D",
-    "explanation": "'Crowd' is a noun — it names a group of people. 'Excited' is an adjective, 'cheered' is a verb, and 'loudly' is an adverb.",
+    "explanation": "'Crowd' is a noun - it names a group of people. 'Excited' is an adjective, 'cheered' is a verb, and 'loudly' is an adverb.",
     "tags": ["grammar", "parts-of-speech", "noun", "GL-style"]
   },
   {
@@ -639,7 +639,7 @@
     "question": "Which word means the same as 'enormous'?",
     "options": ["A) tiny", "B) gigantic", "C) ordinary", "D) narrow"],
     "answer": "B",
-    "explanation": "'Gigantic' is a synonym of 'enormous' — both mean very large in size. 'Tiny' is the antonym (opposite).",
+    "explanation": "'Gigantic' is a synonym of 'enormous' - both mean very large in size. 'Tiny' is the antonym (opposite).",
     "tags": ["vocabulary", "synonyms", "GL-style"]
   },
   {
@@ -687,7 +687,7 @@
     "question": "Which word means the OPPOSITE of 'generous'?",
     "options": ["A) kind", "B) giving", "C) miserly", "D) wealthy"],
     "answer": "C",
-    "explanation": "'Miserly' means unwilling to spend or give anything — the opposite of 'generous', which means freely giving.",
+    "explanation": "'Miserly' means unwilling to spend or give anything - the opposite of 'generous', which means freely giving.",
     "tags": ["vocabulary", "antonyms", "GL-style"]
   },
   {
@@ -747,7 +747,7 @@
     "question": "Which word means the same as 'transparent'?",
     "options": ["A) opaque", "B) colourful", "C) see-through", "D) reflective"],
     "answer": "C",
-    "explanation": "'Transparent' means able to be seen through — a synonym is 'see-through'. 'Opaque' is its antonym (cannot be seen through).",
+    "explanation": "'Transparent' means able to be seen through - a synonym is 'see-through'. 'Opaque' is its antonym (cannot be seen through).",
     "tags": ["vocabulary", "synonyms", "GL-style"]
   },
   {
@@ -795,7 +795,7 @@
     "question": "Which word is the ANTONYM of 'courageous'?",
     "options": ["A) brave", "B) bold", "C) cowardly", "D) heroic"],
     "answer": "C",
-    "explanation": "'Courageous' means showing bravery. Its antonym (opposite) is 'cowardly' — showing a lack of bravery.",
+    "explanation": "'Courageous' means showing bravery. Its antonym (opposite) is 'cowardly' - showing a lack of bravery.",
     "tags": ["vocabulary", "antonyms", "GL-style"]
   },
   {
@@ -855,7 +855,7 @@
     "question": "Which word is spelled correctly?",
     "options": ["A) neccessary", "B) neccesary", "C) necessary", "D) necesary"],
     "answer": "C",
-    "explanation": "'Necessary' has one 'c' and two 's's. A useful way to remember: one Collar and two Socks (1c, 2s) — necessary.",
+    "explanation": "'Necessary' has one 'c' and two 's's. A useful way to remember: one Collar and two Socks (1c, 2s) - necessary.",
     "tags": ["spelling", "year5-6-words", "GL-style"]
   },
   {
@@ -867,7 +867,7 @@
     "question": "Which word uses the prefix 'mis-' correctly?",
     "options": ["A) misspell", "B) misspell", "C) mispell", "D) mis-pell"],
     "answer": "A",
-    "explanation": "The prefix 'mis-' added to 'spell' gives 'misspell' — meaning to spell incorrectly. Note: 'miss' + 'spell' = 'misspell' with double 's'.",
+    "explanation": "The prefix 'mis-' added to 'spell' gives 'misspell' - meaning to spell incorrectly. Note: 'miss' + 'spell' = 'misspell' with double 's'.",
     "tags": ["spelling", "prefixes", "mis-", "GL-style"]
   },
   {
@@ -903,7 +903,7 @@
     "question": "Which word is spelled correctly?",
     "options": ["A) recieve", "B) recive", "C) receive", "D) receeve"],
     "answer": "C",
-    "explanation": "'Receive' follows the rule 'i before e except after c' — after the letter 'c', we write 'ei': rec-ei-ve.",
+    "explanation": "'Receive' follows the rule 'i before e except after c' - after the letter 'c', we write 'ei': rec-ei-ve.",
     "tags": ["spelling", "year5-6-words", "ie-ei", "GL-style"]
   },
   {
@@ -1011,7 +1011,7 @@
     "question": "Which word is spelled correctly?",
     "options": ["A) frend", "B) freind", "C) friend", "D) freind"],
     "answer": "C",
-    "explanation": "'Friend' contains 'ie' not 'ei'. A memory trick: 'fri-end' — a friend is there till the end.",
+    "explanation": "'Friend' contains 'ie' not 'ei'. A memory trick: 'fri-end' - a friend is there till the end.",
     "tags": ["spelling", "year5-6-words", "GL-style"]
   },
   {
@@ -1083,7 +1083,7 @@
     "question": "Which word means the OPPOSITE of 'noisy'?",
     "options": ["A) loud", "B) silent", "C) crowded", "D) busy"],
     "answer": "B",
-    "explanation": "'Silent' means making no sound at all — the opposite of 'noisy', which means making a lot of sound.",
+    "explanation": "'Silent' means making no sound at all - the opposite of 'noisy', which means making a lot of sound.",
     "tags": ["vocabulary", "antonyms", "GL-style"]
   },
   {
