@@ -6,7 +6,7 @@ A comprehensive, region-specific exam preparation platform designed to help stud
 
 ### 🗺️ Region-Specific Preparation
 The platform recognizes that 11+ exams vary significantly by region. It includes dedicated question banks and validation for:
-- **Regional Boards:** Birmingham, Buckinghamshire, Essex, Hertfordshire, Kent, Lancashire, Lincolnshire, Manchester, Warwickshire, and Yorkshire.
+- **Regional Boards:** Birmingham, Buckinghamshire, Essex, Hertfordshire, Kent, Lancashire, Lincolnshire, Manchester, Northern Ireland, Warwickshire, and Yorkshire.
 - **Core Subjects:** English, Maths, Verbal Reasoning, and Non-Verbal Reasoning.
 - **Regional Intelligence:** Integrated region info panels and validators to ensure students are studying the correct material for their area.
 
