@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import type { Subject, Difficulty } from '../../data/metadata';
-import { useApp } from '../../context/AppContext';
+import { useApp } from '../../context/appState';
 import { useRegion } from '../../hooks/useRegion';
 import { ModeToggle } from '../layout/ModeToggle';
 import { RegionSelector } from '../region/RegionSelector';

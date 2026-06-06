@@ -1,4 +1,4 @@
-import { useApp } from '../../context/AppContext';
+import { useApp } from '../../context/appState';
 import { useWeakAreas } from '../../hooks/useWeakAreas';
 
 export function SettingsModal() {

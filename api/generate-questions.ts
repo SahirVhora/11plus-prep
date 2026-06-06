@@ -1,34 +1,45 @@
 import type { VercelRequest, VercelResponse } from '@vercel/node';
 import Anthropic from '@anthropic-ai/sdk';
 
+interface GenerateQuestionsBody {
+  subject?: string;
+  difficulty?: number;
+  count?: number;
+  topics?: string[] | string;
+  apiKey?: string;
+  regionContext?: string;
+}
+
+function normaliseErrorMessage(err: unknown): string {
+  return err instanceof Error ? err.message : 'Failed to generate questions';
+}
+
 export default async function handler(req: VercelRequest, res: VercelResponse) {
   if (req.method !== 'POST') {
     return res.status(405).json({ error: 'Method not allowed' });
   }
 
-  const { subject, difficulty, count, topics, apiKey } = req.body;
+  const { subject, difficulty, count, topics, apiKey, regionContext } = req.body as GenerateQuestionsBody;
 
   if (!subject || !difficulty || !count) {
     return res.status(400).json({ error: 'Missing required fields: subject, difficulty, count' });
   }
 
-  // Use client-provided key or fall back to server env var
-  const resolvedKey = apiKey || process.env.ANTHROPIC_API_KEY;
-  if (!resolvedKey) {
+  if (!apiKey) {
     return res.status(401).json({ error: 'No API key provided. Add your Anthropic API key in Settings.' });
   }
 
   try {
-    const client = new Anthropic({ apiKey: resolvedKey });
+    const client = new Anthropic({ apiKey });
 
     const systemPrompt = `You are an expert 11+ exam question writer for UK grammar school entry.
-You write questions aligned with the GL Assessment format used by London grammar schools
-(Barnet, Bexley, Bromley, Redbridge, Kingston/Tiffin-style).
+You write original, age-appropriate practice questions aligned with the requested UK region and exam format.
 Always return ONLY valid JSON - no markdown, no preamble, no trailing text.`;
 
     const userPrompt = `Generate exactly ${count} ${subject} questions at difficulty level ${difficulty}/3
 (1=Year4-5 baseline, 2=Year6 standard, 3=Year6 stretch/hard).
 Focus on these topics: ${Array.isArray(topics) ? topics.join(', ') : topics}.
+Regional context: ${regionContext || 'General UK 11+ practice. Use common GL Assessment style unless the subject request implies otherwise.'}
 
 Return a JSON array where each object has:
 {
@@ -73,10 +84,10 @@ Rules:
     }
 
     return res.status(200).json({ questions });
-  } catch (err: any) {
+  } catch (err: unknown) {
     console.error('API error:', err);
     return res.status(500).json({
-      error: err.message || 'Failed to generate questions',
+      error: normaliseErrorMessage(err),
     });
   }
 }

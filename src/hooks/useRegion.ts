@@ -1,5 +1,5 @@
 import { useCallback } from 'react';
-import { useApp } from '../context/AppContext';
+import { useApp } from '../context/appState';
 import { getRegionById, REGIONS, DEFAULT_REGION_ID } from '../data/regions';
 import type { RegionConfig } from '../data/regions';
 

@@ -1,17 +1,16 @@
 {
   "name": "11plus-prep",
-  "private": true,
-  "version": "0.0.0",
+  "version": "1.0.0",
   "type": "module",
   "scripts": {
     "dev": "vite",
     "build": "tsc -b && vite build",
     "lint": "eslint .",
     "preview": "vite preview",
-    "validate-regions": "npx tsx src/utils/regionValidator.ts"
+    "validate-regions": "node --experimental-strip-types src/utils/regionValidator.ts"
   },
   "dependencies": {
-    "@anthropic-ai/sdk": "^0.80.0",
+    "@anthropic-ai/sdk": "^0.101.0",
     "clsx": "^2.1.1",
     "html2canvas": "^1.4.1",
     "jspdf": "^4.2.1",

@@ -1,4 +1,4 @@
-import { useApp } from '../../context/AppContext';
+import { useApp } from '../../context/appState';
 
 export function ModeToggle() {
   const { state, dispatch } = useApp();

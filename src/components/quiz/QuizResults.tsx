@@ -1,10 +1,9 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import type { Question } from '../../data/metadata';
+import type { Question, Subject } from '../../data/metadata';
 import type { QuizResult, QuizConfig } from '../../hooks/useQuiz';
 import { analyseScore, getTopicBreakdown, getSubjectBreakdown, formatTime } from '../../utils/scoreAnalyser';
 import { SubjectBadge } from '../shared/SubjectBadge';
-import { generatePaper } from '../../utils/pdfGenerator';
 import { clsx } from 'clsx';
 
 interface Props {
@@ -31,6 +30,7 @@ export function QuizResults({ result, questions, answers, config, onRestart, onN
   const handleDownload = async () => {
     setGenerating(true);
     try {
+      const { generatePaper } = await import('../../utils/pdfGenerator');
       await generatePaper({ questions, quizConfig: config, includeAnswers: true });
     } finally {
       setGenerating(false);
@@ -65,7 +65,7 @@ export function QuizResults({ result, questions, answers, config, onRestart, onN
           <div className="grid grid-cols-2 gap-3">
             {subjectBreakdown.map((s) => (
               <div key={s.subject} className="flex items-center gap-3 p-3 rounded-xl bg-gray-50 dark:bg-slate-700">
-                <SubjectBadge subject={s.subject as any} size="sm" />
+                <SubjectBadge subject={s.subject as Subject} size="sm" />
                 <div className="flex-1 min-w-0">
                   <div className="h-2 bg-gray-200 dark:bg-slate-600 rounded-full overflow-hidden">
                     <div

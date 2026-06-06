@@ -250,7 +250,7 @@ export async function generatePaper({ questions, quizConfig, includeAnswers = fa
   }
 
   // Footer on each page
-  const totalPages = (doc as any).internal.getNumberOfPages();
+  const totalPages = doc.getNumberOfPages();
   for (let p = 1; p <= totalPages; p++) {
     doc.setPage(p);
     doc.setFontSize(8);

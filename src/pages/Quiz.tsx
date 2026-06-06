@@ -3,7 +3,7 @@ import { useNavigate, useSearchParams } from 'react-router-dom';
 import { useQuiz } from '../hooks/useQuiz';
 import { useTimer } from '../hooks/useTimer';
 import { useWeakAreas } from '../hooks/useWeakAreas';
-import { useApp } from '../context/AppContext';
+import { useApp } from '../context/appState';
 import { QuizSetup } from '../components/quiz/QuizSetup';
 import { QuizQuestion } from '../components/quiz/QuizQuestion';
 import { QuizProgress } from '../components/quiz/QuizProgress';
@@ -13,37 +13,43 @@ import { LoadingSpinner } from '../components/shared/LoadingSpinner';
 import { ErrorBanner } from '../components/shared/ErrorBanner';
 import { sampleQuestions, sampleMixedPaper, sampleWeakAreaBiased } from '../utils/questionSampler';
 import { generateQuestionsFromAI } from '../api/generateQuestions';
-import { generatePaper } from '../utils/pdfGenerator';
 import type { QuizConfig } from '../hooks/useQuiz';
 
-import mathsData from '../data/questions/maths.json';
-import englishData from '../data/questions/english.json';
-import verbalData from '../data/questions/verbal.json';
-import nonverbalData from '../data/questions/nonverbal.json';
 import type { Question } from '../data/metadata';
 
-const LONDON_QUESTIONS = [
-  ...(mathsData as Question[]),
-  ...(englishData as Question[]),
-  ...(verbalData as Question[]),
-  ...(nonverbalData as Question[]),
-];
+async function loadLondonQuestions(): Promise<Question[]> {
+  const [maths, english, verbal, nonverbal] = await Promise.all([
+    import('../data/questions/maths.json'),
+    import('../data/questions/english.json'),
+    import('../data/questions/verbal.json'),
+    import('../data/questions/nonverbal.json'),
+  ]);
+
+  return [
+    ...(maths.default as Question[]),
+    ...(english.default as Question[]),
+    ...(verbal.default as Question[]),
+    ...(nonverbal.default as Question[]),
+  ];
+}
 
 // Dynamically loads questions for a region. Falls back to London bank.
 async function loadRegionQuestions(regionId: string): Promise<Question[]> {
+  const londonQuestions = await loadLondonQuestions();
+
   if (!regionId || regionId === 'london') {
-    return LONDON_QUESTIONS;
+    return londonQuestions;
   }
   try {
     const mod = await import(`../data/questions/${regionId}.json`);
     const regional = mod.default as Question[];
     // Merge regional questions with London base (London questions fill any subject gaps)
     const regionalSubjects = new Set(regional.map((q) => q.subject));
-    const londonFill = LONDON_QUESTIONS.filter((q) => !regionalSubjects.has(q.subject));
+    const londonFill = londonQuestions.filter((q) => !regionalSubjects.has(q.subject));
     return [...regional, ...londonFill];
   } catch {
     // If the regional bank doesn't exist yet, fall back to London
-    return LONDON_QUESTIONS;
+    return londonQuestions;
   }
 }
 
@@ -132,6 +138,7 @@ export function Quiz() {
 
       // Auto-PDF
       if (config.generatePdf) {
+        const { generatePaper } = await import('../utils/pdfGenerator');
         generatePaper({ questions, quizConfig: config });
       }
     } catch (err: unknown) {
