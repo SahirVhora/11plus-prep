@@ -40,7 +40,7 @@ export function About() {
 
       <AccordionItem title="📚 What is the 11+ exam?" defaultOpen>
         <p>
-          The 11+ is an entrance exam taken by children in Year 6 (aged 10–11) to gain entry into
+          The 11+ is an entrance exam taken by children in Year 6 (aged 10-11) to gain entry into
           selective grammar schools across the UK. Different regions use different exam boards -
           the most common are <strong>GL Assessment</strong>, <strong>CEM</strong>, <strong>AQE</strong> (Northern Ireland),
           and <strong>CSSE</strong> (Essex).
@@ -53,7 +53,7 @@ export function About() {
           <li><strong>Non-Verbal Reasoning</strong> - shape patterns, matrices, spatial reasoning</li>
         </ul>
         <p>
-          Papers are typically 45–50 minutes each, often in multiple-choice format.
+          Papers are typically 45-50 minutes each, often in multiple-choice format.
           Some regions (e.g. Warwickshire, Essex) also include a written English component.
           Always check your target school's admissions page for exact requirements.
         </p>
@@ -62,10 +62,10 @@ export function About() {
       <AccordionItem title="📅 Preparation Timeline">
         <div className="space-y-4">
           {[
-            { period: 'Year 4 (age 8–9)', text: 'Begin familiarisation with exam format. Focus on keeping up with school maths and reading widely.' },
-            { period: 'Year 5 (age 9–10)', text: 'Start structured practice. Work through all four subjects. Take timed practice papers. Identify weak areas.' },
+            { period: 'Year 4 (age 8-9)', text: 'Begin familiarisation with exam format. Focus on keeping up with school maths and reading widely.' },
+            { period: 'Year 5 (age 9-10)', text: 'Start structured practice. Work through all four subjects. Take timed practice papers. Identify weak areas.' },
             { period: 'Year 6 September', text: '11+ exams take place - usually in early September of Year 6. Some schools test in late September.' },
-            { period: 'October–November', text: 'Results announced. Offers for grammar school places confirmed in early March via local authority.' },
+            { period: 'October-November', text: 'Results announced. Offers for grammar school places confirmed in early March via local authority.' },
             { period: 'March Year 6', text: 'Secondary school offers received. Grammar school places confirmed on National Offer Day (1 March).' },
           ].map(({ period, text }) => (
             <div key={period} className="flex gap-4">
