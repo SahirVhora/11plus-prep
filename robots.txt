@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://sahirvhora.github.io/11plus-prep/sitemap.xml
