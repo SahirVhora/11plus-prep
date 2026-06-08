@@ -5,9 +5,9 @@ import { Header } from './components/layout/Header';
 import { Footer } from './components/layout/Footer';
 import { SettingsModal } from './components/layout/SettingsModal';
 
-const Home = lazy(() => import('./pages/Home'));
-const Quiz = lazy(() => import('./pages/Quiz'));
-const About = lazy(() => import('./pages/About'));
+const Home = lazy(() => import('./pages/Home').then(m => ({ default: m.Home })));
+const Quiz = lazy(() => import('./pages/Quiz').then(m => ({ default: m.Quiz })));
+const About = lazy(() => import('./pages/About').then(m => ({ default: m.About })));
 
 function LoadingFallback() {
   return (
