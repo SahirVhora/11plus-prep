@@ -24,6 +24,10 @@ export function QuizResults({ result, questions, answers, config, onRestart, onN
 
   const { label, color, emoji } = analyseScore(result.percentage);
   const topicBreakdown = getTopicBreakdown(questions, answers);
+  const adaptiveTarget = topicBreakdown
+    .filter((t) => t.total > 0)
+    .sort((a, b) => a.percentage - b.percentage)[0];
+  const adaptiveSubject = adaptiveTarget?.subject || questions.find((q) => result.weakTopics.includes(q.topic))?.subject;
   const subjectBreakdown = getSubjectBreakdown(questions, answers);
   const isMultiSubject = subjectBreakdown.length > 1;
 
@@ -81,6 +85,22 @@ export function QuizResults({ result, questions, answers, config, onRestart, onN
               </div>
             ))}
           </div>
+        </div>
+      )}
+
+      {/* Adaptive next practice */}
+      {adaptiveTarget && adaptiveSubject && (
+        <div className="card border-2 border-blue-200 dark:border-blue-700">
+          <h2 className="font-bold text-primary dark:text-blue-300 mb-2">Adaptive Weak-Topic Practice</h2>
+          <p className="text-sm text-gray-500 dark:text-slate-400 mb-3">
+            Your weakest area was {adaptiveTarget.topic.replace(/-/g, ' ')} at {adaptiveTarget.percentage}%. Generate the next 10 questions from that area.
+          </p>
+          <button
+            onClick={() => navigate(`/quiz?adaptive=1&subject=${adaptiveSubject}&topic=${adaptiveTarget.topic}`)}
+            className="btn-primary text-sm py-2.5 px-4"
+          >
+            Generate next 10 questions →
+          </button>
         </div>
       )}
 

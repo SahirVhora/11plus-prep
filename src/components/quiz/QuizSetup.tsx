@@ -26,6 +26,8 @@ const QUESTION_COUNTS = [10, 20, 30, 50];
 export function QuizSetup({ onStart }: Props) {
   const [searchParams] = useSearchParams();
   const defaultSubject = (searchParams.get('subject') as Subject) || 'maths';
+  const defaultTopic = searchParams.get('topic') || '';
+  const adaptiveMode = searchParams.get('adaptive') === '1';
 
   const { state } = useApp();
   const { region } = useRegion();
@@ -45,8 +47,8 @@ export function QuizSetup({ onStart }: Props) {
 
   const [subject, setSubject] = useState<Subject | 'mixed'>(safeDefaultSubject);
   const [difficulty, setDifficulty] = useState<Difficulty | 'mixed'>('mixed');
-  const [count, setCount] = useState(20);
-  const [customCount, setCustomCount] = useState(20);
+  const [count, setCount] = useState(adaptiveMode ? 10 : 20);
+  const [customCount, setCustomCount] = useState(adaptiveMode ? 10 : 20);
   const [useCustom, setUseCustom] = useState(false);
   const [timerType, setTimerType] = useState<'off' | 'per-question' | 'full-paper'>('off');
   const [generatePdf, setGeneratePdf] = useState(false);
@@ -65,10 +67,11 @@ export function QuizSetup({ onStart }: Props) {
       mode: state.mode,
       subject,
       difficulty,
-      questionCount: finalCount,
+      questionCount: adaptiveMode ? 10 : finalCount,
       timerMode,
       generatePdf,
       regionId: region.id,
+      focusWeakTopics: defaultTopic ? [defaultTopic] : undefined,
     });
   };
 
@@ -77,6 +80,11 @@ export function QuizSetup({ onStart }: Props) {
       <div className="text-center mb-8">
         <h1 className="text-3xl font-extrabold text-primary dark:text-blue-300 mb-2">Set Up Your Quiz</h1>
         <p className="text-gray-500 dark:text-slate-400">Choose your region, subject and settings, then start practising.</p>
+        {adaptiveMode && defaultTopic && (
+          <p className="mt-3 rounded-xl bg-amber-50 px-4 py-2 text-sm font-semibold text-amber-700 dark:bg-amber-900/20 dark:text-amber-300">
+            Adaptive weak-topic practice: next 10 questions focus on {defaultTopic.replace(/-/g, ' ')}.
+          </p>
+        )}
         <div className="flex justify-center mt-4">
           <div className="flex items-center gap-3 bg-gray-50 dark:bg-slate-800 rounded-xl px-4 py-2">
             <span className="text-sm font-semibold text-gray-500 dark:text-slate-400">Mode:</span>
