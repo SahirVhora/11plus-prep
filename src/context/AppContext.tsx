@@ -5,10 +5,14 @@ export function AppProvider({ children }: { children: ReactNode }) {
   const [state, dispatch] = useReducer(appReducer, initialState, (init) => {
     try {
       const saved = localStorage.getItem('11plus_app_settings');
+      const apiKey = sessionStorage.getItem('11plus_anthropic_api_key') || '';
       if (saved) {
         const parsed = JSON.parse(saved);
-        return { ...init, ...parsed, showSettings: false };
+        // Do not migrate old persisted keys: a secret must not survive a browser session.
+        delete parsed.apiKey;
+        return { ...init, ...parsed, apiKey, showSettings: false };
       }
+      return { ...init, apiKey };
     } catch {
       localStorage.removeItem('11plus_app_settings');
     }
@@ -18,12 +22,16 @@ export function AppProvider({ children }: { children: ReactNode }) {
   useEffect(() => {
     const toSave = {
       mode: state.mode,
-      apiKey: state.apiKey,
       theme: state.theme,
       fontSize: state.fontSize,
       regionId: state.regionId,
     };
     localStorage.setItem('11plus_app_settings', JSON.stringify(toSave));
+    if (state.apiKey) {
+      sessionStorage.setItem('11plus_anthropic_api_key', state.apiKey);
+    } else {
+      sessionStorage.removeItem('11plus_anthropic_api_key');
+    }
   }, [state]);
 
   useEffect(() => {

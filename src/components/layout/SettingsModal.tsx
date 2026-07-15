@@ -63,7 +63,7 @@ export function SettingsModal() {
                 placeholder="sk-ant-..."
                 className="w-full border border-gray-200 dark:border-slate-600 rounded-xl px-4 py-2 text-sm font-mono bg-gray-50 dark:bg-slate-700 dark:text-white focus:outline-none focus:ring-2 focus:ring-amber-400"
               />
-              <p className="text-xs text-gray-400 mt-1">Stored locally. Never sent except during AI question generation.</p>
+              <p className="text-xs text-gray-400 mt-1">Stored for this browser session only. Never sent except during AI question generation.</p>
             </div>
           )}
 
