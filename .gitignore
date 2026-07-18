@@ -26,3 +26,8 @@
 __pycache__/
 venv/
 node_modules
+
+.audit-result.json
+.claude/settings.local.json
+.under-anything/
+.DS_Store
