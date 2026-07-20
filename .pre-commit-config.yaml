@@ -13,5 +13,5 @@ repos:
         name: prettier
         entry: npx --no-install prettier --write --ignore-unknown
         language: system
-        types_or: [javascript, jsx, tsx, typescript, json, yaml, markdown]
+        types_or: [javascript, jsx, ts, tsx, json, yaml, markdown]
         require_serial: true
