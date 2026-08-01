@@ -1,8 +1,8 @@
-import { useState } from 'react';
-import type { Question } from '../../data/metadata';
-import { SubjectBadge } from '../shared/SubjectBadge';
-import { DifficultyBadge } from '../shared/DifficultyBadge';
-import { clsx } from 'clsx';
+import { useState } from "react";
+import type { Question } from "../../data/metadata";
+import { SubjectBadge } from "../shared/SubjectBadge";
+import { DifficultyBadge } from "../shared/DifficultyBadge";
+import { clsx } from "clsx";
 
 interface Props {
   question: Question;
@@ -35,7 +35,7 @@ export function QuizQuestion({
   isFirst,
   isLast,
 }: Props) {
-  const [textInput, setTextInput] = useState(selectedAnswer || '');
+  const [textInput, setTextInput] = useState(selectedAnswer || "");
 
   const getOptionClass = (option: string) => {
     const letter = option.charAt(0);
@@ -44,13 +44,16 @@ export function QuizQuestion({
     if (isReviewing) {
       const isCorrect = letter === question.answer;
       const wasSelected = selectedAnswer === letter;
-      if (isCorrect) return 'bg-emerald-50 border-emerald-400 text-emerald-800 dark:bg-emerald-900/30 dark:border-emerald-500 dark:text-emerald-200';
-      if (wasSelected && !isCorrect) return 'bg-red-50 border-red-400 text-red-800 dark:bg-red-900/30 dark:border-red-500 dark:text-red-200';
-      return 'bg-gray-50 border-gray-200 text-gray-500 dark:bg-slate-700 dark:border-slate-600 dark:text-slate-400';
+      if (isCorrect)
+        return "bg-emerald-50 border-emerald-400 text-emerald-800 dark:bg-emerald-900/30 dark:border-emerald-500 dark:text-emerald-200";
+      if (wasSelected && !isCorrect)
+        return "bg-red-50 border-red-400 text-red-800 dark:bg-red-900/30 dark:border-red-500 dark:text-red-200";
+      return "bg-gray-50 border-gray-200 text-gray-500 dark:bg-slate-700 dark:border-slate-600 dark:text-slate-400";
     }
 
-    if (isSelected) return 'bg-blue-50 border-blue-500 text-blue-800 dark:bg-blue-900/30 dark:border-blue-400 dark:text-blue-200 shadow-sm';
-    return 'bg-white border-gray-200 text-gray-700 hover:bg-blue-50 hover:border-blue-300 dark:bg-slate-800 dark:border-slate-600 dark:text-slate-200 dark:hover:bg-slate-700';
+    if (isSelected)
+      return "bg-blue-50 border-blue-500 text-blue-800 dark:bg-blue-900/30 dark:border-blue-400 dark:text-blue-200 shadow-sm";
+    return "bg-white border-gray-200 text-gray-700 hover:bg-blue-50 hover:border-blue-300 dark:bg-slate-800 dark:border-slate-600 dark:text-slate-200 dark:hover:bg-slate-700";
   };
 
   return (
@@ -59,17 +62,19 @@ export function QuizQuestion({
       <div className="flex flex-wrap items-center gap-2 mb-4">
         <SubjectBadge subject={question.subject} size="sm" />
         <DifficultyBadge difficulty={question.difficulty} size="sm" />
-        <span className="text-xs text-gray-400 dark:text-slate-500 ml-auto">{question.topic}</span>
+        <span className="text-xs text-gray-400 dark:text-slate-500 ml-auto">
+          {question.topic}
+        </span>
         {!isReviewing && (
           <button
             onClick={onFlag}
-            aria-label={isFlagged ? 'Remove flag' : 'Flag for review'}
+            aria-label={isFlagged ? "Remove flag" : "Flag for review"}
             aria-pressed={isFlagged}
             className={clsx(
-              'p-1.5 rounded-lg transition-colors text-sm',
+              "p-1.5 rounded-lg transition-colors text-sm",
               isFlagged
-                ? 'bg-amber-100 text-amber-600 dark:bg-amber-900/30'
-                : 'text-gray-400 hover:text-amber-500 hover:bg-amber-50 dark:hover:bg-amber-900/20'
+                ? "bg-amber-100 text-amber-600 dark:bg-amber-900/30"
+                : "text-gray-400 hover:text-amber-500 hover:bg-amber-50 dark:hover:bg-amber-900/20",
             )}
           >
             🚩
@@ -80,8 +85,12 @@ export function QuizQuestion({
       {/* Context / passage */}
       {question.context && (
         <div className="bg-blue-50 dark:bg-blue-900/20 border border-blue-100 dark:border-blue-800 rounded-xl p-4 mb-5">
-          <p className="text-xs font-bold text-blue-600 dark:text-blue-400 mb-2 uppercase tracking-wide">Reading Passage</p>
-          <p className="font-serif text-sm leading-relaxed text-gray-700 dark:text-slate-200 whitespace-pre-line">{question.context}</p>
+          <p className="text-xs font-bold text-blue-600 dark:text-blue-400 mb-2 uppercase tracking-wide">
+            Reading Passage
+          </p>
+          <p className="font-serif text-sm leading-relaxed text-gray-700 dark:text-slate-200 whitespace-pre-line">
+            {question.context}
+          </p>
         </div>
       )}
 
@@ -91,40 +100,63 @@ export function QuizQuestion({
       </p>
 
       {/* MCQ options */}
-      {question.type === 'mcq' && question.options && (
-        <div className="space-y-3" role="radiogroup" aria-label="Answer options">
+      {question.type === "mcq" && question.options && (
+        <div
+          className="space-y-3"
+          role="radiogroup"
+          aria-label="Answer options"
+        >
           {question.options.map((opt) => {
             const letter = opt.charAt(0);
             // remove "A) " prefix - text shown inline
             const isCorrectInReview = isReviewing && letter === question.answer;
-            const isWrongInReview = isReviewing && selectedAnswer === letter && letter !== question.answer;
+            const isWrongInReview =
+              isReviewing &&
+              selectedAnswer === letter &&
+              letter !== question.answer;
 
             return (
               <button
                 key={opt}
                 role="radio"
+                data-testid="quiz-option"
                 aria-checked={selectedAnswer === letter}
                 onClick={() => !isReviewing && onAnswer(letter)}
                 disabled={isReviewing}
                 className={clsx(
-                  'w-full text-left px-4 py-3 rounded-xl border-2 transition-all duration-150 min-h-[44px] flex items-center gap-3 font-medium',
-                  getOptionClass(opt)
+                  "w-full text-left px-4 py-3 rounded-xl border-2 transition-all duration-200 min-h-[44px] flex items-center gap-3 font-medium",
+                  getOptionClass(opt),
+                  !isReviewing && "hover:scale-[1.01] active:scale-[0.99]",
                 )}
               >
                 <span
                   className={clsx(
-                    'w-8 h-8 rounded-full border-2 flex items-center justify-center font-bold text-sm flex-shrink-0',
-                    selectedAnswer === letter && !isReviewing ? 'border-blue-500 bg-blue-500 text-white' :
-                    isCorrectInReview ? 'border-emerald-500 bg-emerald-500 text-white' :
-                    isWrongInReview ? 'border-red-500 bg-red-500 text-white' :
-                    'border-current bg-transparent'
+                    "w-8 h-8 rounded-full border-2 flex items-center justify-center font-bold text-sm flex-shrink-0 transition-all duration-200",
+                    selectedAnswer === letter && !isReviewing
+                      ? "border-blue-500 bg-blue-500 text-white scale-110"
+                      : isCorrectInReview
+                        ? "border-emerald-500 bg-emerald-500 text-white"
+                        : isWrongInReview
+                          ? "border-red-500 bg-red-500 text-white"
+                          : "border-current bg-transparent",
                   )}
                 >
                   {letter}
                 </span>
                 <span className="font-serif">{opt.slice(3)}</span>
-                {isCorrectInReview && <span className="ml-auto text-emerald-600" aria-label="Correct">✓</span>}
-                {isWrongInReview && <span className="ml-auto text-red-600" aria-label="Incorrect">✗</span>}
+                {isCorrectInReview && (
+                  <span
+                    className="ml-auto text-emerald-600"
+                    aria-label="Correct"
+                  >
+                    ✓
+                  </span>
+                )}
+                {isWrongInReview && (
+                  <span className="ml-auto text-red-600" aria-label="Incorrect">
+                    ✗
+                  </span>
+                )}
               </button>
             );
           })}
@@ -132,9 +164,12 @@ export function QuizQuestion({
       )}
 
       {/* Text input */}
-      {question.type === 'text-input' && (
+      {question.type === "text-input" && (
         <div>
-          <label className="block text-sm font-semibold text-gray-600 dark:text-slate-300 mb-2" htmlFor="text-answer">
+          <label
+            className="block text-sm font-semibold text-gray-600 dark:text-slate-300 mb-2"
+            htmlFor="text-answer"
+          >
             Your answer:
           </label>
           <input
@@ -160,8 +195,12 @@ export function QuizQuestion({
       {/* Explanation (review mode) */}
       {isReviewing && question.explanation && (
         <div className="mt-5 bg-amber-50 dark:bg-amber-900/20 border border-amber-100 dark:border-amber-800 rounded-xl p-4">
-          <p className="text-xs font-bold text-amber-600 dark:text-amber-400 mb-1 uppercase tracking-wide">Explanation</p>
-          <p className="text-sm text-gray-700 dark:text-slate-200 font-serif leading-relaxed">{question.explanation}</p>
+          <p className="text-xs font-bold text-amber-600 dark:text-amber-400 mb-1 uppercase tracking-wide">
+            Explanation
+          </p>
+          <p className="text-sm text-gray-700 dark:text-slate-200 font-serif leading-relaxed">
+            {question.explanation}
+          </p>
         </div>
       )}
 
@@ -179,11 +218,19 @@ export function QuizQuestion({
             {questionNumber} / {totalQuestions}
           </span>
           {isLast ? (
-            <button onClick={onSubmit} className="btn-primary text-sm py-2 px-5">
-              Submit Quiz ✓
+            <button
+              onClick={onSubmit}
+              className="btn-primary text-sm py-2 px-5"
+              data-testid="submit-quiz-button"
+            >
+              Submit Quiz
             </button>
           ) : (
-            <button onClick={onNext} className="btn-secondary text-sm py-2 px-4">
+            <button
+              onClick={onNext}
+              className="btn-secondary text-sm py-2 px-4"
+              data-testid="next-question-button"
+            >
               Next →
             </button>
           )}

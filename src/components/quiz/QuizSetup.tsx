@@ -1,33 +1,37 @@
-import { useState } from 'react';
-import { useSearchParams } from 'react-router-dom';
-import type { Subject, Difficulty } from '../../data/metadata';
-import { useApp } from '../../context/appState';
-import { useRegion } from '../../hooks/useRegion';
-import { ModeToggle } from '../layout/ModeToggle';
-import { RegionSelector } from '../region/RegionSelector';
-import { RegionInfoPanel } from '../region/RegionInfoPanel';
-import type { QuizConfig, TimerMode } from '../../hooks/useQuiz';
-import { useWeakAreas } from '../../hooks/useWeakAreas';
+import { useState } from "react";
+import { useSearchParams } from "react-router-dom";
+import type { Subject, Difficulty } from "../../data/metadata";
+import { useApp } from "../../context/appState";
+import { useRegion } from "../../hooks/useRegion";
+import { ModeToggle } from "../layout/ModeToggle";
+import { RegionSelector } from "../region/RegionSelector";
+import { RegionInfoPanel } from "../region/RegionInfoPanel";
+import type { QuizConfig, TimerMode } from "../../hooks/useQuiz";
+import { useWeakAreas } from "../../hooks/useWeakAreas";
 
 interface Props {
   onStart: (config: QuizConfig) => void;
 }
 
-const ALL_SUBJECT_OPTIONS: Array<{ id: Subject | 'mixed'; label: string; icon: string }> = [
-  { id: 'maths', label: 'Maths', icon: '🔢' },
-  { id: 'english', label: 'English', icon: '📖' },
-  { id: 'verbal', label: 'Verbal Reasoning', icon: '🔤' },
-  { id: 'nonverbal', label: 'Non-Verbal', icon: '🔷' },
-  { id: 'mixed', label: 'Mixed Paper', icon: '📋' },
+const ALL_SUBJECT_OPTIONS: Array<{
+  id: Subject | "mixed";
+  label: string;
+  icon: string;
+}> = [
+  { id: "maths", label: "Maths", icon: "🔢" },
+  { id: "english", label: "English", icon: "📖" },
+  { id: "verbal", label: "Verbal Reasoning", icon: "🔤" },
+  { id: "nonverbal", label: "Non-Verbal", icon: "🔷" },
+  { id: "mixed", label: "Mixed Paper", icon: "📋" },
 ];
 
 const QUESTION_COUNTS = [10, 20, 30, 50];
 
 export function QuizSetup({ onStart }: Props) {
   const [searchParams] = useSearchParams();
-  const defaultSubject = (searchParams.get('subject') as Subject) || 'maths';
-  const defaultTopic = searchParams.get('topic') || '';
-  const adaptiveMode = searchParams.get('adaptive') === '1';
+  const defaultSubject = (searchParams.get("subject") as Subject) || "maths";
+  const defaultTopic = searchParams.get("topic") || "";
+  const adaptiveMode = searchParams.get("adaptive") === "1";
 
   const { state } = useApp();
   const { region } = useRegion();
@@ -35,22 +39,27 @@ export function QuizSetup({ onStart }: Props) {
 
   // Subject options gated to what this region tests
   const availableSubjects = ALL_SUBJECT_OPTIONS.filter((opt) => {
-    if (opt.id === 'mixed') return true; // always show mixed
-    return region.subjects.includes(opt.id as 'maths' | 'english' | 'verbal' | 'nonverbal');
+    if (opt.id === "mixed") return true; // always show mixed
+    return region.subjects.includes(
+      opt.id as "maths" | "english" | "verbal" | "nonverbal",
+    );
   });
 
   // Ensure default subject is valid for the selected region
-  const safeDefaultSubject: Subject | 'mixed' =
-    region.subjects.includes(defaultSubject as 'maths' | 'english' | 'verbal' | 'nonverbal')
-      ? defaultSubject
-      : (region.subjects[0] as Subject) ?? 'maths';
+  const safeDefaultSubject: Subject | "mixed" = region.subjects.includes(
+    defaultSubject as "maths" | "english" | "verbal" | "nonverbal",
+  )
+    ? defaultSubject
+    : ((region.subjects[0] as Subject) ?? "maths");
 
-  const [subject, setSubject] = useState<Subject | 'mixed'>(safeDefaultSubject);
-  const [difficulty, setDifficulty] = useState<Difficulty | 'mixed'>('mixed');
+  const [subject, setSubject] = useState<Subject | "mixed">(safeDefaultSubject);
+  const [difficulty, setDifficulty] = useState<Difficulty | "mixed">("mixed");
   const [count, setCount] = useState(adaptiveMode ? 10 : 20);
   const [customCount, setCustomCount] = useState(adaptiveMode ? 10 : 20);
   const [useCustom, setUseCustom] = useState(false);
-  const [timerType, setTimerType] = useState<'off' | 'per-question' | 'full-paper'>('off');
+  const [timerType, setTimerType] = useState<
+    "off" | "per-question" | "full-paper"
+  >("off");
   const [generatePdf, setGeneratePdf] = useState(false);
   const { getWeakTopics } = useWeakAreas();
   const weakTopics = getWeakTopics();
@@ -59,9 +68,11 @@ export function QuizSetup({ onStart }: Props) {
 
   const handleStart = () => {
     const timerMode: TimerMode =
-      timerType === 'per-question' ? { type: 'per-question', secondsPerQuestion: 45 } :
-      timerType === 'full-paper' ? { type: 'full-paper', totalSeconds: finalCount * 54 } :
-      { type: 'off' };
+      timerType === "per-question"
+        ? { type: "per-question", secondsPerQuestion: 45 }
+        : timerType === "full-paper"
+          ? { type: "full-paper", totalSeconds: finalCount * 54 }
+          : { type: "off" };
 
     onStart({
       mode: state.mode,
@@ -78,16 +89,23 @@ export function QuizSetup({ onStart }: Props) {
   return (
     <div className="max-w-2xl mx-auto px-4 py-10 animate-fade-in">
       <div className="text-center mb-8">
-        <h1 className="text-3xl font-extrabold text-primary dark:text-blue-300 mb-2">Set Up Your Quiz</h1>
-        <p className="text-gray-500 dark:text-slate-400">Choose your region, subject and settings, then start practising.</p>
+        <h1 className="text-3xl font-extrabold text-primary dark:text-blue-300 mb-2">
+          Set Up Your Quiz
+        </h1>
+        <p className="text-gray-500 dark:text-slate-400">
+          Choose your region, subject and settings, then start practising.
+        </p>
         {adaptiveMode && defaultTopic && (
           <p className="mt-3 rounded-xl bg-amber-50 px-4 py-2 text-sm font-semibold text-amber-700 dark:bg-amber-900/20 dark:text-amber-300">
-            Adaptive weak-topic practice: next 10 questions focus on {defaultTopic.replace(/-/g, ' ')}.
+            Adaptive weak-topic practice: next 10 questions focus on{" "}
+            {defaultTopic.replace(/-/g, " ")}.
           </p>
         )}
         <div className="flex justify-center mt-4">
           <div className="flex items-center gap-3 bg-gray-50 dark:bg-slate-800 rounded-xl px-4 py-2">
-            <span className="text-sm font-semibold text-gray-500 dark:text-slate-400">Mode:</span>
+            <span className="text-sm font-semibold text-gray-500 dark:text-slate-400">
+              Mode:
+            </span>
             <ModeToggle />
           </div>
         </div>
@@ -97,12 +115,14 @@ export function QuizSetup({ onStart }: Props) {
         {/* Region */}
         <div className="card">
           <div className="flex items-center justify-between mb-4">
-            <h2 className="font-bold text-primary dark:text-blue-300">0. Your Region</h2>
+            <h2 className="font-bold text-primary dark:text-blue-300">
+              0. Your Region
+            </h2>
             <button
               onClick={() => setShowRegionInfo(!showRegionInfo)}
               className="text-xs text-primary dark:text-blue-400 hover:underline"
             >
-              {showRegionInfo ? 'Hide info' : 'About this test'}
+              {showRegionInfo ? "Hide info" : "About this test"}
             </button>
           </div>
           <RegionSelector />
@@ -113,14 +133,17 @@ export function QuizSetup({ onStart }: Props) {
           )}
           {region.hasCreativeWriting && (
             <p className="mt-3 text-xs text-amber-600 dark:text-amber-400 bg-amber-50 dark:bg-amber-900/20 rounded-lg p-2">
-              ✍️ This region includes creative writing - practice timed essays and stories too.
+              ✍️ This region includes creative writing - practice timed essays
+              and stories too.
             </p>
           )}
         </div>
 
         {/* Subject */}
         <div className="card">
-          <h2 className="font-bold text-primary dark:text-blue-300 mb-4">1. Choose Subject</h2>
+          <h2 className="font-bold text-primary dark:text-blue-300 mb-4">
+            1. Choose Subject
+          </h2>
           <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
             {availableSubjects.map((opt) => (
               <button
@@ -128,8 +151,8 @@ export function QuizSetup({ onStart }: Props) {
                 onClick={() => setSubject(opt.id)}
                 className={`p-3 rounded-xl border-2 font-semibold text-sm transition-all text-center flex flex-col items-center gap-1 min-h-[70px] ${
                   subject === opt.id
-                    ? 'border-secondary bg-amber-50 text-secondary dark:bg-amber-900/20'
-                    : 'border-gray-200 dark:border-slate-600 hover:border-gray-300 dark:text-slate-300'
+                    ? "border-secondary bg-amber-50 text-secondary dark:bg-amber-900/20"
+                    : "border-gray-200 dark:border-slate-600 hover:border-gray-300 dark:text-slate-300"
                 }`}
               >
                 <span className="text-2xl">{opt.icon}</span>
@@ -146,14 +169,16 @@ export function QuizSetup({ onStart }: Props) {
 
         {/* Difficulty */}
         <div className="card">
-          <h2 className="font-bold text-primary dark:text-blue-300 mb-4">2. Difficulty</h2>
+          <h2 className="font-bold text-primary dark:text-blue-300 mb-4">
+            2. Difficulty
+          </h2>
           <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
             <button
-              onClick={() => setDifficulty('mixed')}
+              onClick={() => setDifficulty("mixed")}
               className={`p-3 rounded-xl border-2 font-semibold text-sm transition-all ${
-                difficulty === 'mixed'
-                  ? 'border-secondary bg-amber-50 text-secondary dark:bg-amber-900/20'
-                  : 'border-gray-200 dark:border-slate-600 dark:text-slate-300'
+                difficulty === "mixed"
+                  ? "border-secondary bg-amber-50 text-secondary dark:bg-amber-900/20"
+                  : "border-gray-200 dark:border-slate-600 dark:text-slate-300"
               }`}
             >
               Mixed
@@ -164,11 +189,15 @@ export function QuizSetup({ onStart }: Props) {
                 onClick={() => setDifficulty(d)}
                 className={`p-3 rounded-xl border-2 font-semibold text-sm transition-all ${
                   difficulty === d
-                    ? 'border-secondary bg-amber-50 text-secondary dark:bg-amber-900/20'
-                    : 'border-gray-200 dark:border-slate-600 dark:text-slate-300'
+                    ? "border-secondary bg-amber-50 text-secondary dark:bg-amber-900/20"
+                    : "border-gray-200 dark:border-slate-600 dark:text-slate-300"
                 }`}
               >
-                {d === 1 ? '⭐ Easy' : d === 2 ? '⭐⭐ Standard' : '⭐⭐⭐ Stretch'}
+                {d === 1
+                  ? "⭐ Easy"
+                  : d === 2
+                    ? "⭐⭐ Standard"
+                    : "⭐⭐⭐ Stretch"}
               </button>
             ))}
           </div>
@@ -176,16 +205,21 @@ export function QuizSetup({ onStart }: Props) {
 
         {/* Question count */}
         <div className="card">
-          <h2 className="font-bold text-primary dark:text-blue-300 mb-4">3. Number of Questions</h2>
+          <h2 className="font-bold text-primary dark:text-blue-300 mb-4">
+            3. Number of Questions
+          </h2>
           <div className="flex flex-wrap gap-3 mb-4">
             {QUESTION_COUNTS.map((n) => (
               <button
                 key={n}
-                onClick={() => { setCount(n); setUseCustom(false); }}
+                onClick={() => {
+                  setCount(n);
+                  setUseCustom(false);
+                }}
                 className={`px-5 py-2.5 rounded-xl border-2 font-bold transition-all ${
                   !useCustom && count === n
-                    ? 'border-secondary bg-amber-50 text-secondary dark:bg-amber-900/20'
-                    : 'border-gray-200 dark:border-slate-600 dark:text-slate-300'
+                    ? "border-secondary bg-amber-50 text-secondary dark:bg-amber-900/20"
+                    : "border-gray-200 dark:border-slate-600 dark:text-slate-300"
                 }`}
               >
                 {n}
@@ -195,8 +229,8 @@ export function QuizSetup({ onStart }: Props) {
               onClick={() => setUseCustom(true)}
               className={`px-5 py-2.5 rounded-xl border-2 font-bold transition-all ${
                 useCustom
-                  ? 'border-secondary bg-amber-50 text-secondary dark:bg-amber-900/20'
-                  : 'border-gray-200 dark:border-slate-600 dark:text-slate-300'
+                  ? "border-secondary bg-amber-50 text-secondary dark:bg-amber-900/20"
+                  : "border-gray-200 dark:border-slate-600 dark:text-slate-300"
               }`}
             >
               Custom
@@ -215,7 +249,9 @@ export function QuizSetup({ onStart }: Props) {
               />
               <div className="flex justify-between text-xs text-gray-400 mt-1">
                 <span>5</span>
-                <span className="font-bold text-secondary text-sm">{customCount} questions</span>
+                <span className="font-bold text-secondary text-sm">
+                  {customCount} questions
+                </span>
                 <span>50</span>
               </div>
             </div>
@@ -224,20 +260,24 @@ export function QuizSetup({ onStart }: Props) {
 
         {/* Timer */}
         <div className="card">
-          <h2 className="font-bold text-primary dark:text-blue-300 mb-4">4. Timer</h2>
+          <h2 className="font-bold text-primary dark:text-blue-300 mb-4">
+            4. Timer
+          </h2>
           <div className="flex flex-wrap gap-3">
             {[
-              { value: 'off', label: '⏸️ No Timer' },
-              { value: 'per-question', label: '⏱️ 45s per question' },
-              { value: 'full-paper', label: '📋 Full paper timer' },
+              { value: "off", label: "⏸️ No Timer" },
+              { value: "per-question", label: "⏱️ 45s per question" },
+              { value: "full-paper", label: "📋 Full paper timer" },
             ].map(({ value, label }) => (
               <button
                 key={value}
-                onClick={() => setTimerType(value as 'off' | 'per-question' | 'full-paper')}
+                onClick={() =>
+                  setTimerType(value as "off" | "per-question" | "full-paper")
+                }
                 className={`px-4 py-2.5 rounded-xl border-2 font-semibold text-sm transition-all ${
                   timerType === value
-                    ? 'border-secondary bg-amber-50 text-secondary dark:bg-amber-900/20'
-                    : 'border-gray-200 dark:border-slate-600 dark:text-slate-300'
+                    ? "border-secondary bg-amber-50 text-secondary dark:bg-amber-900/20"
+                    : "border-gray-200 dark:border-slate-600 dark:text-slate-300"
                 }`}
               >
                 {label}
@@ -255,16 +295,21 @@ export function QuizSetup({ onStart }: Props) {
               onChange={(e) => setGeneratePdf(e.target.checked)}
               className="w-5 h-5 accent-amber-500"
             />
-            <span className="font-semibold dark:text-slate-200">📄 Also download a printable PDF paper</span>
+            <span className="font-semibold dark:text-slate-200">
+              📄 Also download a printable PDF paper
+            </span>
           </label>
         </div>
 
         {/* Weak Areas quick-start */}
         {weakTopics.length > 0 && (
           <div className="card border-2 border-amber-300 dark:border-amber-600">
-            <h2 className="font-bold text-amber-700 dark:text-amber-300 mb-3">⚠️ Weak Areas Detected</h2>
+            <h2 className="font-bold text-amber-700 dark:text-amber-300 mb-3">
+              ⚠️ Weak Areas Detected
+            </h2>
             <p className="text-xs text-gray-500 dark:text-slate-400 mb-3">
-              These topics have accuracy below 60% after 3+ attempts. Practice them now to improve.
+              These topics have accuracy below 60% after 3+ attempts. Practice
+              them now to improve.
             </p>
             <div className="space-y-2 mb-4">
               {weakTopics.slice(0, 5).map((entry) => (
@@ -273,8 +318,10 @@ export function QuizSetup({ onStart }: Props) {
                   className="flex items-center justify-between gap-3 px-3 py-2 bg-amber-50 dark:bg-amber-900/20 rounded-lg"
                 >
                   <span className="text-sm font-medium capitalize text-gray-700 dark:text-slate-200">
-                    {entry.topic.replace(/-/g, ' ')}
-                    <span className="ml-2 text-xs text-gray-400">{entry.subject}</span>
+                    {entry.topic.replace(/-/g, " ")}
+                    <span className="ml-2 text-xs text-gray-400">
+                      {entry.subject}
+                    </span>
                   </span>
                   <span className="text-xs font-bold text-red-500">
                     {Math.round((entry.correct / entry.attempts) * 100)}%
@@ -282,17 +329,19 @@ export function QuizSetup({ onStart }: Props) {
                 </div>
               ))}
               {weakTopics.length > 5 && (
-                <p className="text-xs text-gray-400 text-center">+{weakTopics.length - 5} more weak topics</p>
+                <p className="text-xs text-gray-400 text-center">
+                  +{weakTopics.length - 5} more weak topics
+                </p>
               )}
             </div>
             <button
               onClick={() =>
                 onStart({
                   mode: state.mode,
-                  subject: 'mixed',
-                  difficulty: 'mixed',
+                  subject: "mixed",
+                  difficulty: "mixed",
                   questionCount: finalCount,
-                  timerMode: { type: 'off' },
+                  timerMode: { type: "off" },
                   generatePdf: false,
                   regionId: region.id,
                   focusWeakTopics: weakTopics.map((e) => e.topic),
@@ -300,21 +349,24 @@ export function QuizSetup({ onStart }: Props) {
               }
               className="w-full btn-secondary text-sm py-2.5"
             >
-              🎯 Practice My Weak Areas ({weakTopics.length} topic{weakTopics.length > 1 ? 's' : ''})
+              🎯 Practice My Weak Areas ({weakTopics.length} topic
+              {weakTopics.length > 1 ? "s" : ""})
             </button>
           </div>
         )}
         {/* AI mode warning */}
-        {state.mode === 'ai' && !state.apiKey && (
+        {state.mode === "ai" && !state.apiKey && (
           <div className="bg-amber-50 dark:bg-amber-900/20 border border-amber-200 dark:border-amber-700 rounded-xl p-4 text-sm text-amber-700 dark:text-amber-300">
-            ⚠️ AI mode requires an Anthropic API key. Open Settings (⚙️) to add your key, or switch to Free mode.
+            ⚠️ AI mode requires an Anthropic API key. Open Settings (⚙️) to add
+            your key, or switch to Free mode.
           </div>
         )}
 
         <button
           onClick={handleStart}
-          disabled={state.mode === 'ai' && !state.apiKey}
+          disabled={state.mode === "ai" && !state.apiKey}
           className="w-full btn-primary text-lg py-4 shadow-lg"
+          data-testid="start-quiz-button"
         >
           🚀 Start Quiz - {finalCount} Questions
         </button>
