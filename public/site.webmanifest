@@ -1,0 +1,18 @@
+{
+  "name": "Grammar Journey",
+  "short_name": "Grammar Journey",
+  "description": "A calm, private companion for an 11+ learning year.",
+  "start_url": "/11plus-prep/",
+  "scope": "/11plus-prep/",
+  "display": "standalone",
+  "background_color": "#f7f4ee",
+  "theme_color": "#14253d",
+  "icons": [
+    {
+      "src": "favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}

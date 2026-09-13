@@ -6,6 +6,8 @@
     "dev": "vite",
     "build": "tsc -b && vite build",
     "lint": "eslint .",
+    "test": "node --experimental-strip-types --test tests/*.test.mjs",
+    "check": "npm run lint && npm run test && npm run validate-regions && npm run build",
     "preview": "vite preview",
     "validate-regions": "node --experimental-strip-types src/utils/regionValidator.ts"
   },

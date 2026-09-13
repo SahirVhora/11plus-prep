@@ -1,132 +1,258 @@
-import { useNavigate } from 'react-router-dom';
-import { HeroSection } from '../components/home/HeroSection';
-import { SubjectCard } from '../components/home/SubjectCard';
-import { SUBJECTS } from '../data/metadata';
-import { useWeakAreas } from '../hooks/useWeakAreas';
-import { useRegion } from '../hooks/useRegion';
+import { useMemo, useState } from "react";
+import { Link } from "react-router-dom";
+import { SUBJECT_LABELS } from "../features/journey/data";
+import {
+  getCourseProgress,
+  getNextSession,
+  getTodayMission,
+} from "../features/journey/model";
+import type { Confidence } from "../features/journey/types";
+import { useJourney } from "../features/journey/useJourney";
 
-const QUESTION_COUNTS: Record<string, number> = {
-  maths: 100,
-  english: 80,
-  verbal: 115,
-  nonverbal: 75,
+const SUBJECT_ART: Record<string, string> = {
+  english: "Aa",
+  maths: "×÷",
+  verbal: "ab",
+  nonverbal: "◇",
 };
 
+function formatDate(date: string) {
+  return new Intl.DateTimeFormat("en-GB", {
+    weekday: "long",
+    day: "numeric",
+    month: "long",
+  }).format(new Date(`${date}T12:00:00`));
+}
+
 export function Home() {
-  const { getWeakTopics } = useWeakAreas();
-  const navigate = useNavigate();
-  const weakTopics = getWeakTopics();
-  const { region } = useRegion();
+  const { journey, completeMission } = useJourney();
+  const [missionOpen, setMissionOpen] = useState(false);
+  const [finished, setFinished] = useState(false);
+  const mission = useMemo(() => getTodayMission(), []);
+  const nextSession = getNextSession();
+  const completion = journey.completedMissions[mission.id];
+  const learner = "Explorer";
+
+  const finishMission = (confidence: Confidence) => {
+    completeMission(mission.id, confidence);
+    setFinished(true);
+  };
+
+  if (missionOpen) {
+    return (
+      <main className="journey-page mission-stage" data-testid="mission-view">
+        <div className="mission-orbit mission-orbit-one" aria-hidden="true" />
+        <div className="mission-orbit mission-orbit-two" aria-hidden="true" />
+        <section className="mission-shell">
+          <button
+            className="quiet-button"
+            onClick={() => setMissionOpen(false)}
+          >
+            ← Back to today
+          </button>
+          {!finished ? (
+            <>
+              <div className={`subject-gem subject-${mission.subject}`}>
+                {SUBJECT_ART[mission.subject]}
+              </div>
+              <p className="eyebrow">
+                {mission.eyebrow} · {mission.minutes} minutes
+              </p>
+              <h1>{mission.title}</h1>
+              <p className="mission-intro">{mission.introduction}</p>
+              <ol className="mission-steps">
+                {mission.steps.map((step, index) => (
+                  <li key={step}>
+                    <span>{index + 1}</span>
+                    <p>{step}</p>
+                  </li>
+                ))}
+              </ol>
+              <div className="offline-card">
+                <span aria-hidden="true">☀</span>
+                <div>
+                  <strong>Now leave the screen</strong>
+                  <p>{mission.offlineChallenge}</p>
+                </div>
+              </div>
+              <div className="mission-finish">
+                <p>When you return, how did it feel?</p>
+                <div
+                  className="confidence-row"
+                  role="group"
+                  aria-label="Mission confidence"
+                >
+                  <button onClick={() => finishMission("tricky")}>
+                    Tricky
+                  </button>
+                  <button onClick={() => finishMission("okay")}>Okay</button>
+                  <button onClick={() => finishMission("easy")}>Easy</button>
+                </div>
+              </div>
+              <aside className="parent-whisper">
+                <strong>For a grown-up:</strong> {mission.parentPrompt}
+              </aside>
+            </>
+          ) : (
+            <div className="celebration-card" role="status">
+              <div className="celebration-mark">✓</div>
+              <p className="eyebrow">Mission complete</p>
+              <h1>A small win becomes a strong habit.</h1>
+              <p>
+                You have finished today’s mission. Go enjoy the rest of your day
+                - there is nothing else to unlock.
+              </p>
+              <button
+                className="journey-button"
+                onClick={() => setMissionOpen(false)}
+              >
+                Return home
+              </button>
+            </div>
+          )}
+        </section>
+      </main>
+    );
+  }
 
   return (
-    <div>
-      <HeroSection />
-
-      {/* Weak areas banner */}
-      {weakTopics.length > 0 && (
-        <div className="bg-amber-50 dark:bg-amber-900/20 border-y border-amber-200 dark:border-amber-700 py-4 px-4">
-          <div className="max-w-6xl mx-auto flex flex-col sm:flex-row items-start sm:items-center gap-3">
-            <span className="text-xl">📊</span>
-            <div className="flex-1">
-              <span className="font-bold text-amber-800 dark:text-amber-300">Based on your last session, focus on: </span>
-              <span className="text-amber-700 dark:text-amber-400">
-                {weakTopics.slice(0, 3).map((t) => t.topic.replace(/-/g, ' ')).join(', ')}
-              </span>
-            </div>
-            <button
-              onClick={() => navigate('/quiz')}
-              className="btn-primary text-sm py-2 px-4 whitespace-nowrap"
-            >
-              Start targeted practice →
-            </button>
-          </div>
-        </div>
-      )}
-
-      {/* Subject grid */}
-      <section className="max-w-6xl mx-auto px-4 py-14" id="subjects">
-        <div className="text-center mb-10">
-          <h2 className="text-3xl font-extrabold text-primary dark:text-blue-300 mb-2">Choose Your Subject</h2>
-          <p className="text-gray-500 dark:text-slate-400">
-            Practise the subjects tested in {region.name} ({region.examBoards.join(' / ')}), or take a mixed paper.
-          </p>
-        </div>
-        <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
-          {SUBJECTS.map((s) => (
-            <SubjectCard key={s.id} subject={s} questionCount={QUESTION_COUNTS[s.id] || 80} />
-          ))}
-        </div>
-      </section>
-
-      {/* How it works */}
-      <section className="bg-white dark:bg-slate-800 py-14 px-4" id="how-it-works">
-        <div className="max-w-4xl mx-auto">
-          <div className="text-center mb-10">
-            <h2 className="text-3xl font-extrabold text-primary dark:text-blue-300 mb-2">Two Ways to Practise</h2>
-          </div>
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-            {/* Free mode */}
-            <div className="card border-2 border-blue-100 dark:border-blue-800">
-              <div className="text-4xl mb-3">🔒</div>
-              <h3 className="text-xl font-extrabold text-primary dark:text-blue-300 mb-3">Free Mode</h3>
-              <ul className="space-y-2 text-sm text-gray-600 dark:text-slate-300">
-                {[
-                  '300+ hand-crafted, exam-style questions',
-                  'Works offline after first load',
-                  'Aligned with GL Assessment format',
-                  'No account or sign-up required',
-                  'Instant results with explanations',
-                ].map((item) => (
-                  <li key={item} className="flex items-start gap-2">
-                    <span className="text-emerald-500 mt-0.5">✓</span>
-                    {item}
-                  </li>
-                ))}
-              </ul>
-            </div>
-
-            {/* AI mode */}
-            <div className="card border-2 border-amber-200 dark:border-amber-700">
-              <div className="text-4xl mb-3">✨</div>
-              <h3 className="text-xl font-extrabold text-secondary mb-3">AI Mode</h3>
-              <ul className="space-y-2 text-sm text-gray-600 dark:text-slate-300">
-                {[
-                  'Fresh questions generated by Claude AI',
-                  'Never the same paper twice',
-                  'Adapts to your chosen difficulty',
-                  'Requires Anthropic API key',
-                  'Add key in ⚙️ Settings',
-                ].map((item) => (
-                  <li key={item} className="flex items-start gap-2">
-                    <span className="text-amber-500 mt-0.5">✦</span>
-                    {item}
-                  </li>
-                ))}
-              </ul>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Schools strip */}
-      <section className="bg-primary dark:bg-slate-900 py-8 px-4 overflow-hidden">
-        <div className="max-w-6xl mx-auto">
-          <p className="text-center text-blue-200 text-sm font-semibold mb-4 uppercase tracking-wider">
-            {region.flag} Preparing students for {region.name} grammar schools
-          </p>
-          <div className="flex gap-6 overflow-x-auto pb-2 scrollbar-hide">
-            {region.notableSchools.map((school) => (
-              <div
-                key={school.name}
-                className="flex-shrink-0 bg-white/10 rounded-xl px-4 py-2 text-center"
+    <main className="journey-page">
+      <section className="journey-hero">
+        <div className="hero-glow hero-glow-one" aria-hidden="true" />
+        <div className="hero-glow hero-glow-two" aria-hidden="true" />
+        <div className="journey-container hero-grid">
+          <div className="hero-copy">
+            <p className="eyebrow light">FGP36 · Sunday learning journey</p>
+            <h1>
+              Little steps.
+              <br />
+              <em>Remarkable places.</em>
+            </h1>
+            <p className="hero-lead">
+              A calm 11+ journey built around AE Tuition, thoughtful practice
+              and time away from the screen.
+            </p>
+            <div className="hero-actions">
+              <button
+                className="journey-button coral"
+                onClick={() => setMissionOpen(true)}
+                data-testid="start-mission"
               >
-                <p className="text-white text-sm font-semibold whitespace-nowrap">{school.name}</p>
-                <p className="text-blue-300 text-xs">{school.area}</p>
-              </div>
-            ))}
+                {completion
+                  ? "Replay today’s mission"
+                  : "Begin today’s mission"}{" "}
+                <span>→</span>
+              </button>
+              <Link className="text-link light-link" to="/journey">
+                See the year journey
+              </Link>
+            </div>
+          </div>
+          <div className="today-card">
+            <div className="today-topline">
+              <span>Today</span>
+              <span>{mission.minutes} min</span>
+            </div>
+            <div className={`subject-gem subject-${mission.subject}`}>
+              {SUBJECT_ART[mission.subject]}
+            </div>
+            <p className="eyebrow">{SUBJECT_LABELS[mission.subject]}</p>
+            <h2>{mission.title}</h2>
+            <p>{mission.introduction}</p>
+            <div className="screen-promise">
+              <span>◌</span> Mostly off-screen
+            </div>
           </div>
         </div>
       </section>
-    </div>
+
+      <section
+        className="journey-container dashboard-strip"
+        aria-label="Journey at a glance"
+      >
+        <article>
+          <span className="stat-icon">✦</span>
+          <div>
+            <strong>{Object.keys(journey.completedMissions).length}</strong>
+            <p>missions explored</p>
+          </div>
+        </article>
+        <article>
+          <span className="stat-icon">↗</span>
+          <div>
+            <strong>{getCourseProgress()}%</strong>
+            <p>through the AE course</p>
+          </div>
+        </article>
+        <article>
+          <span className="stat-icon">⌁</span>
+          <div>
+            <strong>
+              {nextSession ? `Session ${nextSession.number}` : "Complete"}
+            </strong>
+            <p>
+              {nextSession
+                ? formatDate(nextSession.date)
+                : "Course journey finished"}
+            </p>
+          </div>
+        </article>
+      </section>
+
+      <section className="journey-container section-space">
+        <div className="section-heading split-heading">
+          <div>
+            <p className="eyebrow">Made for {learner}</p>
+            <h2>Learning without the overload</h2>
+          </div>
+          <p>
+            One focused mission. One useful conversation. Then the screen goes
+            away.
+          </p>
+        </div>
+        <div className="principle-grid">
+          <article className="principle-card plum">
+            <span>01</span>
+            <h3>Learn one idea</h3>
+            <p>
+              A tiny explanation gives each task purpose before practice begins.
+            </p>
+          </article>
+          <article className="principle-card mint">
+            <span>02</span>
+            <h3>Try it in real life</h3>
+            <p>
+              Reading, conversation, paper shapes and everyday maths keep
+              learning tangible.
+            </p>
+          </article>
+          <article className="principle-card gold">
+            <span>03</span>
+            <h3>Return only to reflect</h3>
+            <p>
+              Easy, okay or tricky helps tomorrow’s practice respond without
+              judgement.
+            </p>
+          </article>
+        </div>
+      </section>
+
+      <section className="journey-container next-step-panel">
+        <div>
+          <p className="eyebrow">Your family command centre</p>
+          <h2>
+            AE lessons, target schools and every important date - together.
+          </h2>
+        </div>
+        <div className="next-step-actions">
+          <Link className="journey-button navy" to="/parent">
+            Open Parent Desk
+          </Link>
+          <Link className="text-link" to="/quiz">
+            Open full practice
+          </Link>
+        </div>
+      </section>
+    </main>
   );
 }

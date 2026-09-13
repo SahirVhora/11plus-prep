@@ -1,13 +1,25 @@
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import { lazy, Suspense } from 'react';
-import { AppProvider } from './context/AppContext';
-import { Header } from './components/layout/Header';
-import { Footer } from './components/layout/Footer';
-import { SettingsModal } from './components/layout/SettingsModal';
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { lazy, Suspense } from "react";
+import { AppProvider } from "./context/AppContext";
+import { Header } from "./components/layout/Header";
+import { Footer } from "./components/layout/Footer";
+import { SettingsModal } from "./components/layout/SettingsModal";
 
-const Home = lazy(() => import('./pages/Home').then(m => ({ default: m.Home })));
-const Quiz = lazy(() => import('./pages/Quiz').then(m => ({ default: m.Quiz })));
-const About = lazy(() => import('./pages/About').then(m => ({ default: m.About })));
+const Home = lazy(() =>
+  import("./pages/Home").then((m) => ({ default: m.Home })),
+);
+const Quiz = lazy(() =>
+  import("./pages/Quiz").then((m) => ({ default: m.Quiz })),
+);
+const About = lazy(() =>
+  import("./pages/About").then((m) => ({ default: m.About })),
+);
+const Journey = lazy(() =>
+  import("./pages/Journey").then((m) => ({ default: m.Journey })),
+);
+const ParentDesk = lazy(() =>
+  import("./pages/ParentDesk").then((m) => ({ default: m.ParentDesk })),
+);
 
 function LoadingFallback() {
   return (
@@ -28,6 +40,8 @@ export default function App() {
             <Suspense fallback={<LoadingFallback />}>
               <Routes>
                 <Route path="/" element={<Home />} />
+                <Route path="/journey" element={<Journey />} />
+                <Route path="/parent" element={<ParentDesk />} />
                 <Route path="/quiz" element={<Quiz />} />
                 <Route path="/about" element={<About />} />
               </Routes>
