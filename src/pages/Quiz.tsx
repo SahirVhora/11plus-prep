@@ -1,28 +1,34 @@
 // React hooks used indirectly through custom hooks
-import { useNavigate, useSearchParams } from 'react-router-dom';
-import { useQuiz } from '../hooks/useQuiz';
-import { useTimer } from '../hooks/useTimer';
-import { useWeakAreas } from '../hooks/useWeakAreas';
-import { useApp } from '../context/appState';
-import { QuizSetup } from '../components/quiz/QuizSetup';
-import { QuizQuestion } from '../components/quiz/QuizQuestion';
-import { QuizProgress } from '../components/quiz/QuizProgress';
-import { QuizTimer } from '../components/quiz/QuizTimer';
-import { QuizResults } from '../components/quiz/QuizResults';
-import { LoadingSpinner } from '../components/shared/LoadingSpinner';
-import { ErrorBanner } from '../components/shared/ErrorBanner';
-import { sampleQuestions, sampleMixedPaper, sampleWeakAreaBiased } from '../utils/questionSampler';
-import { generateQuestionsFromAI } from '../api/generateQuestions';
-import type { QuizConfig } from '../hooks/useQuiz';
+import { useState } from "react";
+import { useNavigate, useSearchParams } from "react-router-dom";
+import { useQuiz } from "../hooks/useQuiz";
+import { useTimer } from "../hooks/useTimer";
+import { useWeakAreas } from "../hooks/useWeakAreas";
+import { useApp } from "../context/appState";
+import { QuizSetup } from "../components/quiz/QuizSetup";
+import { QuizQuestion } from "../components/quiz/QuizQuestion";
+import { QuizProgress } from "../components/quiz/QuizProgress";
+import { QuizTimer } from "../components/quiz/QuizTimer";
+import { QuizResults } from "../components/quiz/QuizResults";
+import { LoadingSpinner } from "../components/shared/LoadingSpinner";
+import { ErrorBanner } from "../components/shared/ErrorBanner";
+import {
+  sampleQuestions,
+  sampleMixedPaper,
+  sampleWeakAreaBiased,
+} from "../utils/questionSampler";
+import { generateQuestionsFromAI } from "../api/generateQuestions";
+import { getAiProvider } from "../api/aiCatalog";
+import type { QuizConfig } from "../hooks/useQuiz";
 
-import type { Question } from '../data/metadata';
+import type { Question } from "../data/metadata";
 
 async function loadLondonQuestions(): Promise<Question[]> {
   const [maths, english, verbal, nonverbal] = await Promise.all([
-    import('../data/questions/maths.json'),
-    import('../data/questions/english.json'),
-    import('../data/questions/verbal.json'),
-    import('../data/questions/nonverbal.json'),
+    import("../data/questions/maths.json"),
+    import("../data/questions/english.json"),
+    import("../data/questions/verbal.json"),
+    import("../data/questions/nonverbal.json"),
   ]);
 
   return [
@@ -37,7 +43,7 @@ async function loadLondonQuestions(): Promise<Question[]> {
 async function loadRegionQuestions(regionId: string): Promise<Question[]> {
   const londonQuestions = await loadLondonQuestions();
 
-  if (!regionId || regionId === 'london') {
+  if (!regionId || regionId === "london") {
     return londonQuestions;
   }
   try {
@@ -45,12 +51,44 @@ async function loadRegionQuestions(regionId: string): Promise<Question[]> {
     const regional = mod.default as Question[];
     // Merge regional questions with London base (London questions fill any subject gaps)
     const regionalSubjects = new Set(regional.map((q) => q.subject));
-    const londonFill = londonQuestions.filter((q) => !regionalSubjects.has(q.subject));
+    const londonFill = londonQuestions.filter(
+      (q) => !regionalSubjects.has(q.subject),
+    );
     return [...regional, ...londonFill];
   } catch {
     // If the regional bank doesn't exist yet, fall back to London
     return londonQuestions;
   }
+}
+
+async function loadFreeQuestions(
+  config: QuizConfig,
+  topicParam: string,
+): Promise<Question[]> {
+  const allQuestions = await loadRegionQuestions(config.regionId ?? "london");
+  if (config.focusWeakTopics && config.focusWeakTopics.length > 0) {
+    return sampleWeakAreaBiased(
+      allQuestions,
+      config.focusWeakTopics,
+      config.questionCount,
+      config.subject !== "mixed" ? config.subject : undefined,
+      config.difficulty !== "mixed" ? config.difficulty : undefined,
+    );
+  }
+  if (config.subject === "mixed") {
+    return sampleMixedPaper(
+      allQuestions,
+      config.questionCount,
+      config.difficulty !== "mixed" ? config.difficulty : undefined,
+    );
+  }
+  return sampleQuestions(
+    allQuestions,
+    config.questionCount,
+    config.difficulty !== "mixed" ? config.difficulty : undefined,
+    config.subject,
+    topicParam || undefined,
+  );
 }
 
 export function Quiz() {
@@ -59,6 +97,7 @@ export function Quiz() {
   const { updateFromResults } = useWeakAreas();
   const [searchParams] = useSearchParams();
   const navigate = useNavigate();
+  const [aiNotice, setAiNotice] = useState("");
 
   const totalTimer = useTimer({
     initialSeconds: 2700,
@@ -69,7 +108,7 @@ export function Quiz() {
     initialSeconds: 45,
     autoStart: false,
     onExpire: () => {
-      quiz.navigate('next');
+      quiz.navigate("next");
       perQTimer.reset(45);
       setTimeout(() => perQTimer.start(), 100);
     },
@@ -78,71 +117,65 @@ export function Quiz() {
   // Load & start quiz
   const startQuiz = async (config: QuizConfig) => {
     quiz.startLoading(config);
+    setAiNotice("");
     try {
       let questions: Question[];
+      const topicParam = searchParams.get("topic") || "";
 
-      if (config.mode === 'ai') {
-        const topicParam = searchParams.get('topic') || '';
-        const topics = topicParam ? [topicParam] : ['general'];
-        const subject = config.subject === 'mixed' ? 'maths' : config.subject;
-        questions = await generateQuestionsFromAI({
-          subject,
-          difficulty: typeof config.difficulty === 'number' ? config.difficulty : 2,
-          count: config.questionCount,
-          topics,
-          apiKey: appState.apiKey,
-          regionId: config.regionId,
-        });
-      } else {
-        const allQuestions = await loadRegionQuestions(config.regionId ?? 'london');
-        const topicParam = searchParams.get('topic') || '';
-        // ── Weak-area focused mode ──────────────────────────────────
-        if (config.focusWeakTopics && config.focusWeakTopics.length > 0) {
-          questions = sampleWeakAreaBiased(
-            allQuestions,
-            config.focusWeakTopics,
-            config.questionCount,
-            config.subject !== 'mixed' ? (config.subject as 'maths' | 'english' | 'verbal' | 'nonverbal') : undefined,
-            config.difficulty !== 'mixed' ? config.difficulty : undefined,
-          );
-        } else if (config.subject === 'mixed') {
-          questions = sampleMixedPaper(allQuestions, config.questionCount,
-            config.difficulty !== 'mixed' ? config.difficulty : undefined);
-        } else {
-          questions = sampleQuestions(
-            allQuestions,
-            config.questionCount,
-            config.difficulty !== 'mixed' ? config.difficulty : undefined,
-            config.subject as 'maths' | 'english' | 'verbal' | 'nonverbal',
-            topicParam || undefined
+      if (config.mode === "ai") {
+        const topics = topicParam ? [topicParam] : ["general"];
+        try {
+          questions = await generateQuestionsFromAI({
+            subject: config.subject,
+            difficulty:
+              typeof config.difficulty === "number" ? config.difficulty : 2,
+            count: config.questionCount,
+            topics,
+            provider: appState.aiProvider,
+            model: appState.aiModel,
+            accessCode: appState.aiAccessCode,
+            regionId: config.regionId,
+          });
+        } catch (error: unknown) {
+          questions = await loadFreeQuestions(config, topicParam);
+          setAiNotice(
+            `${error instanceof Error ? error.message : "The AI provider was unavailable"} A vetted Free Practice paper was loaded instead.`,
           );
         }
+      } else {
+        questions = await loadFreeQuestions(config, topicParam);
       }
 
       if (questions.length === 0) {
-        quiz.loadError('No questions found for these settings. Try changing difficulty or subject.');
+        quiz.loadError(
+          "No questions found for these settings. Try changing difficulty or subject.",
+        );
         return;
       }
 
       quiz.loadSuccess(questions);
 
       // Start timer
-      if (config.timerMode.type === 'full-paper') {
+      if (config.timerMode.type === "full-paper") {
         const secs = config.timerMode.totalSeconds || config.questionCount * 54;
         totalTimer.reset(secs);
         totalTimer.start();
-      } else if (config.timerMode.type === 'per-question') {
+      } else if (config.timerMode.type === "per-question") {
         perQTimer.reset(45);
         perQTimer.start();
       }
 
       // Auto-PDF
       if (config.generatePdf) {
-        const { generatePaper } = await import('../utils/pdfGenerator');
+        const { generatePaper } = await import("../utils/pdfGenerator");
         generatePaper({ questions, quizConfig: config });
       }
     } catch (err: unknown) {
-      quiz.loadError(err instanceof Error ? err.message : 'Failed to load questions. Please try again.');
+      quiz.loadError(
+        err instanceof Error
+          ? err.message
+          : "Failed to load questions. Please try again.",
+      );
     }
   };
 
@@ -165,34 +198,42 @@ export function Quiz() {
     totalTimer.reset();
     perQTimer.reset();
     quiz.reset();
-    navigate('/quiz');
+    navigate("/quiz");
   };
 
-  if (quiz.quizState === 'SETUP' || !quiz.config) {
+  if (quiz.quizState === "SETUP" || !quiz.config) {
     return (
       <div className="min-h-screen bg-bg dark:bg-slate-900">
         <QuizSetup onStart={startQuiz} />
         {quiz.error && (
           <div className="max-w-2xl mx-auto px-4 pb-8">
-            <ErrorBanner message={quiz.error} onDismiss={() => quiz.loadError('')} />
+            <ErrorBanner
+              message={quiz.error}
+              onDismiss={() => quiz.loadError("")}
+            />
           </div>
         )}
       </div>
     );
   }
 
-  if (quiz.quizState === 'LOADING') {
+  if (quiz.quizState === "LOADING") {
+    const provider = getAiProvider(appState.aiProvider)?.label ?? "AI";
     return (
       <div className="min-h-screen bg-bg dark:bg-slate-900 flex items-center justify-center">
         <LoadingSpinner
           size="lg"
-          message={quiz.config.mode === 'ai' ? '✨ Claude is generating fresh questions...' : 'Loading questions...'}
+          message={
+            quiz.config.mode === "ai"
+              ? `✨ ${provider} is creating a fresh paper…`
+              : "Loading questions..."
+          }
         />
       </div>
     );
   }
 
-  if (quiz.quizState === 'COMPLETE' && quiz.result) {
+  if (quiz.quizState === "COMPLETE" && quiz.result) {
     return (
       <div className="min-h-screen bg-bg dark:bg-slate-900">
         <QuizResults
@@ -211,11 +252,21 @@ export function Quiz() {
   const q = quiz.questions[quiz.currentIndex];
   if (!q) return null;
 
-  const isReviewing = quiz.quizState === 'REVIEWING';
+  const isReviewing = quiz.quizState === "REVIEWING";
   const timerMode = quiz.config.timerMode;
 
   return (
     <div className="min-h-screen bg-bg dark:bg-slate-900">
+      {aiNotice && (
+        <div className="mx-auto max-w-2xl px-4 pt-4">
+          <div
+            className="rounded-xl border border-amber-200 bg-amber-50 p-3 text-sm text-amber-800 dark:border-amber-700 dark:bg-amber-900/20 dark:text-amber-300"
+            role="status"
+          >
+            {aiNotice}
+          </div>
+        </div>
+      )}
       {/* Sticky top bar */}
       <div className="sticky top-16 z-30 bg-white dark:bg-slate-900 border-b border-gray-100 dark:border-slate-800 py-3 px-4 shadow-sm">
         <div className="max-w-2xl mx-auto space-y-2">
@@ -226,11 +277,23 @@ export function Quiz() {
               answered={Object.keys(quiz.answers).length}
               flagged={quiz.flagged.size}
             />
-            {timerMode.type !== 'off' && (
+            {timerMode.type !== "off" && (
               <QuizTimer
-                timeRemaining={timerMode.type === 'per-question' ? perQTimer.timeRemaining : totalTimer.timeRemaining}
-                totalTime={timerMode.type === 'per-question' ? 45 : (timerMode.totalSeconds || 2700)}
-                formatTime={timerMode.type === 'per-question' ? perQTimer.formatTime : totalTimer.formatTime}
+                timeRemaining={
+                  timerMode.type === "per-question"
+                    ? perQTimer.timeRemaining
+                    : totalTimer.timeRemaining
+                }
+                totalTime={
+                  timerMode.type === "per-question"
+                    ? 45
+                    : timerMode.totalSeconds || 2700
+                }
+                formatTime={
+                  timerMode.type === "per-question"
+                    ? perQTimer.formatTime
+                    : totalTimer.formatTime
+                }
               />
             )}
           </div>
@@ -248,8 +311,8 @@ export function Quiz() {
           isReviewing={isReviewing}
           onAnswer={(ans) => quiz.answer(q.id, ans)}
           onFlag={() => quiz.flag(q.id)}
-          onNext={() => quiz.navigate('next')}
-          onPrev={() => quiz.navigate('prev')}
+          onNext={() => quiz.navigate("next")}
+          onPrev={() => quiz.navigate("prev")}
           onSubmit={handleSubmit}
           isFirst={quiz.currentIndex === 0}
           isLast={quiz.currentIndex === quiz.questions.length - 1}
@@ -259,7 +322,7 @@ export function Quiz() {
         {isReviewing && (
           <div className="max-w-2xl mx-auto mt-4 flex items-center justify-between">
             <button
-              onClick={() => quiz.navigate('prev')}
+              onClick={() => quiz.navigate("prev")}
               disabled={quiz.currentIndex === 0}
               className="btn-outline text-sm py-2 px-4 disabled:opacity-40"
             >
@@ -269,11 +332,17 @@ export function Quiz() {
               {quiz.currentIndex + 1} / {quiz.questions.length}
             </span>
             {quiz.currentIndex < quiz.questions.length - 1 ? (
-              <button onClick={() => quiz.navigate('next')} className="btn-secondary text-sm py-2 px-4">
+              <button
+                onClick={() => quiz.navigate("next")}
+                className="btn-secondary text-sm py-2 px-4"
+              >
                 Next →
               </button>
             ) : (
-              <button onClick={handleNewQuiz} className="btn-primary text-sm py-2 px-4">
+              <button
+                onClick={handleNewQuiz}
+                className="btn-primary text-sm py-2 px-4"
+              >
                 New Quiz
               </button>
             )}
@@ -283,7 +352,9 @@ export function Quiz() {
         {/* Question grid jump (not review mode) */}
         {!isReviewing && quiz.questions.length > 10 && (
           <div className="max-w-2xl mx-auto mt-6 card">
-            <p className="text-xs font-bold text-gray-400 uppercase mb-3">Jump to question</p>
+            <p className="text-xs font-bold text-gray-400 uppercase mb-3">
+              Jump to question
+            </p>
             <div className="flex flex-wrap gap-2">
               {quiz.questions.map((_, i) => {
                 const qId = quiz.questions[i].id;
@@ -293,14 +364,17 @@ export function Quiz() {
                 return (
                   <button
                     key={i}
-                    onClick={() => quiz.navigate('jump', i)}
+                    onClick={() => quiz.navigate("jump", i)}
                     aria-label={`Go to question ${i + 1}`}
-                    aria-current={isCurrent ? 'true' : undefined}
+                    aria-current={isCurrent ? "true" : undefined}
                     className={`w-9 h-9 rounded-lg text-sm font-bold transition-colors ${
-                      isCurrent ? 'bg-primary text-white' :
-                      isFlagged ? 'bg-amber-200 text-amber-700' :
-                      isAnswered ? 'bg-emerald-100 text-emerald-700' :
-                      'bg-gray-100 text-gray-500 hover:bg-gray-200 dark:bg-slate-700 dark:text-slate-300'
+                      isCurrent
+                        ? "bg-primary text-white"
+                        : isFlagged
+                          ? "bg-amber-200 text-amber-700"
+                          : isAnswered
+                            ? "bg-emerald-100 text-emerald-700"
+                            : "bg-gray-100 text-gray-500 hover:bg-gray-200 dark:bg-slate-700 dark:text-slate-300"
                     }`}
                   >
                     {i + 1}

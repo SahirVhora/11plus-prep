@@ -32,6 +32,8 @@ jobs:
       - run: npm ci
 
       - run: npm run build
+        env:
+          VITE_AI_API_URL: ${{ vars.VITE_AI_API_URL }}
 
       - uses: actions/configure-pages@1f0c5cde4bc74cd7e1254d0cb4de8d49e9068c7d # v4
 

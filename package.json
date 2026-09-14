@@ -7,12 +7,12 @@
     "build": "tsc -b && vite build",
     "lint": "eslint .",
     "test": "node --experimental-strip-types --test tests/*.test.mjs",
-    "check": "npm run lint && npm run test && npm run validate-regions && npm run build",
+    "typecheck:api": "tsc -p tsconfig.api.json",
+    "check": "npm run lint && npm run typecheck:api && npm run test && npm run validate-regions && npm run build",
     "preview": "vite preview",
     "validate-regions": "node --experimental-strip-types src/utils/regionValidator.ts"
   },
   "dependencies": {
-    "@anthropic-ai/sdk": "^0.101.0",
     "clsx": "^2.1.1",
     "html2canvas": "^1.4.1",
     "jspdf": "^4.2.1",

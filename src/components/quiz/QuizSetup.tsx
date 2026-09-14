@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useSearchParams } from "react-router-dom";
 import type { Subject, Difficulty } from "../../data/metadata";
 import { useApp } from "../../context/appState";
@@ -8,6 +8,12 @@ import { RegionSelector } from "../region/RegionSelector";
 import { RegionInfoPanel } from "../region/RegionInfoPanel";
 import type { QuizConfig, TimerMode } from "../../hooks/useQuiz";
 import { useWeakAreas } from "../../hooks/useWeakAreas";
+import { getAiServiceStatus } from "../../api/generateQuestions";
+import {
+  AI_PROVIDERS,
+  getAiProvider,
+  type AiProviderId,
+} from "../../api/aiCatalog";
 
 interface Props {
   onStart: (config: QuizConfig) => void;
@@ -33,7 +39,7 @@ export function QuizSetup({ onStart }: Props) {
   const defaultTopic = searchParams.get("topic") || "";
   const adaptiveMode = searchParams.get("adaptive") === "1";
 
-  const { state } = useApp();
+  const { state, dispatch } = useApp();
   const { region } = useRegion();
   const [showRegionInfo, setShowRegionInfo] = useState(false);
 
@@ -61,24 +67,49 @@ export function QuizSetup({ onStart }: Props) {
     "off" | "per-question" | "full-paper"
   >("off");
   const [generatePdf, setGeneratePdf] = useState(false);
+  const [aiStatus, setAiStatus] = useState<{
+    state: "idle" | "loading" | "ready" | "unreachable";
+    available: AiProviderId[];
+  }>({ state: "idle", available: [] });
   const { getWeakTopics } = useWeakAreas();
   const weakTopics = getWeakTopics();
 
   const finalCount = useCustom ? customCount : count;
+  const effectiveCount =
+    state.mode === "ai" ? Math.min(finalCount, 30) : finalCount;
+  const selectedProvider = getAiProvider(state.aiProvider) ?? AI_PROVIDERS[0];
+  const selectedProviderAvailable = aiStatus.available.includes(
+    state.aiProvider,
+  );
+
+  useEffect(() => {
+    if (state.mode !== "ai") return;
+    let active = true;
+    getAiServiceStatus().then((status) => {
+      if (!active) return;
+      setAiStatus({
+        state: status.reachable ? "ready" : "unreachable",
+        available: status.availableProviders,
+      });
+    });
+    return () => {
+      active = false;
+    };
+  }, [state.mode]);
 
   const handleStart = () => {
     const timerMode: TimerMode =
       timerType === "per-question"
         ? { type: "per-question", secondsPerQuestion: 45 }
         : timerType === "full-paper"
-          ? { type: "full-paper", totalSeconds: finalCount * 54 }
+          ? { type: "full-paper", totalSeconds: effectiveCount * 54 }
           : { type: "off" };
 
     onStart({
       mode: state.mode,
       subject,
       difficulty,
-      questionCount: adaptiveMode ? 10 : finalCount,
+      questionCount: adaptiveMode ? 10 : effectiveCount,
       timerMode,
       generatePdf,
       regionId: region.id,
@@ -112,6 +143,144 @@ export function QuizSetup({ onStart }: Props) {
       </div>
 
       <div className="space-y-6">
+        {state.mode === "ai" && (
+          <div className="card border-2 border-indigo-100 dark:border-indigo-800">
+            <div className="mb-4 flex items-start justify-between gap-4">
+              <div>
+                <h2 className="font-bold text-primary dark:text-blue-300">
+                  AI worksheet engine
+                </h2>
+                <p className="mt-1 text-xs leading-relaxed text-gray-500 dark:text-slate-400">
+                  Provider keys stay on the secure server and are never sent to
+                  this browser.
+                </p>
+              </div>
+              <span className="rounded-full bg-emerald-50 px-3 py-1 text-xs font-bold text-emerald-700 dark:bg-emerald-900/30 dark:text-emerald-300">
+                🔐 Secure
+              </span>
+            </div>
+
+            <div
+              className="grid grid-cols-2 gap-3 sm:grid-cols-3"
+              role="group"
+              aria-label="AI provider"
+            >
+              {AI_PROVIDERS.map((provider) => {
+                const knownUnavailable =
+                  aiStatus.state === "ready" &&
+                  !aiStatus.available.includes(provider.id);
+                return (
+                  <button
+                    key={provider.id}
+                    type="button"
+                    onClick={() => {
+                      dispatch({
+                        type: "SET_AI_PROVIDER",
+                        payload: provider.id,
+                      });
+                      dispatch({
+                        type: "SET_AI_MODEL",
+                        payload: provider.models[0].id,
+                      });
+                    }}
+                    className={`rounded-xl border-2 p-3 text-left transition-all ${
+                      state.aiProvider === provider.id
+                        ? "border-secondary bg-amber-50 dark:bg-amber-900/20"
+                        : "border-gray-200 dark:border-slate-600"
+                    } ${knownUnavailable ? "opacity-50" : ""}`}
+                    aria-pressed={state.aiProvider === provider.id}
+                  >
+                    <span className="block text-lg" aria-hidden="true">
+                      {provider.icon}
+                    </span>
+                    <strong className="mt-1 block text-sm text-primary dark:text-slate-200">
+                      {provider.label}
+                    </strong>
+                    {knownUnavailable && (
+                      <span className="mt-1 block text-[11px] text-gray-500">
+                        Not configured
+                      </span>
+                    )}
+                  </button>
+                );
+              })}
+            </div>
+
+            <label
+              className="mt-4 block text-sm font-bold text-gray-700 dark:text-slate-200"
+              htmlFor="ai-model"
+            >
+              Model
+            </label>
+            <select
+              id="ai-model"
+              value={state.aiModel}
+              onChange={(event) =>
+                dispatch({ type: "SET_AI_MODEL", payload: event.target.value })
+              }
+              className="mt-2 w-full rounded-xl border border-gray-200 bg-white px-4 py-3 text-sm text-primary dark:border-slate-600 dark:bg-slate-700 dark:text-white"
+            >
+              {selectedProvider.models.map((model) => (
+                <option key={model.id} value={model.id}>
+                  {model.label} ·{" "}
+                  {model.tier === "free" ? "Free tier" : model.tier}
+                </option>
+              ))}
+            </select>
+            <p className="mt-2 text-xs text-gray-500 dark:text-slate-400">
+              {selectedProvider.description}{" "}
+              {
+                selectedProvider.models.find(
+                  (model) => model.id === state.aiModel,
+                )?.description
+              }
+            </p>
+
+            <label
+              className="mt-4 block text-sm font-bold text-gray-700 dark:text-slate-200"
+              htmlFor="ai-access-code"
+            >
+              Family AI access code
+            </label>
+            <input
+              id="ai-access-code"
+              type="password"
+              autoComplete="current-password"
+              value={state.aiAccessCode}
+              onChange={(event) =>
+                dispatch({
+                  type: "SET_AI_ACCESS_CODE",
+                  payload: event.target.value,
+                })
+              }
+              placeholder="Enter the private family code"
+              className="mt-2 w-full rounded-xl border border-gray-200 bg-white px-4 py-3 text-sm text-primary dark:border-slate-600 dark:bg-slate-700 dark:text-white"
+            />
+            <p className="mt-2 text-xs text-gray-500 dark:text-slate-400">
+              Saved only for this browser session. This protects the family
+              service from public usage and is not an AI provider key.
+            </p>
+
+            {(aiStatus.state === "idle" || aiStatus.state === "loading") && (
+              <p className="mt-4 text-sm text-gray-500">
+                Checking available providers…
+              </p>
+            )}
+            {aiStatus.state === "unreachable" && (
+              <p className="mt-4 rounded-lg bg-amber-50 p-3 text-sm text-amber-700 dark:bg-amber-900/20 dark:text-amber-300">
+                The secure AI service is not connected. Free Practice remains
+                available.
+              </p>
+            )}
+            {aiStatus.state === "ready" && !selectedProviderAvailable && (
+              <p className="mt-4 rounded-lg bg-amber-50 p-3 text-sm text-amber-700 dark:bg-amber-900/20 dark:text-amber-300">
+                {selectedProvider.label} is not configured on the secure server.
+                Choose an available provider or Free Practice.
+              </p>
+            )}
+          </div>
+        )}
+
         {/* Region */}
         <div className="card">
           <div className="flex items-center justify-between mb-4">
@@ -340,12 +509,18 @@ export function QuizSetup({ onStart }: Props) {
                   mode: state.mode,
                   subject: "mixed",
                   difficulty: "mixed",
-                  questionCount: finalCount,
+                  questionCount: effectiveCount,
                   timerMode: { type: "off" },
                   generatePdf: false,
                   regionId: region.id,
                   focusWeakTopics: weakTopics.map((e) => e.topic),
                 })
+              }
+              disabled={
+                state.mode === "ai" &&
+                (aiStatus.state !== "ready" ||
+                  !selectedProviderAvailable ||
+                  !state.aiAccessCode.trim())
               }
               className="w-full btn-secondary text-sm py-2.5"
             >
@@ -355,20 +530,25 @@ export function QuizSetup({ onStart }: Props) {
           </div>
         )}
         {/* AI mode warning */}
-        {state.mode === "ai" && !state.apiKey && (
+        {state.mode === "ai" && finalCount > 30 && (
           <div className="bg-amber-50 dark:bg-amber-900/20 border border-amber-200 dark:border-amber-700 rounded-xl p-4 text-sm text-amber-700 dark:text-amber-300">
-            ⚠️ AI mode requires an Anthropic API key. Open Settings (⚙️) to add
-            your key, or switch to Free mode.
+            AI generation is capped at 30 questions per request for reliability
+            and cost control. This worksheet will contain 30 questions.
           </div>
         )}
 
         <button
           onClick={handleStart}
-          disabled={state.mode === "ai" && !state.apiKey}
+          disabled={
+            state.mode === "ai" &&
+            (aiStatus.state !== "ready" ||
+              !selectedProviderAvailable ||
+              !state.aiAccessCode.trim())
+          }
           className="w-full btn-primary text-lg py-4 shadow-lg"
           data-testid="start-quiz-button"
         >
-          🚀 Start Quiz - {finalCount} Questions
+          🚀 Start Quiz - {effectiveCount} Questions
         </button>
       </div>
     </div>

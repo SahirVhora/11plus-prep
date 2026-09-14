@@ -1,5 +1,5 @@
-import { useApp } from '../../context/appState';
-import { useWeakAreas } from '../../hooks/useWeakAreas';
+import { useApp } from "../../context/appState";
+import { useWeakAreas } from "../../hooks/useWeakAreas";
 
 export function SettingsModal() {
   const { state, dispatch } = useApp();
@@ -16,14 +16,29 @@ export function SettingsModal() {
     >
       <div className="bg-white dark:bg-slate-800 rounded-2xl shadow-2xl w-full max-w-md animate-fade-in">
         <div className="flex items-center justify-between p-6 border-b border-gray-100 dark:border-slate-700">
-          <h2 id="settings-title" className="text-xl font-bold text-primary dark:text-blue-300">Settings</h2>
+          <h2
+            id="settings-title"
+            className="text-xl font-bold text-primary dark:text-blue-300"
+          >
+            Settings
+          </h2>
           <button
-            onClick={() => dispatch({ type: 'CLOSE_SETTINGS' })}
+            onClick={() => dispatch({ type: "CLOSE_SETTINGS" })}
             aria-label="Close settings"
             className="p-2 hover:bg-gray-100 dark:hover:bg-slate-700 rounded-lg transition-colors"
           >
-            <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+            <svg
+              className="w-5 h-5"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+                d="M6 18L18 6M6 6l12 12"
+              />
             </svg>
           </button>
         </div>
@@ -31,57 +46,56 @@ export function SettingsModal() {
         <div className="p-6 space-y-6">
           {/* Mode */}
           <div>
-            <label className="block text-sm font-bold text-gray-700 dark:text-slate-200 mb-2">Mode</label>
+            <label className="block text-sm font-bold text-gray-700 dark:text-slate-200 mb-2">
+              Mode
+            </label>
             <div className="flex gap-3">
-              {(['free', 'ai'] as const).map((m) => (
+              {(["free", "ai"] as const).map((m) => (
                 <button
                   key={m}
-                  onClick={() => dispatch({ type: 'SET_MODE', payload: m })}
+                  onClick={() => dispatch({ type: "SET_MODE", payload: m })}
                   className={`flex-1 py-2 px-4 rounded-xl font-semibold text-sm border-2 transition-colors ${
                     state.mode === m
-                      ? 'border-secondary bg-amber-50 text-secondary dark:bg-amber-900/20'
-                      : 'border-gray-200 dark:border-slate-600 text-gray-500 dark:text-slate-400 hover:border-gray-300'
+                      ? "border-secondary bg-amber-50 text-secondary dark:bg-amber-900/20"
+                      : "border-gray-200 dark:border-slate-600 text-gray-500 dark:text-slate-400 hover:border-gray-300"
                   }`}
                 >
-                  {m === 'free' ? '🔒 Free Mode' : '✨ AI Mode'}
+                  {m === "free" ? "🔒 Free Mode" : "✨ AI Mode"}
                 </button>
               ))}
             </div>
           </div>
 
-          {/* API Key */}
-          {state.mode === 'ai' && (
-            <div>
-              <label className="block text-sm font-bold text-gray-700 dark:text-slate-200 mb-2" htmlFor="api-key">
-                Anthropic API Key
-              </label>
-              <input
-                id="api-key"
-                type="password"
-                value={state.apiKey}
-                onChange={(e) => dispatch({ type: 'SET_API_KEY', payload: e.target.value })}
-                placeholder="sk-ant-..."
-                className="w-full border border-gray-200 dark:border-slate-600 rounded-xl px-4 py-2 text-sm font-mono bg-gray-50 dark:bg-slate-700 dark:text-white focus:outline-none focus:ring-2 focus:ring-amber-400"
-              />
-              <p className="text-xs text-gray-400 mt-1">Stored locally. Never sent except during AI question generation.</p>
+          {/* Secure AI note */}
+          {state.mode === "ai" && (
+            <div className="rounded-xl border border-emerald-200 bg-emerald-50 p-4 dark:border-emerald-700 dark:bg-emerald-900/20">
+              <p className="text-sm font-bold text-emerald-800 dark:text-emerald-300">
+                Keys stay on the secure server
+              </p>
+              <p className="mt-1 text-xs leading-relaxed text-emerald-700 dark:text-emerald-400">
+                This browser never asks for or stores provider API keys. Choose
+                an available provider on the Practice screen.
+              </p>
             </div>
           )}
 
           {/* Theme */}
           <div>
-            <label className="block text-sm font-bold text-gray-700 dark:text-slate-200 mb-2">Theme</label>
+            <label className="block text-sm font-bold text-gray-700 dark:text-slate-200 mb-2">
+              Theme
+            </label>
             <div className="flex gap-3">
-              {(['light', 'dark'] as const).map((t) => (
+              {(["light", "dark"] as const).map((t) => (
                 <button
                   key={t}
-                  onClick={() => dispatch({ type: 'SET_THEME', payload: t })}
+                  onClick={() => dispatch({ type: "SET_THEME", payload: t })}
                   className={`flex-1 py-2 px-4 rounded-xl font-semibold text-sm border-2 transition-colors ${
                     state.theme === t
-                      ? 'border-secondary bg-amber-50 text-secondary dark:bg-amber-900/20'
-                      : 'border-gray-200 dark:border-slate-600 text-gray-500 dark:text-slate-400'
+                      ? "border-secondary bg-amber-50 text-secondary dark:bg-amber-900/20"
+                      : "border-gray-200 dark:border-slate-600 text-gray-500 dark:text-slate-400"
                   }`}
                 >
-                  {t === 'light' ? '☀️ Light' : '🌙 Dark'}
+                  {t === "light" ? "☀️ Light" : "🌙 Dark"}
                 </button>
               ))}
             </div>
@@ -89,19 +103,23 @@ export function SettingsModal() {
 
           {/* Font size */}
           <div>
-            <label className="block text-sm font-bold text-gray-700 dark:text-slate-200 mb-2">Text Size</label>
+            <label className="block text-sm font-bold text-gray-700 dark:text-slate-200 mb-2">
+              Text Size
+            </label>
             <div className="flex gap-3">
-              {(['normal', 'large'] as const).map((f) => (
+              {(["normal", "large"] as const).map((f) => (
                 <button
                   key={f}
-                  onClick={() => dispatch({ type: 'SET_FONT_SIZE', payload: f })}
+                  onClick={() =>
+                    dispatch({ type: "SET_FONT_SIZE", payload: f })
+                  }
                   className={`flex-1 py-2 px-4 rounded-xl font-semibold border-2 transition-colors ${
                     state.fontSize === f
-                      ? 'border-secondary bg-amber-50 text-secondary dark:bg-amber-900/20'
-                      : 'border-gray-200 dark:border-slate-600 text-gray-500 dark:text-slate-400'
-                  } ${f === 'large' ? 'text-base' : 'text-sm'}`}
+                      ? "border-secondary bg-amber-50 text-secondary dark:bg-amber-900/20"
+                      : "border-gray-200 dark:border-slate-600 text-gray-500 dark:text-slate-400"
+                  } ${f === "large" ? "text-base" : "text-sm"}`}
                 >
-                  {f === 'normal' ? 'Normal' : 'Large'}
+                  {f === "normal" ? "Normal" : "Large"}
                 </button>
               ))}
             </div>
@@ -112,7 +130,7 @@ export function SettingsModal() {
             <button
               onClick={() => {
                 clearHistory();
-                alert('Practice history cleared.');
+                alert("Practice history cleared.");
               }}
               className="text-sm text-red-500 hover:text-red-700 font-semibold underline"
             >

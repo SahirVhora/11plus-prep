@@ -1,93 +1,116 @@
-import type { VercelRequest, VercelResponse } from '@vercel/node';
-import Anthropic from '@anthropic-ai/sdk';
+import { timingSafeEqual } from "node:crypto";
+import {
+  AiServiceError,
+  normaliseGenerateRequest,
+  requestModelText,
+  validateGeneratedQuestions,
+} from "./ai-core.ts";
+import type { ApiRequest, ApiResponse } from "./http-types.ts";
 
-interface GenerateQuestionsBody {
-  subject?: string;
-  difficulty?: number;
-  count?: number;
-  topics?: string[] | string;
-  apiKey?: string;
-  regionContext?: string;
+const DEFAULT_ORIGINS = [
+  "https://sahirvhora.github.io",
+  "http://localhost:5173",
+  "http://127.0.0.1:5173",
+];
+
+function allowCors(req: ApiRequest, res: ApiResponse): boolean {
+  const configured = (process.env.ALLOWED_ORIGINS ?? "")
+    .split(",")
+    .map((origin) => origin.trim())
+    .filter(Boolean);
+  const allowed = new Set([...DEFAULT_ORIGINS, ...configured]);
+  const origin =
+    typeof req.headers.origin === "string" ? req.headers.origin : "";
+
+  if (origin && allowed.has(origin)) {
+    res.setHeader("Access-Control-Allow-Origin", origin);
+    res.setHeader("Vary", "Origin");
+  }
+  res.setHeader("Access-Control-Allow-Methods", "POST, OPTIONS");
+  res.setHeader(
+    "Access-Control-Allow-Headers",
+    "Content-Type, X-Worksheet-Access",
+  );
+  res.setHeader("Cache-Control", "no-store");
+
+  if (req.method === "OPTIONS") {
+    res.status(204).end();
+    return true;
+  }
+  if (origin && !allowed.has(origin)) {
+    res
+      .status(403)
+      .json({ error: "Origin is not allowed.", code: "ORIGIN_DENIED" });
+    return true;
+  }
+  return false;
 }
 
-function normaliseErrorMessage(err: unknown): string {
-  return err instanceof Error ? err.message : 'Failed to generate questions';
+function hasFamilyAccess(req: ApiRequest): boolean {
+  const expected = process.env.WORKSHEET_ACCESS_CODE;
+  if (!expected) {
+    throw new AiServiceError(
+      503,
+      "ACCESS_NOT_CONFIGURED",
+      "The family AI service is not fully configured yet.",
+    );
+  }
+  const receivedHeader = req.headers["x-worksheet-access"];
+  const received = Array.isArray(receivedHeader)
+    ? receivedHeader[0]
+    : receivedHeader;
+  if (!received) return false;
+
+  const expectedBuffer = Buffer.from(expected);
+  const receivedBuffer = Buffer.from(received);
+  return (
+    expectedBuffer.length === receivedBuffer.length &&
+    timingSafeEqual(expectedBuffer, receivedBuffer)
+  );
 }
 
-export default async function handler(req: VercelRequest, res: VercelResponse) {
-  if (req.method !== 'POST') {
-    return res.status(405).json({ error: 'Method not allowed' });
-  }
-
-  const { subject, difficulty, count, topics, apiKey, regionContext } = req.body as GenerateQuestionsBody;
-
-  if (!subject || !difficulty || !count) {
-    return res.status(400).json({ error: 'Missing required fields: subject, difficulty, count' });
-  }
-
-  if (!apiKey) {
-    return res.status(401).json({ error: 'No API key provided. Add your Anthropic API key in Settings.' });
-  }
+export default async function handler(req: ApiRequest, res: ApiResponse) {
+  if (allowCors(req, res)) return;
+  if (req.method !== "POST")
+    return res
+      .status(405)
+      .json({ error: "Method not allowed", code: "METHOD_NOT_ALLOWED" });
 
   try {
-    const client = new Anthropic({ apiKey });
-
-    const systemPrompt = `You are an expert 11+ exam question writer for UK grammar school entry.
-You write original, age-appropriate practice questions aligned with the requested UK region and exam format.
-Always return ONLY valid JSON - no markdown, no preamble, no trailing text.`;
-
-    const userPrompt = `Generate exactly ${count} ${subject} questions at difficulty level ${difficulty}/3
-(1=Year4-5 baseline, 2=Year6 standard, 3=Year6 stretch/hard).
-Focus on these topics: ${Array.isArray(topics) ? topics.join(', ') : topics}.
-Regional context: ${regionContext || 'General UK 11+ practice. Use common GL Assessment style unless the subject request implies otherwise.'}
-
-Return a JSON array where each object has:
-{
-  "id": "ai-${subject}-<index>",
-  "subject": "${subject}",
-  "topic": "<specific topic>",
-  "difficulty": ${difficulty},
-  "type": "mcq",
-  "question": "<question text>",
-  "context": "<optional passage for comprehension, else omit>",
-  "options": ["A) ...", "B) ...", "C) ...", "D) ...", "E) ..."],
-  "answer": "<A/B/C/D/E>",
-  "explanation": "<clear explanation why this is correct, 1-2 sentences>"
-}
-
-Rules:
-- Questions must be multiple choice with 4-5 options
-- For Maths: include a mix of calculation and word problems
-- For English: include at least one comprehension passage (100-120 words) with 3-4 questions
-- For Verbal Reasoning: use classic GL question formats (analogies, codes, sequences, odd-one-out)
-- For Non-Verbal Reasoning: describe shape/pattern relationships in clear text
-- All content must be age-appropriate for 9-11 year olds
-- Difficulty 3 questions should require multi-step reasoning
-- Never repeat questions from obvious common sources
-- Vary question styles within each subject`;
-
-    const message = await client.messages.create({
-      model: 'claude-opus-4-6',
-      max_tokens: 4096,
-      system: systemPrompt,
-      messages: [{ role: 'user', content: userPrompt }],
-    });
-
-    const rawText = message.content[0].type === 'text' ? message.content[0].text : '';
-
-    let questions;
-    try {
-      questions = JSON.parse(rawText);
-    } catch {
-      const clean = rawText.replace(/```json|```/g, '').trim();
-      questions = JSON.parse(clean);
+    if (!hasFamilyAccess(req)) {
+      throw new AiServiceError(
+        401,
+        "ACCESS_DENIED",
+        "Enter the family AI access code to create a worksheet.",
+      );
     }
-
-    return res.status(200).json({ questions });
-  } catch (err: unknown) {
-    console.error('API error:', err);
-    return res.status(500).json({
-      error: normaliseErrorMessage(err),
+    const request = normaliseGenerateRequest(req.body);
+    const rawText = await requestModelText(request, process.env);
+    const questions = validateGeneratedQuestions(rawText, request);
+    return res
+      .status(200)
+      .json({ questions, provider: request.provider, model: request.model });
+  } catch (error: unknown) {
+    if (error instanceof AiServiceError) {
+      console.warn("AI worksheet request failed", {
+        code: error.code,
+        status: error.status,
+      });
+      return res
+        .status(error.status)
+        .json({ error: error.message, code: error.code });
+    }
+    const timedOut =
+      error instanceof Error &&
+      (error.name === "TimeoutError" || error.name === "AbortError");
+    console.error("AI worksheet request failed", {
+      code: timedOut ? "TIMEOUT" : "UNEXPECTED_ERROR",
+    });
+    return res.status(timedOut ? 504 : 500).json({
+      error: timedOut
+        ? "The AI provider took too long. Try another model or Free Practice."
+        : "The worksheet could not be generated. Try another model or Free Practice.",
+      code: timedOut ? "TIMEOUT" : "UNEXPECTED_ERROR",
     });
   }
 }

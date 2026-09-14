@@ -40,7 +40,7 @@ The platform recognizes that 11+ exams vary significantly by region. It includes
 ### 📄 Study Tooling
 
 - **PDF Generation:** Ability to generate printable versions of questions and results using `jspdf` and `html2canvas`.
-- **AI-Powered Content:** Integrated with the Anthropic SDK for generating high-quality practice questions.
+- **AI-Powered Content:** Secure server-side adapters for OpenAI, Claude, DeepSeek, Gemini, OpenRouter Free and Groq.
 
 ## 🛠️ Technical Stack
 
@@ -50,7 +50,7 @@ The platform recognizes that 11+ exams vary significantly by region. It includes
 - **Key Libraries:**
   - `react-router-dom` for seamless page navigation.
   - `jspdf` & `html2canvas` for document generation.
-  - `@anthropic-ai/sdk` for AI-driven content generation.
+  - Provider REST APIs behind a Vercel serverless boundary for AI generation.
 
 ## 🚀 Getting Started
 
@@ -80,6 +80,14 @@ npm run check
 
 This runs linting, model/content tests, all regional-data validators, TypeScript compilation and the production build.
 
+### Secure AI service
+
+The GitHub Pages frontend never receives provider credentials. Deploy the repository's `api/` directory on Vercel, add a long private `WORKSHEET_ACCESS_CODE` plus one or more server-only provider environment variables from `.env.example`, then set the GitHub repository variable `VITE_AI_API_URL` to that Vercel origin.
+
+Supported server secrets are `OPENAI_API_KEY`, `ANTHROPIC_API_KEY`, `DEEPSEEK_API_KEY`, `GEMINI_API_KEY`, `OPENROUTER_API_KEY` and `GROQ_API_KEY`. Configure only the providers the family intends to use. Never create a `VITE_` version of a secret - Vite variables are public browser code.
+
+The family enters the access code in AI Practice; it is kept only for the browser session and is not a provider credential. The API checks that code, restricts browser origins, caps AI papers at 30 questions, times out stalled providers, validates every returned question and exposes provider availability without exposing credentials. Free Practice stays available without this service. For additional cost protection, set a request-rate rule for `/api/generate-questions` in the hosting dashboard.
+
 ### Utility Commands
 
 To validate the regional data integrity:
@@ -90,6 +98,8 @@ npm run validate-regions
 
 ## 📂 Project Structure
 
+- `api`: provider routing, server-held credentials, CORS controls and generated-question validation.
+- `src/api/aiCatalog.ts`: the reviewed provider/model catalogue shown in the interface.
 - `src/features/journey`: FGP36 dates, missions, school routes, local-state model and browser exports.
 - `src/pages/Home.tsx`: focused child-facing daily mission.
 - `src/pages/Journey.tsx`: year map, milestones, target schools and the 40-session calendar.
@@ -106,11 +116,12 @@ npm run validate-regions
 2. Open the Today page at desktop and phone widths; confirm no horizontal overflow.
 3. Complete a mission with each confidence choice and confirm the completion screen has no additional feed.
 4. In Parent Desk, verify blank homework and a score greater than its total are rejected.
-5. Save a profile with `TW13`, open Year Journey and confirm Kendrick is presented as outside the currently published designated area, with an official-policy caveat.
+5. Save `TW13`, open Year Journey and confirm Kendrick is presented as outside the currently published designated area, with an official-policy caveat.
 6. Export a backup, import it in a clean browser profile and verify records and selected schools return.
 7. Import malformed or oversized JSON and confirm it is rejected without replacing current data.
 8. Import the FGP36 calendar into a test calendar and confirm 40 Sunday events with reminders.
 9. Install the production build and verify the cached app shell opens offline. Dynamic data never depends on the network.
+10. With a test provider key on the server, confirm provider availability, a valid AI paper, a mixed paper and automatic Free Practice fallback after a simulated `429`.
 
 ## Staged Learning Plan
 
