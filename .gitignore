@@ -29,3 +29,10 @@ venv/
 .audit-result.json
 .claude/settings.local.json
 .under-anything/
+
+# Generated build and workspace files
+*.egg-info/
+build/
+.worktrees/
+.understand-anything/
+dist/
