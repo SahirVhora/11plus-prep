@@ -35,6 +35,9 @@ jobs:
         env:
           VITE_AI_API_URL: ${{ vars.VITE_AI_API_URL }}
 
+      - name: Add GitHub Pages SPA 404 fallback
+        run: cp dist/index.html dist/404.html
+
       - uses: actions/configure-pages@1f0c5cde4bc74cd7e1254d0cb4de8d49e9068c7d # v4
 
       - uses: actions/upload-pages-artifact@56afc609e74202658d3ffba0e8f6dda462b719fa # v3
